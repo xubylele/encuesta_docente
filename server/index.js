@@ -1,7 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-const port = 3000
+const dotenv = require('dotenv')
+dotenv.config()
+
+const port = process.env.APP_PORT
 
 const db = require('./db/querys')
 
@@ -19,5 +22,3 @@ app.get('/', (request, response) => {
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
-
-app.get('/users', db.getUsers)
