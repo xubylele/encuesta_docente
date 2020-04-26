@@ -1,24 +1,9 @@
 const express = require('express')
-const bodyParser = require('body-parser')
-const app = express()
-const dotenv = require('dotenv')
-dotenv.config()
 
-const port = process.env.APP_PORT
+const config = require('./config/server')
 
-const db = require('./db/querys')
+const app = config(express())
 
-app.use(bodyParser.json())
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-)
-
-app.get('/', (request, response) => {
-  response.json({ info: 'Node.js, Express, and Postgres API' })
-}) 
-
-app.listen(port, () => {
-  console.log(`App running on port ${port}.`)
+app.listen(app.get('port'), () => {
+    console.log('Server on port', app.get('port'))
 })
