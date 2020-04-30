@@ -11,6 +11,10 @@ const questionSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'QuestionSet'
     },
+    AlternativeSet: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'AlternativeSet'
+    },
     timestamps: true 
 })
 
