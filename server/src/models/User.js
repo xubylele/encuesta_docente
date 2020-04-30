@@ -35,6 +35,9 @@ const userSchema = new mongoose.Schema({
     participants: [
         {type: mongoose.Schema.Types.ObjectId, ref:'ParticipantList'}
     ],
+    polls: [
+        {type: mongoose.Schema.Types.ObjectId, ref:'Poll'}
+    ],
     timestamp: {
         type: Date,
         default: Date.now

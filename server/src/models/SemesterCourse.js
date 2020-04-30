@@ -31,6 +31,9 @@ const semesterCourse = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Course'
     },
+    polls: [
+        {type: mongoose.Schema.Types.ObjectId, ref:'Poll'}
+    ],
     participants: [
         {type: mongoose.Schema.Types.ObjectId, ref:'ParticipantList'}
     ],

@@ -10,6 +10,9 @@ const questionSetSchema = new mongoose.Schema({
     questions: [
         {type: mongoose.Schema.Types.ObjectId, ref:'Question'}
     ],
+    polls: [
+        {type: mongoose.Schema.Types.ObjectId, ref:'Poll'}
+    ],
     timestamps: true 
 })
 
