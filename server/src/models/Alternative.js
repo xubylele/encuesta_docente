@@ -11,6 +11,9 @@ const alternativeSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'AlternativeSet'
     },
+    answers: [
+        {type: mongoose.Schema.Types.ObjectId, ref:'Answer'}
+    ],
     timestamps: true 
 })
 

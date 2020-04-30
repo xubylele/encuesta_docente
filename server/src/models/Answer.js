@@ -1,30 +1,23 @@
 const mongoose = require('mongoose')
 
 const pollSchema = new mongoose.Schema({
-    period: {
-        type: Number,
+    answer: {
+        type: String,
         required: true,
-        max: 1
+        max: 100
     },
-    state: {
-        type: Boolean,
-        required: true,
-    },
-    User: {
+    Alternative: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Alternative'
     },
-    QuestionSet: {
+    Question: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'QuestionSet'
+        ref: 'Question'
     },
-    SemesterCourse: {
+    Poll: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'SemesterCourse'
+        ref: 'Poll'
     },
-    answers: [
-        {type: mongoose.Schema.Types.ObjectId, ref:'Answer'}
-    ],
     timestamps: true 
 })
 
