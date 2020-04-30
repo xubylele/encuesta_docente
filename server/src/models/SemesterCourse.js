@@ -31,6 +31,9 @@ const semesterCourse = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Course'
     },
+    participants: [
+        {type: mongoose.Schema.Types.ObjectId, ref:'ParticipantList'}
+    ],
     timestamps: true 
 })
 
