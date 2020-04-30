@@ -1,3 +1,4 @@
+require('dotenv').config()
 const morgan = require('morgan')
 const express = require('express')
 const errorHandler = require('errorhandler')
@@ -5,7 +6,7 @@ const routes = require('../routes/index')
 
 module.exports = app => {
     //Settings
-    app.set('port', process.env.PORT || 3000)
+    app.set('port', process.env.PORT || 3001)
     
 
     //Middlewares
