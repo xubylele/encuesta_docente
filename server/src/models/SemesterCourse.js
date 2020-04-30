@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const courseSchema = new mongoose.Schema({
+const semesterCourse = new mongoose.Schema({
     course_acronym: {
         type: String,
         required: true,
@@ -34,4 +34,4 @@ const courseSchema = new mongoose.Schema({
     timestamps: true 
 })
 
-module.exports = mongoose.model('Course', courseSchema)
+module.exports = mongoose.model('SemesterCourse', semesterCourse)
