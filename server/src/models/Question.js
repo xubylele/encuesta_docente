@@ -7,9 +7,9 @@ const questionSchema = new mongoose.Schema({
         min: 5,
         max: 10
     },
-    Alternative: {
+    QuestionSet: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Question'
+        ref: 'QuestionSet'
     },
     timestamps: true 
 })

@@ -7,9 +7,9 @@ const alternativeSchema = new mongoose.Schema({
         min: 5,
         max: 10
     },
-    Alternative: {
+    AlternativeSet: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Alternative'
+        ref: 'AlternativeSet'
     },
     timestamps: true 
 })
