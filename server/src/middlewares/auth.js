@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const { secret_token } = require('../keys')
+const { secret_token } = process.env.SECRET_TOKEN
 
 module.exports = function (req, res, next){
     const token = req.header('auth-token')

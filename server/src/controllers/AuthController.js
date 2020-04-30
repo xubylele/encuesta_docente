@@ -3,7 +3,8 @@ const { User } = require('../models/index')
 const { registerValidation, loginValidation } = require('../helpers/verifyAuth')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-const { secret_token } = require('../keys')
+const { secret_token } = process.env.SECRET_TOKEN
+const types = require('../helpers/userTypes')
 
 ctrl.register = async (req, res) => {
     //Validate user data
@@ -27,7 +28,7 @@ ctrl.register = async (req, res) => {
         names: req.body.name,
         last_names: req.body.last_names,
         email: req.body.email,
-        password: hashedPassword
+        password: hashedPassword,
     })
 
     try {

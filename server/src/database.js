@@ -1,8 +1,9 @@
+require('dotenv').config()
 const mongoose = require('mongoose')
 
 const { database } = newFunction()
 
-mongoose.connect(database.URI, {
+mongoose.connect(process.env.DB_URI, {
     useNewUrlParser: true
 })
     .then(db => console.log('DB connected successfully'))
