@@ -6,15 +6,15 @@ const pollSchema = new mongoose.Schema({
         required: true,
         max: 100
     },
-    Alternative: {
+    alternative: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Alternative'
     },
-    Question: {
+    question: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Question'
     },
-    Poll: {
+    poll: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Poll'
     },

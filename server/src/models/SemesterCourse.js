@@ -1,22 +1,6 @@
 const mongoose = require('mongoose')
 
 const semesterCourse = new mongoose.Schema({
-    course_acronym: {
-        type: String,
-        required: true,
-        min: 3,
-        max: 10
-    },
-    semester: {
-        type: Number,
-        required: true,
-        max: 1
-    },
-    semester: {
-        type: Number,
-        required: true,
-        max: 1
-    },
     semester: {
         type: Number,
         required: true,
@@ -27,7 +11,7 @@ const semesterCourse = new mongoose.Schema({
         required: true,
         max: 1  
     },
-    Course: {
+    course: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Course'
     },

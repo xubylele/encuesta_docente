@@ -6,11 +6,11 @@ const participantList = new mongoose.Schema({
         required: true,
         max: 255
     },
-    SemesterCourse: {
+    semesterCourse: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'SemesterCourse'
     },
-    Participant: {
+    participant: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },

@@ -7,7 +7,7 @@ const alternativeSchema = new mongoose.Schema({
         min: 5,
         max: 10
     },
-    AlternativeSet: {
+    alternativeSet: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'AlternativeSet'
     },

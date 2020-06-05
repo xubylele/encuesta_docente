@@ -7,11 +7,11 @@ const questionSchema = new mongoose.Schema({
         min: 5,
         max: 10
     },
-    QuestionSet: {
+    questionSet: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'QuestionSet'
     },
-    AlternativeSet: {
+    alternativeSet: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'AlternativeSet'
     },

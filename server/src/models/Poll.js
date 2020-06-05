@@ -10,15 +10,15 @@ const pollSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
     },
-    User: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    QuestionSet: {
+    questionSet: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'QuestionSet'
     },
-    SemesterCourse: {
+    semesterCourse: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'SemesterCourse'
     },
