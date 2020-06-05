@@ -14,6 +14,9 @@ const participantList = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    userEnsigns: [
+        {type: mongoose.Schema.Types.ObjectId, ref:'UserEnsigns'}
+    ],
     timestamps: true 
 })
 

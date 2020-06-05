@@ -15,6 +15,10 @@ const questionSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'AlternativeSet'
     },
+    section: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Section'
+    },
     answers: [
         {type: mongoose.Schema.Types.ObjectId, ref:'Answer'}
     ],
