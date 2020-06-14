@@ -23,23 +23,19 @@ ctrl.register = async (req, res) => {
     if(emailExist)
         return res.status(400).json({error: 'Email already exists'})
 
-    //Hash password
-    const salt = await bcrypt.genSalt(10)
-    const hashedPassword = await bcrypt.hash(req.body.password, salt)
-
     //Create new User
     const user = new User({
-        names: req.body.name,
+        names: req.body.names,
         last_names: req.body.last_names,
         email: req.body.email,
-        password: hashedPassword,
+        password: req.body.password,
     })
 
     try {
         const savedUser = await user.save()
         res.status(200).json({user: savedUser})
     } catch (error) {
-        res.status(400).json({error: err})        
+        res.status(400).json({error: error})        
     }
 
 }
