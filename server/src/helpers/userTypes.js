@@ -1,5 +1,5 @@
 module.exports.types = {
-    STUDIENT_TYPE: 'studient',
+    STUDENT_TYPE: 'student',
     TEACHER_TYPE: 'teacher',
     DIRECTOR_TYPE: 'director'
 }
