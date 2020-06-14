@@ -14,7 +14,10 @@ const alternativeSchema = new mongoose.Schema({
     answers: [
         {type: mongoose.Schema.Types.ObjectId, ref:'Answer'}
     ],
-    timestamps: true 
+    timestamp: {
+        type: Date,
+        default: Date.now
+    }
 })
 
 module.exports = mongoose.model('alternativeSchema', alternativeSchema)

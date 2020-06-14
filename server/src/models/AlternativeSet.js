@@ -10,7 +10,10 @@ const alternativeSetSchema = new mongoose.Schema({
     alternatives: [
         {type: mongoose.Schema.Types.ObjectId, ref:'Alternative'}
     ],
-    timestamps: true 
+    timestamp: {
+        type: Date,
+        default: Date.now
+    }
 })
 
 module.exports = mongoose.model('AlternativeSet', alternativeSetSchema)

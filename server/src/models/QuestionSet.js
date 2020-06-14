@@ -13,7 +13,10 @@ const questionSetSchema = new mongoose.Schema({
     polls: [
         {type: mongoose.Schema.Types.ObjectId, ref:'Poll'}
     ],
-    timestamps: true 
+    timestamp: {
+        type: Date,
+        default: Date.now
+    }
 })
 
 module.exports = mongoose.model('QuestionSet', questionSetSchema)

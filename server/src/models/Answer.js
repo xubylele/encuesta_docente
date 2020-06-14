@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const pollSchema = new mongoose.Schema({
+const answerSchema = new mongoose.Schema({
     answer: {
         type: String,
         required: true,
@@ -18,7 +18,10 @@ const pollSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Poll'
     },
-    timestamps: true 
+    timestamp: {
+        type: Date,
+        default: Date.now
+    }
 })
 
-module.exports = mongoose.model('Poll', pollSchema)
+module.exports = mongoose.model('Answer', answerSchema)

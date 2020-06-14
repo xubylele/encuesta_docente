@@ -21,7 +21,10 @@ const semesterCourse = new mongoose.Schema({
     participants: [
         {type: mongoose.Schema.Types.ObjectId, ref:'ParticipantList'}
     ],
-    timestamps: true 
+    timestamp: {
+        type: Date,
+        default: Date.now
+    }
 })
 
 module.exports = mongoose.model('SemesterCourse', semesterCourse)

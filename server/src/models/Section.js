@@ -10,7 +10,10 @@ const sectionSchema = new mongoose.Schema({
     questions: [
         {type: mongoose.Schema.Types.ObjectId, ref:'question'}
     ],
-    timestamps: true 
+    timestamp: {
+        type: Date,
+        default: Date.now
+    }
 })
 
 module.exports = mongoose.model('sectionSchema', sectionSchema)
