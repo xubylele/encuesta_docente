@@ -13,7 +13,10 @@ const userEnsignsSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'ParticipantList'
     },
-    timestamps: true 
+    timestamp: {
+        type: Date,
+        default: Date.now
+    }
 })
 
 module.exports = mongoose.model('UserEnsigns', userEnsignsSchema)

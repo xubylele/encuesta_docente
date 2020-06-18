@@ -10,7 +10,10 @@ const ensignSchema = new mongoose.Schema({
     userEnsigns: [
         {type: mongoose.Schema.Types.ObjectId, ref:'UserEnsigns'}
     ],
-    timestamps: true 
+    timestamp: {
+        type: Date,
+        default: Date.now
+    }
 })
 
 module.exports = mongoose.model('Ensign', ensignSchema)

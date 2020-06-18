@@ -16,7 +16,10 @@ const courseSchema = new mongoose.Schema({
     semesterCourses: [
         {type: mongoose.Schema.Types.ObjectId, ref:'SemesterCourse'}
     ],
-    timestamps: true 
+    timestamp: {
+        type: Date,
+        default: Date.now
+    }
 })
 
 module.exports = mongoose.model('Course', courseSchema)
