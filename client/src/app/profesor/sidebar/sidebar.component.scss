@@ -1,0 +1,35 @@
+body{
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    box-shadow: inset 0 2px 5px 0 rgba(0,0,0,.11);
+}
+
+#sidebar-container{
+    position: static;
+    min-height: 100vh;
+}
+
+#sidebar-container .menu{
+    width: 15rem;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+a{
+    color: #3f3f3f;
+    font-family: 'Poppins', sans-serif;
+    font-style: bold;
+}
+
+.menu a i{
+    padding: 10px;
+    font-size: 25px;
+}
+#sidebar-container .header-sidebar{ 
+    padding: .875rem 1.25rem;
+    font-style: bold;
+    text-align: left;
+}
