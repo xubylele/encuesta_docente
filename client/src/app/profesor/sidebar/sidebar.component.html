@@ -1,17 +1,22 @@
 <div class="d-flex">
     <div id="sidebar-container" class="bg-light">
         <div class="header-sidebar">
-            <h4>Encuesta Docente</h4>
+            <h4>Sistema Docente</h4>
+            
         </div>
+        <div class="icon-header">
+            <a><i class="fas fa-home" style="color:#6247E9;"></i></a>
+        </div>
+        
         <div class="menu">
-            <a href=""><i></i> <span>Resumen Semestre Actual</span></a>
-            <a href=""><i></i> <span>Asignaturas</span></a>
-            <a href=""><i></i><span>Evaluaciones Anteriores</span></a>
-            <a href=""><i></i><span>Insignias</span></a>
-            <a href=""><i></i><span>Recomendaciones</span></a>
+            <a class="nav-item nav-link d-block" routerLink="/" (mouseenter)="cambiarFondo($event)"><i class="fas fa-home" style="color:#6247E9;"></i> Resumen Semestre Actual</a>
+            <a class="d-block" routerLink="/asignaturas"><i class="fas fa-swatchbook" style="color:#EB2A45;" ></i>Asignaturas </a>
+            <a class="d-block" routerLink="/evaluaciones-anteriores"><i class="far fa-chart-bar" style="color:#11CDEF;"></i>Evaluaciones Anteriores </a>
+            <a class="d-block" routerLink="/insignias"><i class="fas fa-chart-pie" style="color:#15B325;"></i>Insignias </a>
+            <a class="d-block" routerLink="/recomendaciones"><i class="fas fa-medal" style="color:#FEB969;"></i>Recomendaciones</a>
         </div>
     </div>
-    <div class="w-100">
+    <div class="w-100 fondo">
         <app-header></app-header>
     </div>
     
