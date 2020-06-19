@@ -12,9 +12,13 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  cambiarFondo(event){
+  fondoActive(event){
     console.log(event);
-    event.srcElement.style.backgroundColor = "#bada55";
+    event.srcElement.style.backgroundColor = "#EEEFF0";
+  }
+
+  fondoDisable(event){
+    event.srcElement.style.backgroundColor = "#FFFFFF";
   }
 
 }
