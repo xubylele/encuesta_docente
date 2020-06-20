@@ -11,6 +11,7 @@ import { ResumenActualComponent } from './profesor/resumen-actual/resumen-actual
 import { EvaluacionesAnterioresComponent } from './profesor/evaluaciones-anteriores/evaluaciones-anteriores.component';
 import { InsigniasComponent } from './profesor/insignias/insignias.component';
 import { RecomendacionesComponent } from './profesor/recomendaciones/recomendaciones.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RecomendacionesComponent } from './profesor/recomendaciones/recomendaci
     ResumenActualComponent,
     EvaluacionesAnterioresComponent,
     InsigniasComponent,
-    RecomendacionesComponent
+    RecomendacionesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

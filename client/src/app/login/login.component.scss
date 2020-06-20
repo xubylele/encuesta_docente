@@ -1,0 +1,58 @@
+.fondo{
+    background-image: url('https://www.10wallpaper.com/wallpaper/1366x768/1807/Blue_Gray_Curved_Lines_Abstract_4K_HD_1366x768.jpg');
+    position: fixed;
+    background-size: cover;
+}
+
+.login-card{
+    height: 35vh;
+    width: 35vh;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    position: absolute;
+    background-color: #F4F4F4 ;
+    padding: 20px;
+    float: center;
+    display: table;
+    justify-content: center;
+    align-items: center;
+    left: 25%;
+    transform: translateX(-50%);
+    top: 30vh;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.form-login{
+    position: relative !important;
+
+}
+
+.header #logoinf{
+    height: 90px;
+    padding: 10px;
+
+}
+
+.header #logopucv{
+    right: 0;
+    position: absolute;
+    height: 12rem;
+    top: -3rem;
+    z-index: 10;
+}
+
+
+.header{
+    position: relative;
+}
+
+#back-login{
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    position: absolute;
+    bottom: -4vh;
+    right: 0rem;
+}
