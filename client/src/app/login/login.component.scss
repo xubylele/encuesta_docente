@@ -25,27 +25,44 @@
 
 .form-login{
     position: relative !important;
-
+    
 }
 
 .header #logoinf{
-    height: 90px;
-    padding: 10px;
+    height: 75px;
+    padding: 11px;
 
 }
 
 .header #logopucv{
     right: 0;
     position: absolute;
-    height: 12rem;
-    top: -3rem;
-    z-index: 10;
+    height: 135px;
+    bottom: -33px;
+    z-index: 20;
 }
 
 
-.header{
+#header-login{
     position: relative;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 0px 0px 5px 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background-color: #d8d8d8;
+    height: 10vh;
+    opacity: 70%;
+    z-index: 30;
 }
+
+#titulo-login{
+    position: absolute;
+    top: 20vh;
+    left: 26vh;
+    color: #152b38;
+
+}
+
 
 #back-login{
     -webkit-transform: rotate(-180deg);
@@ -55,4 +72,5 @@
     position: absolute;
     bottom: -4vh;
     right: 0rem;
+
 }
