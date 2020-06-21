@@ -12,6 +12,7 @@ import { EvaluacionesAnterioresComponent } from './profesor/evaluaciones-anterio
 import { InsigniasComponent } from './profesor/insignias/insignias.component';
 import { RecomendacionesComponent } from './profesor/recomendaciones/recomendaciones.component';
 import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
