@@ -8,7 +8,7 @@ const { User } = require('../models/index')
 const { registerValidation, loginValidation } = require('../helpers/verifyAuth')
 const types = require('../helpers/userTypes')
 
-const secret_token = process.env.SECRET_TOKEN
+const { secret_token } = process.env.SECRET_TOKEN
 
 ctrl.register = async (req, res) => {
     //Validate user data

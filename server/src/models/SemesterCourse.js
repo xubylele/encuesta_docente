@@ -4,17 +4,12 @@ const semesterCourse = new mongoose.Schema({
     semester: {
         type: Number,
         required: true,
-        max: 2
-    },
-    year: {
-        type: Number,
-        required: true,
-        max: 2020
+        max: 1
     },
     parallel: {
         type: Number,
         required: true,
-        max: 10
+        max: 1  
     },
     course: {
         type: mongoose.Schema.Types.ObjectId,
