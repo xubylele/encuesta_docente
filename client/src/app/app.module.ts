@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './profesor/header/header.component';
@@ -12,7 +11,8 @@ import { EvaluacionesAnterioresComponent } from './profesor/evaluaciones-anterio
 import { InsigniasComponent } from './profesor/insignias/insignias.component';
 import { RecomendacionesComponent } from './profesor/recomendaciones/recomendaciones.component';
 import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
+import { EncuestaComponent } from './alumno/encuesta/encuesta.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms'
     EvaluacionesAnterioresComponent,
     InsigniasComponent,
     RecomendacionesComponent,
-    LoginComponent
+    LoginComponent,
+    EncuestaComponent,
   ],
   imports: [
     BrowserModule,
