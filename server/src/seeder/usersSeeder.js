@@ -1,12 +1,16 @@
 const faker = require('faker')
 const { User } = require('../models/index')
-require('dotenv').config()
 const mongoose = require('mongoose')
+
+const path = require('path')
+console.log(require('dotenv').config({ path: path.resolve(__dirname, '../../.env') }))
+
+
+console.log(process.env.DB_URI)
 
 mongoose.connect(process.env.DB_URI, {
     useNewUrlParser: true
 })
-
 
 module.exports = async () => {
     try {

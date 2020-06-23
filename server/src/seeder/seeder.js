@@ -1,7 +1,7 @@
 const userSeeder = require('./usersSeeder')
-const coursesSeeder = require('./coursesSeeder')
+const { seedCourses } = require('./coursesSeeder')
 
 userSeeder()
-coursesSeeder()
+seedCourses()
 
 return
