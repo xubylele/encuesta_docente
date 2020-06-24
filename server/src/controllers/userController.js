@@ -14,6 +14,11 @@ userCtrl.createUser= async (req, res) => {
     });
 }
 
+userCtrl.getUsers = async (req, res) =>{
+    const users = await userModel.find();
+    res.status(200).json(users);
+}
+
 userCtrl.getUser= async (req, res) => {
     const user = await userModel.findById(req.params.id);
     res.json(user);
