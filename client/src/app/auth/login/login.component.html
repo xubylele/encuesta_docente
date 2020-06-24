@@ -19,9 +19,9 @@
         </div>
         <div class="login-card">
             <form [formGroup]="formLoginPage" id="form-login">
-                <div class="form-group" id="rut">
-                  <label for="exampleInputEmail1">Rut</label>
-                  <input class="form-control" formControlName="rut">
+                <div class="form-group" id="email">
+                  <label for="exampleInputEmail1">Email</label>
+                  <input class="form-control" formControlName="mail">
                   <div id="alert">
                     <small class="form-text text-muted">Ingrese rut valido</small>
                   </div>
@@ -35,7 +35,7 @@
                   
                 </div>
                 <br>
-                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                <button type="submit" class="btn btn-primary" (click)="login()">Iniciar Sesión</button>
             </form>
             
         </div>

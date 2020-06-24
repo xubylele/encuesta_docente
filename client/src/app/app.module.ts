@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './profesor/header/header.component';
@@ -11,8 +10,8 @@ import { ResumenActualComponent } from './profesor/resumen-actual/resumen-actual
 import { EvaluacionesAnterioresComponent } from './profesor/evaluaciones-anteriores/evaluaciones-anteriores.component';
 import { InsigniasComponent } from './profesor/insignias/insignias.component';
 import { RecomendacionesComponent } from './profesor/recomendaciones/recomendaciones.component';
-import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -25,12 +24,11 @@ import { ReactiveFormsModule } from '@angular/forms'
     EvaluacionesAnterioresComponent,
     InsigniasComponent,
     RecomendacionesComponent,
-    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
