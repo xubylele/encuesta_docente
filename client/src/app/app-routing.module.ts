@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SidebarComponent } from './profesor/sidebar/sidebar.component';
 
 
 const routes: Routes = [
   {
-    path:'',component:SidebarComponent,
+    path:'',redirectTo:'/auth', pathMatch:'full'
   },
+  {
+    path: 'auth', loadChildren: () => import('src/app/auth/auth.module').then(m => m.AuthModule)
+  }
 
 ];
 

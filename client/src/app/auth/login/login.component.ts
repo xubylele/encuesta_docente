@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { ProfesorI } from '../../models/profesor';
 
 @Component({
   selector: 'app-login',
@@ -13,23 +17,33 @@ export class LoginComponent implements OnInit {
   fondoPath:string = "./assets/back-login.png";
 
   formLoginPage:FormGroup;
+  
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, 
+              private http:HttpClient,
+              private authService: AuthService,
+              private router:Router
+  ) { }
 
   ngOnInit(): void {
     this.createForm();
   }
 
+  login(){
+    this.authService.login(this.formLoginPage.value).subscribe(res =>{
+      this.router.navigateByUrl('/auth');
+    });
+  }
+
+
   createForm(){
     this.formLoginPage = this.formBuilder.group({
-      rut: ['12345678-9',Validators.required],
+      mail: ['',Validators.compose([
+        Validators.required,Validators.email
+      ])],
       pass: ['',Validators.compose([
         Validators.required,Validators.minLength(5)
       ])]
     })
   }
-
-
-
-
 }
