@@ -1,4 +1,4 @@
-export interface ProfesorI{
+export interface User{
     id:number,
     name:string,
     last_name:string,
