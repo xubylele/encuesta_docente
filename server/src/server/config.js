@@ -3,6 +3,8 @@ const morgan = require('morgan')
 const express = require('express')
 const errorHandler = require('errorhandler')
 const routes = require('../routes/index')
+/*CORS*/
+const cors = require('cors')
 
 module.exports = app => {
     //Settings
@@ -13,6 +15,24 @@ module.exports = app => {
     app.use(morgan('dev'))
     app.use(express.urlencoded({extended: false}))
     app.use(express.json())
+
+    /*Using Cors*/
+    app.use(cors())
+    /*
+    var whitelist = ['http://localhost:4200']
+    var corsOpt = {
+        origin: function (origin,callback){
+            if(whitelist.indexOf(origin) != -1){
+                callback(null,true);
+            } else{
+                callback(new Error('No Cors'));
+            }
+        }
+    }
+
+    app.get('/',cors(corsOpt), (req,res) => {
+        res.json({msje: 'ok'})
+    })*/
 
 
     routes(app)
