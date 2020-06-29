@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
-const secret_token  = 'aksbdklsahdjfasutdykashdfvasvhgvg'
+const path = require('path')
+const {secret_token}  = require('dotenv').config({ path: path.resolve(__dirname, '../../.env') })
 
 module.exports = function (req, res, next){
     const token = req.header('auth-token')

@@ -8,7 +8,8 @@ const { User } = require('../models/index')
 const { registerValidation, loginValidation } = require('../helpers/verifyAuth')
 const types = require('../helpers/userTypes')
 
-const secret_token  = 'aksbdklsahdjfasutdykashdfvasvhgvg'
+const path = require('path')
+const {secret_token}  = require('dotenv').config({ path: path.resolve(__dirname, '../../.env') })
 
 ctrl.register = async (req, res) => {
     //Validate user data

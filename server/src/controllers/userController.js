@@ -1,4 +1,5 @@
 const userModel = require('../models/User');
+const ctrl = require('./AuthController');
 const userCtrl = {};
 
 
@@ -39,12 +40,17 @@ userCtrl.editUser = async (req, res) => {
 }
 
 userCtrl.remove = async(req, res) => {
-    const user = userModel.findByIdAndRemove(req.params.id);    // BUSCAMOS Y ELIMINAMOS
-    res.json({                              
-        'status': 'User Deleted'                                //LE MANDAMOS EL ESTADO ACTUALIZADO
-    });
+    console.log('gola')
+    try {
+        const user = await userModel.findByIdAndRemove(req.body.id);    // BUSCAMOS Y ELIMINAMOS
+        res.status(200).json({user: user, message: 'Ususario eliminado con exito'})
+        
+    } catch (error) {
+        res.status(500).json({error})
+    }
 }
 
 /* FUNCIONES COMPLEJAS */
 // userCtrl.
 
+module.exports = userCtrl
