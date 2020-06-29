@@ -24,12 +24,21 @@ module.exports = async () => {
                 new User({
                     names: `${faker.name.firstName()} ${faker.name.firstName()}`,
                     last_names: `${faker.name.lastName()} ${faker.name.lastName()}`,
-                    password: faker.internet.password(),
+                    password: 'password',
                     email: faker.internet.email()
                 })
             )
             
         }
+
+        users.push((
+            new User({
+                names: 'Profesor Anonimo',
+                last_names: 'Diaz Maraco',
+                password: 'profesorpass',
+                email: 'profesor@gmail.com'
+            })
+        ))
         
         users.forEach(user => {
             user.save().then(function (){

@@ -33,6 +33,7 @@ export class AuthService {
         (res:any) => {
           if(res){
             console.log('Inicio sesion')
+            console.log(`${this.AUTH_SERVER}/login`)
           }
         }
 

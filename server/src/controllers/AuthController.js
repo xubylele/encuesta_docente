@@ -1,6 +1,6 @@
 const ctrl = {}
 
-require('dotenv').config()
+require('dotenv').config({ path:__dirname+'/../../.env' })
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
@@ -8,7 +8,7 @@ const { User } = require('../models/index')
 const { registerValidation, loginValidation } = require('../helpers/verifyAuth')
 const types = require('../helpers/userTypes')
 
-const { secret_token } = process.env.SECRET_TOKEN
+const secret_token  = 'aksbdklsahdjfasutdykashdfvasvhgvg'
 
 ctrl.register = async (req, res) => {
     //Validate user data
@@ -43,6 +43,8 @@ ctrl.register = async (req, res) => {
 ctrl.login = async (req, res) => {
     //Validate the data 
 
+    console.log(req.body)
+
     const {error} = loginValidation(req.body)
     if(error) 
         return res.status(400).json({error: error.details})
@@ -57,6 +59,8 @@ ctrl.login = async (req, res) => {
     if(!validPass)
         return res.status(400).json({error: 'Email or password is wrong'})
 
+    console.log(secret_token)
+    
     //Create and asign a token
     const token = jwt.sign({_id: user._id}, secret_token)
 

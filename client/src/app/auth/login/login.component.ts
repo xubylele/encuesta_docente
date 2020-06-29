@@ -38,10 +38,10 @@ export class LoginComponent implements OnInit {
 
   createForm(){
     this.formLoginPage = this.formBuilder.group({
-      mail: ['',Validators.compose([
+      email: ['',Validators.compose([
         Validators.required,Validators.email
       ])],
-      pass: ['',Validators.compose([
+      password: ['',Validators.compose([
         Validators.required,Validators.minLength(5)
       ])]
     })
