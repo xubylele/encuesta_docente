@@ -5,7 +5,8 @@ const courseSchema = new mongoose.Schema({
         type: String,
         required: true,
         min: 3,
-        max: 10
+        max: 10,
+        unique: true
     },
     name: {
         type: String,

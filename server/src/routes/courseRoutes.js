@@ -7,6 +7,7 @@ const courseCtrl = require('../controllers/courseController');
     router.get('/getallcourses',courseController.getAllCourses);
     router.get('/:id/get',courseCtrl.getCourse);
     router.post('/create',courseCtrl.createCourse);
+    router.post('/create_much', courseController.createCourses)
     router.put('/:id/edit',courseCtrl.editCourse);
     router.delete('/delete',courseCtrl.deleteCourse);
 

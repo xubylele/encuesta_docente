@@ -5,32 +5,46 @@ const userCtrl = {};
 
 // ***** BASICAS ****
 userCtrl.createUser = async (req, res) => {
-const user = new userModel(req.body);                                             // LE ASIGNAMOS LOS DATOS QUE INGRESAN EN EL FRONT.
-try {
-    /*FALTA FUNCIÓN IF EXISTE
-     EN BASE DE DATOS */   
-    await user.save();                                                            // GUARDAMOS EL NUEVO USUARIO EN LA BASE DE DATOS.
-    res.status(200).json({user: user, message: 'Usuario creado con exito'});      // DEVOLVEMOS EL ESTADO DE EXITO.
-} catch (error) {
-    res.status(500).json({error});                                                // DEVOLVEMOS ERROR.
+    const user = new userModel(req.body);                                             // LE ASIGNAMOS LOS DATOS QUE INGRESAN EN EL FRONT.
+    try {
+        /*FALTA FUNCIÓN IF EXISTE
+        EN BASE DE DATOS */   
+        await user.save();                                                            // GUARDAMOS EL NUEVO USUARIO EN LA BASE DE DATOS.
+        res.status(200).json({user: user, message: 'Usuario creado con exito'});      // DEVOLVEMOS EL ESTADO DE EXITO.
+    } catch (error) {
+        res.status(500).json({error});                                                // DEVOLVEMOS ERROR.
+    }
 }
+
+userCtrl.createUsers = async (req, res) => {
+    console.log(req.body.users.length)
+    const users = []
+    for (let i = 0; i < req.body.users.length; i++) {
+        let user = new userModel(req.body.users[i]);                                               // CREAMOS UN NUEVO CURSO
+        users.push(user)                                                              // LO GUARDAMOS
+    }
+    users.forEach(userOnArray => {
+        userOnArray.save().then(function (){
+            console.log(userOnArray)
+        })
+    })
 }
 
 userCtrl.getAllUsers = async (req, res) =>{
-try {
-    const users = await userModel.find();                                         // BUSCAMOS TODOS LOS USUARIOS.
-    res.status(200).json(users);                                                  // DEVOLVEMOS STATUS OK Y JSON CON LOS USUARIOS.
-} catch (error) {
-    res.status(500).json({error});                                                // DEVOLVEMOS ERROR
-}
+    try {
+        const users = await userModel.find();                                         // BUSCAMOS TODOS LOS USUARIOS.
+        res.status(200).json(users);                                                  // DEVOLVEMOS STATUS OK Y JSON CON LOS USUARIOS.
+    } catch (error) {
+        res.status(500).json({error});                                                // DEVOLVEMOS ERROR
+    }
 }
 
 userCtrl.getUser= async (req, res) => {
-try {
-    const user = await userModel.findById(req.params.id);                         // BUSCAMOS EL USUARIO POR EL ID
-    res.status(200).json(user);                                                   // DEVOLVEMOS STATUS OK
-} catch (error) {
-    res.status(500).json({error});                                                // DEVOLVEMOS ERROR
+    try {
+        const user = await userModel.findById(req.params.id);                         // BUSCAMOS EL USUARIO POR EL ID
+        res.status(200).json(user);                                                   // DEVOLVEMOS STATUS OK
+    } catch (error) {
+        res.status(500).json({error});                                                // DEVOLVEMOS ERROR
 }}
 
 userCtrl.editUser = async (req, res) => {

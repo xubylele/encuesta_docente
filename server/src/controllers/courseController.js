@@ -11,6 +11,22 @@ courseCtrl.createCourse = async (req, res) =>{
     }
 }
 
+courseCtrl.createCourses = async (req, res) =>{
+    console.log(req.body.courses.length)
+    const courses = []
+    for (let i = 0; i < req.body.courses.length; i++) {
+        let course = new courseModel(req.body.courses[i]);                                               // CREAMOS UN NUEVO CURSO
+        courses.push(course)                                                              // LO GUARDAMOS
+    }
+    courses.forEach(courseOnArray => {
+        courseOnArray.save().then(function (){
+            console.log(courseOnArray)
+        })
+    })
+    res.status(200).json({menssage: ' Cursos creados exitosamente'});         // DEVOLVEMOS STATUS OK
+}
+
+
 courseCtrl.getAllCourses = async (req, res) =>{
     try {
         const courses = await courseModel.find();                                                     // BUSCAMOS TODOS LOS CURSOS Y LOS GUARDAMOS EN VARIBALE
