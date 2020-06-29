@@ -13,6 +13,15 @@ const ensign = new ensignModel(req.body);                                       
     }
 }
 
+ensignCtrl.getAllEnsigns = async (req, res) => {
+    try {
+        const ensigns = await ensignModel.find();                                       // BUSCAMOS TODOS LAS INSIGNIAS
+        res.status(200).json({ensigns});                                                // DEVOLVEMOS OK Y UN JSON CON TODAS LAS INSIGNIAS
+    } catch (error) {
+        res.status(500).json({error});                                                  // DEVOLVEMOS ERROR
+    }
+}
+
 ensignCtrl.getEnsign = async (req, res) => {
     try {
         const ensign = await ensignModel.findById(req.params.id);                       // BUSCAMOS EL OBJETO POR EL ID
