@@ -18,7 +18,7 @@ try {
 }
 }
 
-userCtrl.getUsers = async (req, res) =>{
+userCtrl.getAllUsers = async (req, res) =>{
 try {
     const users = await userModel.find();
     res.status(200).json(users);
