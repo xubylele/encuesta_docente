@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { func } = require('@hapi/joi')
 
 const courseSchema = new mongoose.Schema({
     acronym: {
