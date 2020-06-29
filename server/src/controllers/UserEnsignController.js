@@ -19,3 +19,5 @@ userEnsignsCtrl.getUserEnsigns = async(req, res) => {
 userEnsignsCtrl.remove = async(req, res) => {
     userEnsignsModel.findByIdAndDelete(req.params.id);
 }
+
+/* INCOMPLETA */
