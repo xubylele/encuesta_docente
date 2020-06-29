@@ -1,3 +1,4 @@
+
 const courseModel = require('../models/Course');
 const courseCtrl = {};
 
