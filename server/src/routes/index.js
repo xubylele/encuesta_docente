@@ -12,5 +12,6 @@ module.exports = app => {
 
     app.use(router)
     app.use('/api/users',require('../routes/userRoutes'));
+    app.use('/api/ensign',require('../routes/ensignRoutes'));
 
 }

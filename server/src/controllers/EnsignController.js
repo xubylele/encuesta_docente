@@ -46,8 +46,9 @@ ensignCtrl.removeEnsign = async (req, res) => {
 ensignCtrl.editEnsignName = async (req, res) => {
     const { id } = req.params;                                                           // OBTENEMOS EL ID 
     try {
-        const ensign = await ensignModel.findById(req.params.id);                        // BUSCAMOS EL ID DE LA INSIGNIA
-        ensign.name = req.body.name;                                                     // CAMBIAMOS EL NOMBRE
+        const ensign = {
+        name : req.body.name                                                             // CAMBIAMOS EL NOMBRE
+        }                                                                                
         await ensignModel.findByIdAndUpdate(id,{$set: ensign});                          // BUSCAMOS Y GUARDAMOS    
         res.status(200).json({ensign: ensign, message: 'Insignia editada con exito'})    // INDICAMOS EXITO
     } catch (error) {
