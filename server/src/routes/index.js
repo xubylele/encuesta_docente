@@ -11,6 +11,6 @@ module.exports = app => {
 
 
     app.use(router)
-    app.use()
+    app.use('/api/users',require('../routes/userRoutes'));
 
 }
