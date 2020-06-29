@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { AuthController, UserController } = require('../controllers')
+const { AuthController} = require('../controllers')
 const auth = require('../middlewares/auth')
 
 module.exports = app => {
@@ -9,8 +9,8 @@ module.exports = app => {
     router.post('/api/login', AuthController.login)
     router.get('/api/profile', auth, AuthController.profile)
 
-    router.delete('/api/user/delete', UserController.remove)
 
     app.use(router)
+    app.use()
 
 }
