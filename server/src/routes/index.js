@@ -18,5 +18,6 @@ module.exports = app => {
     app.use('/api/semestercourse', require('../routes/semesterCourseRouter'));
     app.use('/api/userensigns',require('../routes/userEnsignsRoutes'));
     app.use('/api/questionset', require('../routes/questionSetRouter'));
+    app.use('/api/question', require('../routes/questionRouter'));
 
 }
