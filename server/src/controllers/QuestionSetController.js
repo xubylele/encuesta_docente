@@ -4,8 +4,8 @@ const questionSetCtrl = {};
 
 questionSetCtrl.createQuestionSet = async (req, res) =>{
     try {
-        const questionSet = new questionSetModel(req, res);
-        await questionSetModel.save();
+        const questionSet = new questionSetModel(req.body);
+        await questionSet.save();
         res.status(200).json({questionSet: questionSet, message: 'Encuesta creada con exito'});
     } catch (error) {
         res.status(500).json({error});

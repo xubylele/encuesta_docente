@@ -16,4 +16,4 @@ const alternativeSetSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('AlternativeSet', alternativeSetSchema)
+module.exports = mongoose.model('AlternativeSet', alternativeSetSchema) 
