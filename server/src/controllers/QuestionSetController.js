@@ -6,7 +6,7 @@ questionSetCtrl.createQuestionSet = async (req, res) =>{
     try {
         const questionSet = new questionSetModel(req.body);
         await questionSet.save();
-        res.status(200).json({questionSet: questionSet, message: 'Encuesta creada con exito'});
+        res.status(200).json({questionSet: questionSet, message: 'Set de preguntas creado con exito'});
     } catch (error) {
         res.status(500).json({error});
     }
