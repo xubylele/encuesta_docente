@@ -1,0 +1,27 @@
+{
+    "respuestas": [
+        pregunta: {
+            
+            profesortanto,
+            3,
+            idpregunta
+        }
+        pregunta: {
+            cursopoco,
+            profesortanto,
+            3,
+            idpregunta
+        }
+    ]
+}
+
+
+{
+    insignias: [
+        insigna:{
+            insignia,
+            curso,
+            profesor
+        }
+    ]
+}
