@@ -11,4 +11,13 @@ questionCtrl.create = async (req, res) =>{
     }
 }
 
+questionCtrl.getAllQuestions = async (req, res) => {
+    try {
+        const questions = questionModel.find();
+        res.status(200).json(questions);
+    } catch (error) {
+        res.status(500).json({error});
+    }
+}
+
 module.exports = questionCtrl;  
