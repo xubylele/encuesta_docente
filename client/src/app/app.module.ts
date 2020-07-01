@@ -11,6 +11,13 @@ import { EvaluacionesAnterioresComponent } from './profesor/evaluaciones-anterio
 import { InsigniasComponent } from './profesor/insignias/insignias.component';
 import { RecomendacionesComponent } from './profesor/recomendaciones/recomendaciones.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EncuestaComponent } from './alumno/encuesta/encuesta.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Encuesta2Component } from './alumno/encuesta2/encuesta2.component';
+import { Encuesta3Component } from './alumno/encuesta3/encuesta3.component';
+import { Encuesta4Component } from './alumno/encuesta4/encuesta4.component';
+import { Encuesta5Component } from './alumno/encuesta5/encuesta5.component';
+import { Encuesta6Component } from './alumno/encuesta6/encuesta6.component';
 
 
 @NgModule({
@@ -24,11 +31,18 @@ import { HttpClientModule } from '@angular/common/http';
     EvaluacionesAnterioresComponent,
     InsigniasComponent,
     RecomendacionesComponent,
+    EncuestaComponent,
+    Encuesta2Component,
+    Encuesta3Component,
+    Encuesta4Component,
+    Encuesta5Component,
+    Encuesta6Component,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

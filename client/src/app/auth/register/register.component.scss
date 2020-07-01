@@ -1,0 +1,77 @@
+.fondo{
+    background-image: url('https://www.10wallpaper.com/wallpaper/1366x768/1807/Blue_Gray_Curved_Lines_Abstract_4K_HD_1366x768.jpg');
+    position: fixed;
+    background-size: cover;
+}
+
+.login-card{
+    height: 35vh;
+    width: 35vh;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    position: absolute;
+    background-color: #F4F4F4 ;
+    padding: 20px;
+    float: center;
+    display: table;
+    justify-content: center;
+    align-items: center;
+    left: 25%;
+    transform: translateX(-50%);
+    top: 15vh;
+    
+}
+
+#form-login{
+    position: relative !important;
+    
+}
+
+.header #logoinf{
+    height: 75px;
+    padding: 11px;
+
+}
+
+.header #logopucv{
+    right: 0;
+    position: absolute;
+    height: 135px;
+    bottom: -33px;
+    z-index: 20;
+}
+
+
+#header-login{
+    position: relative;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 0px 0px 5px 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background-color: #d8d8d8;
+    height: 10vh;
+    opacity: 70%;
+    z-index: 30;
+}
+
+#titulo-login{
+    position: absolute;
+    top: 20vh;
+    left: 26vh;
+    color: #152b38;
+
+}
+
+
+#back-login{
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    position: absolute;
+    bottom: -4vh;
+    right: 0rem;
+
+}

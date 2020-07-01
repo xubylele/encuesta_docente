@@ -34,7 +34,6 @@ module.exports = app => {
         res.json({msje: 'ok'})
     })*/
 
-
     routes(app)
 
     if('development' === app.get('env')){

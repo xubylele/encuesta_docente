@@ -1,0 +1,43 @@
+<nav class="navbar navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">Encuesta Docente</a>
+</nav>
+
+<div *ngFor="let qst of qSect1;let j=index">
+  <form [formGroup]="poll">
+    <table id="preguntas">
+      <br>
+      <div [id]="qst.id">
+        <h5 >{{qst.data}}</h5>
+      </div>  
+      <br>
+      <br>
+      <tbody>
+        <tr>
+          <td>
+            <span>Profesor(a)</span>
+          </td>
+          <td *ngFor="let opt of options; let i=index">
+            {{opt.name}}
+          </td>
+        </tr>
+        <tr *ngFor="let profe of profesores">
+          <td id="name-profe">
+            <p>{{profe}}</p> 
+          </td>
+          <td *ngFor="let opt of options; let i=index">
+            <input type="checkbox" [value]="opt.value" (click)="addNote($event)">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </form>
+</div>
+<div>
+  <p>NOTA: AL HACER CLICK EN SIGUIENTE NO PODRA VOLVER A EDITAR LAS RESPUESTAS DE ESTA PAGINA</p>
+  <button type="button" class="btn btn-success" id="next-button" (click)="submitForm($event)">Siguiente</button>
+</div>
+
+
+
+

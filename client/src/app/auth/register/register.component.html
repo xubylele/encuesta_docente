@@ -1,1 +1,64 @@
-<p>register works!</p>
+<div class="fondo h-100 w-100">
+    <section>
+        <div class="header" id="header-login">
+            <a>
+                <img id="logoinf" [src]="infPath" alt="logo_escuela">
+            </a>
+            <a>
+                <img id="logopucv" [src]="pucvPath" alt="">
+            </a>      
+        </div>
+    </section>
+    <div id="back-login">
+        <img [src]="fondoPath" alt="">
+        
+    </div>
+  
+        <div id="titulo-login">
+            <h3>Sistema Docente</h3>
+        </div>
+        <div class="login-card">
+            
+            <form [formGroup]="formRegisterPage" id="form-login">
+                <div class="form-group" id="names">
+                    <label for="exampleInputEmail1">Nombres</label>
+                    <input class="form-control" formControlName="names">
+ 
+                </div>
+                <div class="form-group" id="last-names">
+                    <label for="exampleInputEmail1">Apellidos</label>
+                    <input class="form-control" formControlName="last_names">
+ 
+                </div>
+                <div class="form-group" id="email">
+                  <label for="exampleInputEmail1">Email</label>
+                  <input class="form-control" formControlName="email">
+                  <div id="alert">
+                    <small class="form-text text-muted">Ingrese rut valido</small>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Constraseña</label>
+                  <input type="password" class="form-control" placeholder="Constraseña" formControlName="password">
+                  <div id="alert">
+                    <small class="form-text text-muted">Ingrese clave válida</small>
+                  </div>
+                  
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Tipo Cuenta</label>
+                    <input type="password" class="form-control" placeholder="profesor/alumno" formControlName="type">
+                    <div id="alert">
+                      <small class="form-text text-muted">Ingrese tipo valido</small>
+                    </div>
+                    
+                  </div>
+                <br>
+                <button type="submit" class="btn btn-primary" (click)="register()">Registrarse</button>
+            </form>
+            
+        </div>
+
+
+    
+</div>

@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+
 import { HttpClient } from '@angular/common/http';
-import { ProfesorI } from '../models/profesor';
+import { UserI } from '../models/user';
 import { JwtResponseI } from '../models/jwt-response';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject} from 'rxjs';
-//import { User } from '../models/user';
+
 
 @Injectable()
 export class AuthService {
@@ -13,13 +14,13 @@ export class AuthService {
   private token:string;
   constructor(private httpClient: HttpClient) { }
 
-  /*RegisterMethod*/
-  register(user:ProfesorI):Observable<JwtResponseI>{
+  /*Register Method*/
+  register(user:UserI):Observable<JwtResponseI>{
     return this.httpClient.post<JwtResponseI>(`${this.AUTH_SERVER}/register`,user) 
       .pipe(tap(
       (res:JwtResponseI) => { 
         if(res){
-          //guardar token
+          this.saveToken(res.dataUser.accessToken,res.dataUser.expiresIn)
         }
       }
 
@@ -27,17 +28,38 @@ export class AuthService {
   }
  
   /*Login Method*/
-  login(user:ProfesorI):Observable<any>{
+  login(user:UserI):Observable<any>{
     return this.httpClient.post<any>(`${this.AUTH_SERVER}/login`,user)
       .pipe(tap(
         (res:any) => {
           if(res){
-            console.log('Inicio sesion')
-            console.log(`${this.AUTH_SERVER}/login`)
+            this.saveToken(res.dataUser.accessToken,res.dataUser.expiresIn)
           }
         }
 
       ))
+  }
+
+  /*lOGOUT*/
+  logout(){
+    this.token = '';
+    localStorage.removeItem("ACCESS_TOKEN");
+    localStorage.removeItem("EXPIRES_IN");
+  }
+
+  /*Save Token*/
+  private saveToken(token:string,expiresIn:string):void{
+    localStorage.setItem("ACCESS_TOKEN",token);
+    localStorage.setItem("EXPIRES_IN",expiresIn);
+    this.token = token;
+  }
+
+  /*Get Token*/
+  private getToken():string{
+    if(!this.token){
+      this.token = localStorage.getItem("ACCES_TOKEN");
+    }
+    return this.token;
   }
 
 

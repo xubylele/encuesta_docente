@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { ProfesorI } from '../../models/profesor';
+import { UserI } from '../../models/user';
 
 @Component({
   selector: 'app-login',
@@ -25,13 +25,13 @@ export class LoginComponent implements OnInit {
               private router:Router
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.createForm();
   }
 
   login(){
     this.authService.login(this.formLoginPage.value).subscribe(res =>{
-      console.log('Funciono el Logueo');
+      console.log("inicio sesion")
     });
   }
 
