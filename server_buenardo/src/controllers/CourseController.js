@@ -4,8 +4,8 @@ const courseCtrl = {};
 
 courseCtrl.create = async (req, res) => {
     try {
-        const course= new courseModel(req.body);                                                               // CREAMOS UN NUEVO OBJETO CURSO
-        const exist = await courseModel.find({                                                                  // CREAMOS UN OBJETO PARA VER SI EXISTE
+        const course= new Course(req.body);                                                               // CREAMOS UN NUEVO OBJETO CURSO
+        const exist = await Course.find({                                                                  // CREAMOS UN OBJETO PARA VER SI EXISTE
             acronym: req.body.acronym,                                                                          //BUSCAMOS CON EL ACRONIMO Y EL NOBRE
             name: req.body.name
         })
@@ -23,7 +23,7 @@ courseCtrl.create = async (req, res) => {
 
 courseCtrl.getAllCourses = async (req, res) => {                                                                
     try {
-        const courses = await courseModel.find();                                                               // CONSULTAMOS TODOS LOS CURSOS
+        const courses = await Course.find();                                                               // CONSULTAMOS TODOS LOS CURSOS
         res.status(200).json(courses);                                                                          // DEVOLVEMOS ESTADO OK Y EL CURSO
     } catch (error) {                                                                                           // OBTENEMOS ERROR
         res.status(500).json({error});                                                                          // DEVOLVEMOS STATUS 500 Y ERROR
@@ -32,7 +32,7 @@ courseCtrl.getAllCourses = async (req, res) => {
 
 courseCtrl.getCourse = async (req, res) =>{                                                                 
     try {
-        const course =  await courseModel.findById(req.params.courseID);                                        // BUSCAMOS POR EL ID PASADO POR PARAMETROS Y LO GUARDAMOS
+        const course =  await Course.findById(req.params.courseID);                                        // BUSCAMOS POR EL ID PASADO POR PARAMETROS Y LO GUARDAMOS
         res.status(200).json(course);                                                                           // DEVOLVEMOS STATUS OK Y CURSO
     } catch (error) {                                                                                           // OBTENEMOS ERROR
         res.status(500).json({error});                                                                          // DEVOLVEMOS EL ERROR
@@ -45,7 +45,7 @@ courseCtrl.editCourse = async (req, res) =>{
             acronym: req.body.acronym,                                                                          // LE DAMOS LOS PARAMETROS EDITABLES
             name: req.body.name
         }
-        await courseModel.findByIdAndUpdate(req.body.courseID,{$set: course});                                  // BUSCAMOS Y EDITAMOS
+        await Course.findByIdAndUpdate(req.body.courseID,{$set: course});                                  // BUSCAMOS Y EDITAMOS
         res.status(200),json({message: 'Curso editado con exito'});                                             // DEVOLVEMOS ESTADO OK Y MENSAJE
     } catch (error) {                                                                                           // OBTENEMOS ERROR
         res.status(500).json({error, message:'No se pudo editar el curso'});                                    // DEVOLVEMOS ESTADO 500 Y MENSAJE
@@ -54,7 +54,7 @@ courseCtrl.editCourse = async (req, res) =>{
 
 courseCtrl.deleteCourse = async (req, res)=>{
     try {
-        const course = await courseModel.findByIdAndDelete(req.body.courseID);                                  // BUSCAMOS POR ID GUARDAMOS Y ELIMINAMOS
+        const course = await Course.findByIdAndDelete(req.body.courseID);                                  // BUSCAMOS POR ID GUARDAMOS Y ELIMINAMOS
         res.status(200).json({course: course,message:'Curso eliminado con exito'});                             // DEVOLVEMOS STATUS OK, VARIABLE GUARDADA Y MENSAJE
         } catch (error) {                                                                                       // OBTENEMOS EL ERROR
         res.status(500).json({error, message:'No se pudo eliminar el curso'});                                  // DEVOLVEMOS STATUS 500 , ERROR Y MENSAJE
@@ -63,8 +63,8 @@ courseCtrl.deleteCourse = async (req, res)=>{
 
 courseCtrl.addparticipantList = async (req, res)=>{
     try {
-        course = await courseModel.findById(req.body.courseID);                                                 // BUSCAMOS Y GUARDAMOS CURSO
-        const participantList = await participantListModel.findById(req.body.participantListID);                // BUSCAMOS Y GUARDAMOS PARTICIPANT LIST
+        course = await Course.findById(req.body.courseID);                                                 // BUSCAMOS Y GUARDAMOS CURSO
+        const participantList = await ParticipantList.findById(req.body.participantListID);                // BUSCAMOS Y GUARDAMOS PARTICIPANT LIST
         course.participantsList.push(participantList);                                                          // AGREGAMOS AL ARREGLO
         course.save();                                                                                          // GUARDAMOS
         res.status(200).json({participantList: participantList, message:'Participant List agregada con exito'});// DEVOLVEMOS STATUS OK, EL PARTICIPANTE AGREGADO Y MENSAJE
