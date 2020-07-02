@@ -51,12 +51,12 @@ ctrl.login = async (req, res) => { //Mandas el email y la contraseña, y te mand
     //Check if email exist
     const user = await User.findOne({email: req.body.email})
     if(!user)
-        return res.status(400).json({error: 'Email or password is wrong'})
+        return res.status(400).json({error: 'Email no registrado, intenta con un valido'})
 
     //Password is correct
     const validPass = await bcrypt.compare(req.body.password, user.password)
     if(!validPass)
-        return res.status(400).json({error: 'Email or password is wrong'})
+        return res.status(400).json({error: 'Correo o contraseña incorrectos, intentalo de nuevo'})
 
     console.log(process.env.SECRET_TOKEN)
     
