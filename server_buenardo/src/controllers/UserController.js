@@ -1,4 +1,6 @@
 const userModel = require('../models/User');
+const { update } = require('../models/User');
+const ParticipantList = require('../../../server/src/models/ParticipantList');
 const userCtrl = {};
 
 
@@ -63,5 +65,24 @@ userCtrl.editPassword = async (req, res) =>{
         res.status(500).json({error});                                                          // DEVOLVEMOS STATUS 500 Y ERROR
     }
 }
+
+userCtrl.addParticipants = async (req, res) =>{
+    try {
+        const user = await userModel.findById(req.body.userID);
+        const tentativeParticipantList = ParticipantList.findById(participantID);
+        for(let i = 0; i < user.participants.length; i++){
+            if(user.participants[i] == null){
+                user.participants[i] = tentativeParticipantList;
+                user.save();
+                return res.status(200).json({participantList: tentativeParticipantList,
+                                            message:'Participant List agregado con exito'});
+            }
+        }
+        res.status(500).json({message: 'no se pudo agregar participant list'});
+    } catch (error) {
+        res.status(500).json({error});
+    }
+}
+
 
 module.exports = userCtrl;
