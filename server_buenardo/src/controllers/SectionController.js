@@ -14,4 +14,16 @@ sectionCtrl.create = async(req ,res) =>{
     } 
 }
 
+sectionCtrl.getSectionList = async(req, res) => {
+    try {
+        const sectionList = await Section.find().populate('questions', 'question')
+
+        if(!sectionList) return res.status(400).json({error: 'No hay secciones aun'})
+
+        return res.status(200).json({sectionList: sectionList})
+    } catch (error) {
+        res.status(500).json({error: error.message});     
+    }
+}
+
 module.exports = sectionCtrl
