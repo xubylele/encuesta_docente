@@ -7,8 +7,9 @@ const userController = require('../controllers/UserController');
     router.get('/:id/get',userController.getUser);
     router.delete('/delete', userController.deleteUser);
     router.put('/editpassword',userController.editPassword);
+    router.put('/addparticipant',userController.addParticipants);   
     //router.post('/create_much', userController.createUsers)
-    
+
     module.exports = router;
 
     /* FORMA DE LLAMAR A LOS DATOS 

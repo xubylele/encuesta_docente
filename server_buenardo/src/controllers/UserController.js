@@ -1,6 +1,5 @@
 const userModel = require('../models/User');
-const { update } = require('../models/User');
-const ParticipantList = require('../../../server/src/models/ParticipantList');
+const participantList = require('../models/ParticipantList');
 const userCtrl = {};
 
 
@@ -68,19 +67,13 @@ userCtrl.editPassword = async (req, res) =>{
 
 userCtrl.addParticipants = async (req, res) =>{
     try {
-        const user = await userModel.findById(req.body.userID);
-        const tentativeParticipantList = ParticipantList.findById(participantID);
-        for(let i = 0; i < user.participants.length; i++){
-            if(user.participants[i] == null){
-                user.participants[i] = tentativeParticipantList;
-                user.save();
-                return res.status(200).json({participantList: tentativeParticipantList,
-                                            message:'Participant List agregado con exito'});
-            }
-        }
-        res.status(500).json({message: 'no se pudo agregar participant list'});
-    } catch (error) {
-        res.status(500).json({error});
+        const user = await userModel.findById(req.body.userID);                                                     // OBTENEMOS USUARIO
+        const tentativeParticipantList = await participantList.findById(req.body.participantID);                    // OBTENEMOS PARTICIPANT LIST
+        user.participants.push(tentativeParticipantList);                                                           // AÑADIMOS PARTICIPANT LIST A ARREGLO
+        user.save();                                                                                                // GUARDAMOS EN BASE DE DATOS 
+       res.status(200).json({participant: tentativeParticipantList ,message: 'participante agregado con exito '});  // DEVOLVEMOS STATUS OK Y MENSAJE
+    } catch (error) {                                                                                               // ATRAPAMOS EL ERROR
+        res.status(500).json({error});                                                                              // DEVOLVEMOS EL ERROR
     }
 }
 
