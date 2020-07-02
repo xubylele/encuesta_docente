@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const participantListSchema = new mongoose.Schema({
+const pollSchema = new mongoose.Schema({
     teacher: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'ParticipantList'
@@ -27,4 +27,4 @@ const participantListSchema = new mongoose.Schema({
 
 
 
-module.exports = mongoose.model('ParticipantList', participantListSchema)
+module.exports = mongoose.model('Poll', pollSchema)
