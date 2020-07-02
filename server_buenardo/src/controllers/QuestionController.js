@@ -14,6 +14,18 @@ questionController.create = async(req ,res) =>{
         question.alternativeSet = null
         question.questionSet = questionSet
         
+        const exist = await Question.find({                                                    // CONSULATAMOS CON LA BASE DE DATOS
+            section: section._id,
+            question: req.body.question,
+            questionSet: questionSet._id                                                        // EMAIL
+        });
+
+        if(exist[0]!=null){                                                                     // SI ES QUE EXISTE
+            return res.status(409).json({                                                       // RETORNAMOS UN HTTP STATUS 409 (EXISTS)
+                question: exist,
+                message: 'Question Exists'});                                                       // MENSAJE USUARIO EXISTE
+        }
+
         await question.save()
         
         Section.update(
