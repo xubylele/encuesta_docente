@@ -1,11 +1,10 @@
-const courseModel = require('../models/Course');
-const participantListModel = require('../models/ParticipantList');
+const { Course, ParticipantList } = require('../models')
 const courseCtrl = {};
 
 
 courseCtrl.create = async (req, res) => {
     try {
-        const course = new courseModel(req.body);                                                               // CREAMOS UN NUEVO OBJETO CURSO
+        const course= new courseModel(req.body);                                                               // CREAMOS UN NUEVO OBJETO CURSO
         const exist = await courseModel.find({                                                                  // CREAMOS UN OBJETO PARA VER SI EXISTE
             acronym: req.body.acronym,                                                                          //BUSCAMOS CON EL ACRONIMO Y EL NOBRE
             name: req.body.name

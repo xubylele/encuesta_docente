@@ -11,8 +11,9 @@ module.exports = app => {
 
 
     app.use(router)
-     app.use('/api/users',require('../routes/UserRouter'));
-     app.use('/api/participantlist',require('../routes/ParticipantListRouter'));
+    app.use('/api/users',require('./UserRouter'));
+    app.use('/api/participantlist',require('./ParticipantListRouter'));
+    app.use('/api/section', require('./SectionRouter'))
     // app.use('/api/ensign',require('../routes/ensignRoutes'));
      app.use('/api/courses',require('../routes/CourseRouter'));
     // app.use('/api/polls',require('../routes/pollRouter'));

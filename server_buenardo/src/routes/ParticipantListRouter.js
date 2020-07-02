@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const participantListController = require('../controllers/ParticipantListController');
+const { ParticipantListController } = require('../controllers');
 
-    router.post('/create',participantListController.create);
+    router.post('/create', ParticipantListController.create);
 
 module.exports = router;

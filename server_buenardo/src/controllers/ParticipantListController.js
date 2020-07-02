@@ -4,7 +4,7 @@ const participantListCtrl = {};
 
 
 participantListCtrl.create = async(req ,res) =>{    
-    if( req.body.userID == null) return res.status(400).json({error: 'No han asignado un curso o un usuario a este participante'})
+    if(req.body.courseID == null || req.body.userID == null) return res.status(400).json({error: 'No han asignado un curso o un usuario a este participante'})
     try {
 
         const participantList = new ParticipantList(req.body)   // creamos instancia de listaParticipantes

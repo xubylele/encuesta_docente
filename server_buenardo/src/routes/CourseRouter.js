@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const courseController = require('../controllers/CourseController');
+const {CourseController } = require('../controllers')
 
 
-    router.post('/create',courseController.create);
-    router.get('/getallcourses',courseController.getAllCourses);
-    router.get('/:id/get',courseController.getCourse);
-    router.put('/edit',courseController.editCourse);
-    router.put('/addparticipantlist',courseController.addparticipantList);
-    router.delete('/delete',courseController.deleteCourse);
+    router.post('/create',CourseController.create);
+    router.get('/getallcourses',CourseController.getAllCourses);
+    router.get('/:id/get',CourseController.getCourse);
+    router.put('/edit',CourseController.editCourse);
+    router.put('/addparticipantlist',CourseController.addparticipantList);
+    router.delete('/delete',CourseController.deleteCourse);
 
     module.exports = router;
     /* COMO RECIBE LOS DATOS:
