@@ -7,8 +7,6 @@ module.exports = app => {
     
     router.post('/api/register', AuthController.register)
     router.post('/api/login', AuthController.login)
-    router.get('/api/profile', auth, AuthController.profile)
-
 
     app.use(router)
     app.use('/api/users',require('./UserRouter'));

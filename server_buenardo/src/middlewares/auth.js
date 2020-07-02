@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 const path = require('path')
-const {secret_token}  = require('dotenv').config({ path: path.resolve(__dirname, '../../.env') })
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') })
 
 module.exports = function (req, res, next){
     const token = req.header('auth-token')
@@ -9,7 +9,7 @@ module.exports = function (req, res, next){
         return res.status(401).json({error: 'Access Denied'})
 
     try{
-        const verified = jwt.verify(token, secret_token)
+        const verified = jwt.verify(token, process.env.SECRET_TOKEN)
         req.user = verified
         next()
     }catch(err){
