@@ -62,5 +62,17 @@ export class AuthService {
     return this.token;
   }
 
+  recoverAccount(email:string):Observable<any>{
+    return this.httpClient.post<any>(`${this.AUTH_SERVER}/recover`,email)
+      .pipe(tap(
+        (res:any) => {
+          if(res){
+            
+          }
+        }
+
+      ))
+  }
+
 
 }

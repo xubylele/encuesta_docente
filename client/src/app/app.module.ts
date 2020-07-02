@@ -20,6 +20,7 @@ import { Encuesta5Component } from './alumno/encuesta5/encuesta5.component';
 import { Encuesta6Component } from './alumno/encuesta6/encuesta6.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

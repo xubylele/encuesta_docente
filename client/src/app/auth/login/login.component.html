@@ -15,9 +15,10 @@
     </div>
   
         <div id="titulo-login">
-            <h3>Sistema Docente</h3>
+           
         </div>
         <div class="login-card">
+            <h3>Iniciar Sesion</h3>
             <form [formGroup]="formLoginPage" id="form-login">
                 <div class="form-group" id="email">
                   <label for="exampleInputEmail1">Email</label>
@@ -33,6 +34,9 @@
                     <small class="form-text text-muted">Ingrese clave válida</small>
                   </div>
                   
+                </div>
+                <div>
+                    <a [routerLink]="'/auth/recuperar'">Recuperar Contrasena</a>
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary" (click)="login()">Iniciar Sesión</button>

@@ -3,20 +3,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { UserI } from '../../models/user';
+
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-recover-account',
+  templateUrl: './recover-account.component.html',
+  styleUrls: ['./recover-account.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class RecoverAccountComponent implements OnInit {
 
   infPath:string = "./assets/logo_escuela.png";
   pucvPath:string = "./assets/pucv.png";
   fondoPath:string = "./assets/back-login.png";
 
-  formLoginPage:FormGroup;
+  formRecover:FormGroup;
   
 
   constructor(private formBuilder: FormBuilder, 
@@ -29,25 +29,18 @@ export class LoginComponent implements OnInit {
     this.createForm();
   }
 
-  login(){
-    this.authService.login(this.formLoginPage.value).subscribe(res =>{
-      console.log("inicio sesion")
-    });
-  }
-
-
   createForm(){
-    this.formLoginPage = this.formBuilder.group({
-      email: ['',Validators.compose([
-        Validators.required,Validators.email
-      ])],
-      password: ['',Validators.compose([
-        Validators.required,Validators.minLength(5)
-      ])]
+    this.formRecover = this.formBuilder.group({
+      email: ['',Validators.required],
     })
   }
 
-  toRecoverAccount(){
-    this.router.navigateByUrl('http://localhost:4200/auth/recuperar')
+  recoverAccount(){
+    if (window.confirm("'Aceptar' para enviar correo de confirmacion!\nCorrobore su Email")){
+      this.authService.login(this.formRecover.value).subscribe(res =>{
+      });
+    }  
   }
+
+  
 }

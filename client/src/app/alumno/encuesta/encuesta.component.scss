@@ -1,39 +1,47 @@
-table {
+#cardq {
     margin: auto;
-    width: 50% !important;
+    width: 70% !important;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     border-radius: 10px 10px 10px 10px;
     -moz-border-radius: 10px 10px 10px 10px;
     -webkit-border-radius: 10px 10px 10px 10px;
     background-color: #F1F3F9;
-    position: relative;
     top: 20px;
-    table-layout: fixed;
     margin-bottom: 20px;
 }
 
-td{
+#listprofes{
     position: relative;
-    Word-wrap:break-Word
+    top: 30px;
+    width: fit-content;
+}
+#optbox{
+    float:right;
+    
+    margin-right: 70px;
 }
 
-#preguntas h5{
-    position: absolute;
+#nameprofe{
+   top:10px;
+}
+
+#setoptbox{
+    position: relative;
+}
+
+#preguntas{
+    height: 200px;
+    
+}
+
+#opts{
+    float:left;
+    width: max-content;
+    margin-right: 20px;
     margin-bottom: 10px;
+
 }
 
-#section-questions{
-    padding-bottom: 20px;
+#opciones{
+    float: right;
 }
-
-#question{
-    width: 50px;
-}
-
-#next-button{
-    margin: 25px;
-    margin-right: 50vh;
-    right: 0px;
-    position: absolute;
-}
-

@@ -9,6 +9,7 @@ import { AuthService } from '../services/auth.service';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { RecoverAccountComponent } from './recover-account/recover-account.component';
 
 
 
@@ -17,6 +18,7 @@ import { RegisterComponent } from './register/register.component';
   declarations: [
     RegisterComponent,
     LoginComponent,
+    RecoverAccountComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,38 @@
+<div class="fondo h-100 w-100">
+    <section>
+        <div class="header" id="header-login">
+            <a>
+                <img id="logoinf" [src]="infPath" alt="logo_escuela">
+            </a>
+            <a>
+                <img id="logopucv" [src]="pucvPath" alt="">
+            </a>      
+        </div>
+    </section>
+    <div id="back-login">
+        <img [src]="fondoPath" alt="">
+        
+    </div>
+  
+        <div  id="titulo-login">
+            
+        </div>
+        <div class="login-card">
+            <form  [formGroup]="formRecover" id="form-login">
+                <div class="form-group" id="email">
+                  <h3>Recuperacion de Contrasena</h3>
+                  <label for="exampleInputEmail1">Ingrese su email:</label>
+                  <input class="form-control" formControlName="email">
+
+                </div>
+                <div>
+                    <a [routerLink]="'/auth/login'">Iniciar Sesion</a>
+                </div>
+
+                <br>
+                <button type="submit" (click)="recoverAccount()" class="btn btn-primary">Recuperar Contrasena</button>
+            </form>
+            
+        </div>
+    
+</div>
