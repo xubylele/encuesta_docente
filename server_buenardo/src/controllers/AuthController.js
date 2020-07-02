@@ -40,7 +40,7 @@ ctrl.register = async (req, res) => {
 
 }
 
-ctrl.login = async (req, res) => { //Mandas el email y la contraseña, y te mando el token y el tipo de usuario que se logea
+ctrl.login = async (req, res) => { 
     //Validate the data 
     console.log(req.body)
 

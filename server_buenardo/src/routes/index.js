@@ -6,6 +6,12 @@ const auth = require('../middlewares/auth')
 module.exports = app => {
     
     router.post('/api/register', AuthController.register)
+
+
+    /**
+    * Mandas el correo y la contraseña
+    * Devuelve el token y el tipo de usuario
+    */
     router.post('/api/login', AuthController.login)
 
     app.use(router)
