@@ -20,7 +20,15 @@ participantListCtrl.create = async(req ,res) =>{
             function (err, callback) {
                 
             }
-        )                                                       // pusheamos en el arreglo de participantes del usuario el participante creado
+        )
+        
+        Course.update(
+            {"_id": req.body.courseID}, 
+            {"$push": { "participantsList": participantList } },
+            function (err, callback) {
+                
+            }
+        )       // pusheamos en el arreglo de participantes del usuario el participante creado
 
         res.status(200).json({participantList: participantList, message: 'ParticipantList Creado Exitosamente'})
     } catch (error) {
