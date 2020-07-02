@@ -5,6 +5,7 @@ module.exports = {
     SectionController: require('./SectionController'),
     UserController: require('./UserController'),
     CourseController: require('./CourseController'),
-    QuestionController: require('./QuestionController')
+    QuestionController: require('./QuestionController'),
+    QuestionSetController: require('./QuestionSetController')
 
 }

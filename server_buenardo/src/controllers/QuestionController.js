@@ -1,22 +1,31 @@
 const questionController = {}
-const { Question, Section } = require('../models')
+const { Question, Section, QuestionSet } = require('../models')
 
 questionController.create = async(req ,res) =>{    
-    if(req.body.sectionID == null)
-        return res.status(400).json({error: 'Necesitas una seccion para agregar'})
+    if(req.body.sectionID == null || req.body.questionSetID == null)
+        return res.status(400).json({error: 'Debes proporcionar una seccion, un set de alternativas y un set de preguntas'})
 
     try {
         const question = new Question(req.body)
         const section = await Section.findById(req.body.sectionID)
+        const questionSet = await QuestionSet.findById(req.body.questionSetID)
 
         question.section = section
         question.alternativeSet = null
-        question.questionSet = null
+        question.questionSet = questionSet
         
         await question.save()
         
         Section.update(
             {"_id": req.body.sectionID}, 
+            {"$push": { "questions": question } },
+            function (err, callback) {
+                
+            }
+        )
+
+        QuestionSet.update(
+            {"_id": req.body.questionSetID}, 
             {"$push": { "questions": question } },
             function (err, callback) {
                 

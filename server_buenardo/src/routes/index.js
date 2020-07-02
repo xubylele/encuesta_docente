@@ -19,7 +19,7 @@ module.exports = app => {
     // app.use('/api/polls',require('../routes/pollRouter'));
     // app.use('/api/semestercourse', require('../routes/semesterCourseRouter'));
     // app.use('/api/userensigns',require('../routes/userEnsignsRoutes'));
-    // app.use('/api/questionset', require('../routes/questionSetRouter'));
+    app.use('/api/questionset', require('./QuestionSetRouter'));
     app.use('/api/question', require('../routes/QuestionRouter'));
 
 }
