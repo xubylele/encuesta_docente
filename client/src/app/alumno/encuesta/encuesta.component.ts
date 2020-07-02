@@ -18,7 +18,7 @@ export class EncuestaComponent implements OnInit {
     { name: 'No Aplica', value: '5' }
   ];
 
-  respuestas2:Array<RespuestaI> = new Array<RespuestaI>();
+  respuestas:Array<RespuestaI> = new Array<RespuestaI>();
 
   qSect1: Array<any> = [
     {
@@ -34,25 +34,19 @@ export class EncuestaComponent implements OnInit {
       data: "3.- El docente mantiene una comunicación continua mediante el aula virtual"
     },
   ]
-  
-  poll: FormGroup;
-  respuestas: FormArray;
 
   infoResp:RespuestaI;
 
   profesores = ["Rodolfo Villarroel", "Rafael Mellado", "Pamela Hermosilla"]
 
-  constructor(private formBuilder:FormBuilder) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    /*this.poll = this.formBuilder.group({
-      respuestas: this.formBuilder.array([])
-    });*/
   }
 
   submitForm(event) {
-    console.log(this.respuestas2)
+    console.log(this.respuestas)
 
     /*console.log(event.target.parentElement.parentElement.parentElement.parentElement.children[1].id)
     console.log(event.target.parentElement.parentElement.children[0].children[0].textContent)
@@ -60,28 +54,9 @@ export class EncuestaComponent implements OnInit {
   }
 
 
-  addNote(e){
-
-    if (e.target.checked){
-      this.infoResp = {
-        profe:e.target.parentElement.parentElement.children[0].children[0].textContent,
-        data: {
-          pregunta:e.target.parentElement.parentElement.parentElement.parentElement.children[1].id,
-          idResp:e.target.value,
-        }
-      }
-      this.respuestas2.push(this.infoResp)
-
-    } /*else {
-      let i: number = 0;
-      this.respuestas.controls.forEach((item: FormControl) => {
-        if (item.value == e.target.value) {
-          this.respuestas.removeAt(i);
-          return;
-        }
-        i++;
-      });
-      console.log(e.target.parentElement.parentElement.children[0].children[0].textContent)
-    }*/
+  addOpt(event){
+    
+    console.log(this.respuestas)
   }
+
 }

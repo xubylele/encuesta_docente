@@ -2,37 +2,36 @@
   <a class="navbar-brand" href="#">Encuesta Docente</a>
 </nav>
 
-<div id="cardq" *ngFor="let qst of qSect1">
-  <div id="preguntas">
-    <div [id]="qst.id">
+<div *ngFor="let qst of qSect1" class="preguntas">
+  
+    <br>
+    <div [id]="qst.id" class="pregunta"> 
       <h5>{{qst.data}}</h5>
     </div>
-    <div id="opciones">
-      <div *ngFor="let opt of options; let i=index" id="opts">
-        <h6>{{opt.name}}</h6>
-        
-      </div>
-      
-    </div>
-    <form [formGroup]="poll">
-    <div id="listprofes" *ngFor="let profe of profesores" id="nameprofe">
-      <div>
-        <h5>{{profe}}</h5>
-      </div>
-      <div id="setoptbox">
-        <div *ngFor="let opt of options" id="optbox">
-          <input type="checkbox">
-            <label for=""></label>
-        </div>
-      </div>
-    </div>
-  </form>
-    
-    
-    
-    
-  </div>
+    <br><br>
+    <table>
+      <tbody>
+        <tr>
+          <th>Profesor(a)</th>    
+          <th *ngFor="let opt of options; let i=index">
+            {{opt.name}}
+          </th>
+        </tr>
+
+        <tr *ngFor="let profe of profesores">
+          <td>{{profe}}</td>
+          <td *ngFor="let opt of options; let i=index">
+            <input type="radio" name="{{profe}}" [value]="opt.value" (click)="addOpt($event)">
+          </td>
+        </tr>
+      </tbody>
+    </table>
 </div>
+<div>
+  <p>NOTA: AL HACER CLICK EN SIGUIENTE NO PODRA VOLVER A EDITAR LAS RESPUESTAS DE ESTA PAGINA</p>
+  <button type="button" class="btn btn-success" id="next-button" (click)="submitForm($event)">Siguiente</button>
+</div>
+
 
 
 

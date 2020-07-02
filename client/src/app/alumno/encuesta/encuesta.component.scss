@@ -1,4 +1,4 @@
-#cardq {
+.preguntas {
     margin: auto;
     width: 70% !important;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -10,38 +10,17 @@
     margin-bottom: 20px;
 }
 
-#listprofes{
-    position: relative;
-    top: 30px;
-    width: fit-content;
-}
-#optbox{
-    float:right;
-    
-    margin-right: 70px;
-}
 
-#nameprofe{
-   top:10px;
-}
 
-#setoptbox{
+.card-qst{
     position: relative;
 }
 
-#preguntas{
-    height: 200px;
-    
+.pregunta{
+    position: relative;
+    width: 100%;
 }
 
-#opts{
-    float:left;
-    width: max-content;
-    margin-right: 20px;
-    margin-bottom: 10px;
-
-}
-
-#opciones{
-    float: right;
+.pregunta h5{
+    position: relative;
 }
