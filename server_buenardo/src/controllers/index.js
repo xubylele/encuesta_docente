@@ -4,6 +4,7 @@ module.exports = {
     ParticipantListController: require('./ParticipantListController'),
     SectionController: require('./SectionController'),
     UserController: require('./UserController'),
-    CourseController: require('./CourseController')
+    CourseController: require('./CourseController'),
+    QuestionController: require('./QuestionController')
 
 }
