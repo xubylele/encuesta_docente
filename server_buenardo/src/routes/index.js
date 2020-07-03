@@ -20,12 +20,13 @@ module.exports = app => {
     app.use('/api/section', require('./SectionRouter'))
     // app.use('/api/ensign',require('../routes/ensignRoutes'));
      app.use('/api/courses',require('./CourseRouter'));
-    // app.use('/api/polls',require('../routes/pollRouter'));
+     app.use('/api/polls',require('./PollRouter'));
     // app.use('/api/semestercourse', require('../routes/semesterCourseRouter'));
     // app.use('/api/userensigns',require('../routes/userEnsignsRoutes'));
     app.use('/api/questionset', require('./QuestionSetRouter'));
     app.use('/api/alternativeset', require('./AlternativeSetRouter'));
     app.use('/api/question', require('./QuestionRouter'));
     app.use('/api/alternative', require('./AlternativeRouter'));
+   // app.use('/api/badges',require('./BadgeRouter'));
 
 }
