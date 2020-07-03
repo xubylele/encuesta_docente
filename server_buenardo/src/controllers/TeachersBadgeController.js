@@ -4,7 +4,7 @@ const teacherBadgeCtrl = {};
 teacherBadgeCtrl.createTeacherBadge = async (req, res) => {
     try {
         const teacher = await ParticipantList.findById(req.body.teacherID);
-        const badge = await Badge.findById(badgeID);
+        const badge = await Badge.findById(req.body.badgeID);
         const found = await TeachersBadge.find({teacher: teacher,badge: badge});
 
         if(found[0]!=null){
@@ -16,7 +16,13 @@ teacherBadgeCtrl.createTeacherBadge = async (req, res) => {
             })
             await teacherBadge.save();
 
-            /* FLTA AGREGAR A BADGE */
+            Badge.update(
+                {"_id": req.body.badgeID}, 
+                {"$push": { "teachersBadge": teacherBadge } },
+                function (err, callback) {
+                    
+                }
+            )   
                 
             res.status(200).json({teacherBadge: teacherBadge, message:'Badge asignada con exito'});
         }
@@ -46,7 +52,13 @@ teacherBadgeCtrl.getTeacherBadge = async (req, res) =>{
 teacherBadgeCtrl.remove = async (req, res) => {
     try {
         const teacherBadge = await TeachersBadge.findByIdAndDelete(req.body.teacherBadgeID);
-        /* FALTA ELIMINAR DEL ARREGLO DE BADGE */
+        Badge.update(
+            {"_id": req.body.badgeID}, 
+            {"$pull": { "teachersBadge": teacherBadge } },
+            function (err, callback) {
+                
+            }
+        )   
         res.status(200).json({teacherBadge: teacherBadge, message:'Teacher badge eliminada con exito'});
     } catch (error) {
         res.status(500).json({error});
