@@ -27,6 +27,6 @@ module.exports = app => {
     app.use('/api/alternativeset', require('./AlternativeSetRouter'));
     app.use('/api/question', require('./QuestionRouter'));
     app.use('/api/alternative', require('./AlternativeRouter'));
-   // app.use('/api/badges',require('./BadgeRouter'));
+    app.use('/api/badges',require('./BadgeRouter'));
 
 }
