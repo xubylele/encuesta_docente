@@ -10,6 +10,7 @@ module.exports = {
     AlternativeSetController: require('./AlternativeSetController'),
     AlternativeController: require('./AlternativeController'),
     PollController: require('./PollController'),
-    BadgeController: require('./BadgeController')
+    BadgeController: require('./BadgeController'),
+    TeacherBadgeController: require('./TeachersBadgeController')
 
 }
