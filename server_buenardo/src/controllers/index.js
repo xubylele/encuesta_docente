@@ -9,6 +9,7 @@ module.exports = {
     QuestionSetController: require('./QuestionSetController'),
     AlternativeSetController: require('./AlternativeSetController'),
     AlternativeController: require('./AlternativeController'),
-    PollController:require('./PollController')
+    PollController: require('./PollController'),
+    BadgeController: require('./BadgeController')
 
 }
