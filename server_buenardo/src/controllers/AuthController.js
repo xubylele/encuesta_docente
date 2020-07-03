@@ -1,15 +1,14 @@
 const ctrl = {}
 
-require('dotenv').config({ path:__dirname+'/../../.env' })
+// require('dotenv').config({ path: __dirname + '../../.env' })
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
 const { User } = require('../models/index')
 const { registerValidation, loginValidation } = require('../helpers/verifyAuth')
-const types = require('../helpers/userTypes')
 
 const path = require('path')
-const {secret_token}  = require('dotenv').config({ path: path.resolve(__dirname, '../../.env') })
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') })
 
 ctrl.register = async (req, res) => {
     //Validate user data
@@ -41,9 +40,8 @@ ctrl.register = async (req, res) => {
 
 }
 
-ctrl.login = async (req, res) => {
+ctrl.login = async (req, res) => { 
     //Validate the data 
-
     console.log(req.body)
 
     const {error} = loginValidation(req.body)
@@ -53,24 +51,19 @@ ctrl.login = async (req, res) => {
     //Check if email exist
     const user = await User.findOne({email: req.body.email})
     if(!user)
-        return res.status(400).json({error: 'Email or password is wrong'})
+        return res.status(400).json({error: 'Email no registrado, intenta con un valido'})
 
     //Password is correct
     const validPass = await bcrypt.compare(req.body.password, user.password)
     if(!validPass)
-        return res.status(400).json({error: 'Email or password is wrong'})
+        return res.status(400).json({error: 'Correo o contraseña incorrectos, intentalo de nuevo'})
 
-    console.log(secret_token)
+    console.log(process.env.SECRET_TOKEN)
     
     //Create and asign a token
-    const token = jwt.sign({_id: user._id}, secret_token)
+    const token = jwt.sign({_id: user._id}, process.env.SECRET_TOKEN)
 
-    res.header('auth-token', token).send(token)
-}
-
-ctrl.profile = async (req, res) => {
-    const user = await User.findOne({_id: req.user})
-    return res.status(200).json({user})
+    res.header('auth-token', token).send({token: token, 'type': user.type})
 }
 
 module.exports = ctrl

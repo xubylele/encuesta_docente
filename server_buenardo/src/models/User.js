@@ -7,32 +7,35 @@ const userSchema = new mongoose.Schema({
         required: true,
         min: 3,
         max: 10
-    },
+    }, //nombres
     last_names: {
         type: String,
         required: true,
         min:3, 
         max: 12
-    },
+    }, //apellidos
     email: {
         type: String,
         required: true,
         min:8,
         max: 255,
         unique: true
-    },
+    }, //gmail
     password: {
         type: String,
         required: true,
         min: 8,
         max: 1024
-    },
+    }, //password
     participants: [
         {type: mongoose.Schema.Types.ObjectId, ref:'ParticipantList'}
     ],
-    polls: [
-        {type: mongoose.Schema.Types.ObjectId, ref:'Poll'}
-    ],
+    type: {
+        type: String,
+        required: true,
+        min:1,
+        max: 255
+    }, //tipo
     timestamp: {
         type: Date,
         default: Date.now

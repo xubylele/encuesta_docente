@@ -7,6 +7,11 @@ const questionSchema = new mongoose.Schema({
         min: 5,
         max: 10
     },
+    question: {
+        type: String,
+        required: true,
+        max:100
+    },
     questionSet: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'QuestionSet'

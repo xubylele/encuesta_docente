@@ -1,27 +1,27 @@
 const mongoose = require('mongoose')
-const { func } = require('@hapi/joi')
 
 const courseSchema = new mongoose.Schema({
     acronym: {
         type: String,
         required: true,
         min: 3,
-        max: 10,
-        unique: true
+        max: 10
     },
     name: {
         type: String,
         required: true,
         min:3, 
-        max: 12
+        max: 100
     },
-    semesterCourses: [
-        {type: mongoose.Schema.Types.ObjectId, ref:'SemesterCourse'}
+    participantsList: [
+        {type: mongoose.Schema.Types.ObjectId, ref:'ParticipantList'}
     ],
     timestamp: {
         type: Date,
         default: Date.now
     }
 })
+
+
 
 module.exports = mongoose.model('Course', courseSchema)
