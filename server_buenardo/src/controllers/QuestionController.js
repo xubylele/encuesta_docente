@@ -1,5 +1,5 @@
 const questionController = {}
-const { Question, Section, QuestionSet, AlternativeSet } = require('../models')
+const { Question, Section, QuestionSet, AlternativeSet, Alternative } = require('../models')
 
 questionController.create = async(req ,res) =>{  
     console.log(req.body.questionSetID)  
@@ -51,6 +51,16 @@ questionController.create = async(req ,res) =>{
     } catch (error) {                                                                           // OBTENEMOS EL ERROR
         return res.status(500).json({error: error.message});                                                          // DEVOLVEMOS ESTADO 500 CON EL ERROR
     } 
+}
+
+questionController.getAlternatives = async(req, res) =>{
+    try {
+        const question = await Question.findById(req.params.id)
+        const alternatives = await Alternative.find({}, {"alternativeSet": question.alternativeSet, _id: 0, alternative: 1})
+        return res.status(200).json({alternatives: alternatives})
+    } catch (error) {
+        return res.status(400).json({error: error.message})
+    }
 }
 
 module.exports = questionController
