@@ -8,3 +8,14 @@ export interface RespuestaI{
       }]
     }]
 }
+
+/*export interface RespuestaI{
+  idCurso:string,
+  profes: [{
+    idProfe:string
+    data:[{
+      idPreg:string,
+      idResp:string,
+    }]
+  }]
+}*/

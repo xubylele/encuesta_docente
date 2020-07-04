@@ -37,7 +37,11 @@ export class EncuestaComponent implements OnInit {
     this.EncuestaSrv.getPreguntas().subscribe((encuestaApi)  =>{
       this.encuestaCompleta = encuestaApi
       this.encuesta = this.encuestaCompleta.sectionList[this.page]
-      //console.log(this.encuesta)
+      console.log('Se obtuvo la wea de preguntas')
+    })
+    this.EncuestaSrv.getCoursesAlumno().subscribe((cursosAlumno)  =>{
+      console.log(cursosAlumno)
+      console.log('Se obtuvo los cursos del weta')
     })
   }
 

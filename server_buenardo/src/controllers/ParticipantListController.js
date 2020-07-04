@@ -3,7 +3,7 @@ const participantListCtrl = {};
 
 
 
-participantListCtrl.create = async(req ,res) =>{    
+participantListCtrl.create = async(req ,res) =>{     
     if(req.body.courseID == null || req.body.userID == null) return res.status(400).json({error: 'No han asignado un curso o un usuario a este participante'})
     try {
 
@@ -52,6 +52,7 @@ participantListCtrl.create = async(req ,res) =>{
 
 participantListCtrl.getCourses = async (req, res) => {
     try {
+        console.log(req)
         const user = await User.findById(req.user._id)
         const participants = await ParticipantList.find({user: user._id})
         let courses = []
