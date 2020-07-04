@@ -46,7 +46,22 @@ participantListCtrl.create = async(req ,res) =>{
 
         res.status(200).json({participantList: participantList, message: 'ParticipantList Creado Exitosamente'})
     } catch (error) {
-        res.status(500).json({error})
+        res.status(500).json({error: error.message})
+    }
+}
+
+participantListCtrl.getCourses = async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id)
+        const participants = await ParticipantList.find({user: user._id})
+        let courses = []
+        for (let i = 0; i < participants.length; i++) {
+            courses.push(await Course.findOne({_id: participants[i].course}))
+        }
+
+        return res.status(200).json({courses})
+    } catch (error) {
+        return res.status(400).json({error: error.message})
     }
 }
 module.exports = participantListCtrl
