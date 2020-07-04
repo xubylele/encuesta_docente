@@ -6,6 +6,11 @@ module.exports = {
     UserController: require('./UserController'),
     CourseController: require('./CourseController'),
     QuestionController: require('./QuestionController'),
-    QuestionSetController: require('./QuestionSetController')
+    QuestionSetController: require('./QuestionSetController'),
+    AlternativeSetController: require('./AlternativeSetController'),
+    AlternativeController: require('./AlternativeController'),
+    PollController: require('./PollController'),
+    BadgeController: require('./BadgeController'),
+    TeacherBadgeController: require('./TeachersBadgeController')
 
 }
