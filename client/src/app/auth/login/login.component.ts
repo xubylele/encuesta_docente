@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { UserI } from '../../models/user';
+import { UserI } from './../../models/user'
+
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   fondoPath:string = "./assets/back-login.png";
 
   formLoginPage:FormGroup;
+  userLoged:UserI
   
 
   constructor(private formBuilder: FormBuilder, 
@@ -31,7 +33,9 @@ export class LoginComponent implements OnInit {
 
   login(){
     this.authService.login(this.formLoginPage.value).subscribe(res =>{
-      console.log("inicio sesion")
+      if(res.type === 'Alumno'){
+        this.router.navigate(["/auth/encuesta"])
+      }
     });
   }
 

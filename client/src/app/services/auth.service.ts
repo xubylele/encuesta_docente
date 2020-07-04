@@ -20,7 +20,7 @@ export class AuthService {
       .pipe(tap(
       (res:JwtResponseI) => { 
         if(res){
-          this.saveToken(res.dataUser.accessToken,res.dataUser.expiresIn)
+          this.saveToken(res.token,res.type)
         }
       }
 
@@ -28,12 +28,12 @@ export class AuthService {
   }
  
   /*Login Method*/
-  login(user:UserI):Observable<any>{
-    return this.httpClient.post<any>(`${this.AUTH_SERVER}/login`,user)
+  login(user:UserI):Observable<JwtResponseI>{
+    return this.httpClient.post<JwtResponseI>(`${this.AUTH_SERVER}/login`,user)
       .pipe(tap(
-        (res:any) => {
+        (res:JwtResponseI) => {
           if(res){
-            this.saveToken(res.dataUser.accessToken,res.dataUser.expiresIn)
+            this.saveToken(res.token,res.type)
           }
         }
 
@@ -48,9 +48,9 @@ export class AuthService {
   }
 
   /*Save Token*/
-  private saveToken(token:string,expiresIn:string):void{
+  private saveToken(token,expiresIn):void{
     localStorage.setItem("ACCESS_TOKEN",token);
-    localStorage.setItem("EXPIRES_IN",expiresIn);
+    //localStorage.setItem("EXPIRES_IN",expiresIn);
     this.token = token;
   }
 
@@ -72,6 +72,10 @@ export class AuthService {
         }
 
       ))
+  }
+
+  getCurrentUser(){
+    return this.getCurrentUser()
   }
 
 

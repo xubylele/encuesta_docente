@@ -1,36 +1,164 @@
 <nav class="navbar navbar-dark bg-primary">
   <a class="navbar-brand" href="#">Encuesta Docente</a>
+  <h4>{{encuesta.name}}</h4>
 </nav>
 
-<div *ngFor="let qst of qSect1" class="preguntas">
+<section [ngSwitch]="page">
+  <div *ngSwitchCase=0>
+    <div *ngFor="let qst of encuesta.questions;let i=index" class="preguntas">
+      <br>
+      <div id="{{qst._id}}" class="pregunta"> 
+        <h5>{{qst.question}}</h5>
+      </div>
+      <br><br>
+      <table>
+        <tbody>
+          <tr>
+            <th>Profesor(a)</th>
+            <th *ngFor="let opt of options; let i=index">
+              {{opt.name}}
+            </th>
+          </tr>
   
-    <br>
-    <div [id]="qst.id" class="pregunta"> 
-      <h5>{{qst.data}}</h5>
+          <tr *ngFor="let profe of profesores">
+            <td>{{profe}}</td>
+            <td *ngFor="let opt of options; let i=index">
+              <input type="radio" name="{{qst.question}}{{profe}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <br><br>
-    <table>
-      <tbody>
-        <tr>
-          <th>Profesor(a)</th>    
-          <th *ngFor="let opt of options; let i=index">
-            {{opt.name}}
-          </th>
-        </tr>
+    <div>
+      <p>NOTA: AL HACER CLICK EN SIGUIENTE NO PODRA VOLVER A EDITAR LAS RESPUESTAS DE ESTA PAGINA</p>
+      <button type="button" class="btn btn-success" id="next-button" (click)="changeEncuesta()">Siguiente</button>
+    </div>
+  </div>
+  <div *ngSwitchCase=1> 
+    <div *ngFor="let qst of encuesta.questions;let i=index" class="preguntas">
+      <br>
+      <div id="{{qst._id}}" class="pregunta"> 
+        <h5>{{qst.question}}</h5>
+      </div>
+      <br><br>
+      <table>
+        <tbody>
+          <tr>
+            <th>Profesor(a)</th>
+            <th *ngFor="let opt of options; let i=index">
+              {{opt.name}}
+            </th>
+          </tr>
+  
+          <tr *ngFor="let profe of profesores">
+            <td>{{profe}}</td>
+            <td *ngFor="let opt of options; let i=index">
+              <input type="radio" name="{{qst.question}}{{profe}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <p>NOTA: AL HACER CLICK EN SIGUIENTE NO PODRA VOLVER A EDITAR LAS RESPUESTAS DE ESTA PAGINA</p>
+      <button type="button" class="btn btn-success" id="next-button" (click)="changeEncuesta()">Siguiente</button>
+    </div>
+  </div>
+  <div *ngSwitchCase=2> 
+    <div *ngFor="let qst of encuesta.questions;let i=index" class="preguntas">
+      <br>
+      <div id="{{qst._id}}" class="pregunta"> 
+        <h5>{{qst.question}}</h5>
+      </div>
+      <br><br>
+      <table>
+        <tbody>
+          <tr>
+            <th>Profesor(a)</th>
+            <th *ngFor="let opt of options; let i=index">
+              {{opt.name}}
+            </th>
+          </tr>
+  
+          <tr *ngFor="let profe of profesores">
+            <td>{{profe}}</td>
+            <td *ngFor="let opt of options; let i=index">
+              <input type="radio" name="{{qst.question}}{{profe}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <p>NOTA: AL HACER CLICK EN SIGUIENTE NO PODRA VOLVER A EDITAR LAS RESPUESTAS DE ESTA PAGINA</p>
+      <button type="button" class="btn btn-success" id="next-button" (click)="changeEncuesta()">Siguiente</button>
+    </div>
+  </div>
+  <div *ngSwitchCase=3> 
+    <div *ngFor="let qst of encuesta.questions;let i=index" class="preguntas">
+      <br>
+      <div id="{{qst._id}}" class="pregunta"> 
+        <h5>{{qst.question}}</h5>
+      </div>
+      <br><br>
+      <table>
+        <tbody>
+          <tr>
+            <th>Profesor(a)</th>
+            <th *ngFor="let opt of options; let i=index">
+              {{opt.name}}
+            </th>
+          </tr>
+  
+          <tr *ngFor="let profe of profesores">
+            <td>{{profe}}</td>
+            <td *ngFor="let opt of options; let i=index">
+              <input type="radio" name="{{qst.question}}{{profe}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <p>NOTA: AL HACER CLICK EN SIGUIENTE NO PODRA VOLVER A EDITAR LAS RESPUESTAS DE ESTA PAGINA</p>
+      <button type="button" class="btn btn-success" id="next-button" (click)="changeEncuesta()">Siguiente</button>
+    </div>
+  </div>
+  <div *ngSwitchCase=4> 
+    <div *ngFor="let qst of encuesta.questions" class="preguntas">
+      <br>
+      <div id="{{qst._id}}" class="pregunta"> 
+        <h5>{{qst.question}}</h5>
+      </div>
+      <br><br>
+      <table>
+        <tbody>
+          <tr>
+            <th>Profesor(a)</th>
+            <th *ngFor="let opt of options; let i=index">
+              {{opt.name}}
+            </th>
+          </tr>
+  
+          <tr *ngFor="let profe of profesores">
+            <td>{{profe}}</td>
+            <td *ngFor="let opt of options; let i=index">
+              <input type="radio" name="{{qst.question}}{{profe}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <p>FINALIZAR ENCUESTA</p>
+      <button type="button" class="btn btn-danger" id="next-button">Finalizar y Enviar</button>
+    </div>
+  </div>
+  
 
-        <tr *ngFor="let profe of profesores">
-          <td>{{profe}}</td>
-          <td *ngFor="let opt of options; let i=index">
-            <input type="radio" name="{{profe}}" [value]="opt.value" (click)="addOpt($event)">
-          </td>
-        </tr>
-      </tbody>
-    </table>
-</div>
-<div>
-  <p>NOTA: AL HACER CLICK EN SIGUIENTE NO PODRA VOLVER A EDITAR LAS RESPUESTAS DE ESTA PAGINA</p>
-  <button type="button" class="btn btn-success" id="next-button" (click)="submitForm($event)">Siguiente</button>
-</div>
+</section>
+  
+
 
 
 

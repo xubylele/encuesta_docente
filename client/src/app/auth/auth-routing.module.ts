@@ -3,6 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RecoverAccountComponent } from './recover-account/recover-account.component';
+import { EncuestaComponent } from '../alumno/encuesta/encuesta.component';
+import { GuardGuard } from './guards/guard.guard';
+
 
 
 const routes: Routes = [
@@ -15,6 +18,11 @@ const routes: Routes = [
     {
         path: 'recuperar', component:RecoverAccountComponent,
     },
+    {
+        path: 'encuesta',component:EncuestaComponent, canActivate:[GuardGuard],
+    }
+    
+    
 ];
 
 @NgModule({

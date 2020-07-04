@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { RespuestaI } from './../../models/respuesta';
+import { EncuestaService } from 'src/app/services/encuesta.service';
+import { sectionList } from './../../models/encuesta'
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-encuesta',
@@ -8,55 +12,92 @@ import { RespuestaI } from './../../models/respuesta';
   styleUrls: ['./encuesta.component.scss'],
 })
 export class EncuestaComponent implements OnInit {
-  title:"USO AULA VIRTUAL"
+
+  encuestaCompleta: any
+  encuesta: sectionList
+  page:number = 0
   options: Array<any> = [
-    { name: 'Muy Desacuerdo', value: '0' },
-    { name: 'Desacuerdo', value: '1' },
-    { name: 'Normal', value: '2' },
-    { name: 'De Acuerdo', value: '3' },
-    { name: 'Muy De Acuerdo', value: '4' },
-    { name: 'No Aplica', value: '5' }
+    { name: 'No Aplica', value: '0'},
+    { name: 'Muy Desacuerdo', value: '1'},
+    { name: 'Desacuerdo', value: '2'},
+    { name: 'De Acuerdo', value: '3'},
+    { name: 'Muy De Acuerdo', value: '4'},
   ];
 
   respuestas:Array<RespuestaI> = new Array<RespuestaI>();
 
-  qSect1: Array<any> = [
-    {
-      id:'1',
-      data: "1.- El docente actualiza frecuentemente el contenido disponible en el aula virtual del curso"
-    },
-    {
-      id:'2',
-      data: "2.- El material entregado mediante el aula virtual es apropiado para el desarrollo de la asignatura"
-    },
-    {
-      id:'3',
-      data: "3.- El docente mantiene una comunicación continua mediante el aula virtual"
-    },
-  ]
-
-  infoResp:RespuestaI;
+  infoResp:RespuestaI
 
   profesores = ["Rodolfo Villarroel", "Rafael Mellado", "Pamela Hermosilla"]
 
-  constructor() {
+  constructor( private EncuestaSrv:EncuestaService,private router:Router) {
   }
 
   ngOnInit(): void {
+    this.EncuestaSrv.getPreguntas().subscribe((encuestaApi)  =>{
+      this.encuestaCompleta = encuestaApi
+      this.encuesta = this.encuestaCompleta.sectionList[this.page]
+      //console.log(this.encuesta)
+    })
   }
 
-  submitForm(event) {
+  changeEncuesta(){
+    this.page = this.page + 1
+    this.encuesta = this.encuestaCompleta.sectionList[this.page]
+  }
+
+
+
+  actualizarRespuesta(event){
+    let respuesta:string = event.target.value;
+    let idPregunta:string = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[1].id;
+    let profesor:string = event.target.parentElement.parentElement.children[0].textContent;
+
+    this.createInfoResp(respuesta,idPregunta,profesor)
+
+    if (!this.cambiarRespuesta(respuesta,profesor,idPregunta)){
+      this.respuestas.push(this.infoResp)
+    }
     console.log(this.respuestas)
-
-    /*console.log(event.target.parentElement.parentElement.parentElement.parentElement.children[1].id)
-    console.log(event.target.parentElement.parentElement.children[0].children[0].textContent)
-    console.log(event.target.value)*/
   }
 
-
-  addOpt(event){
-    
-    console.log(this.respuestas)
+  createInfoResp(res:string,id:string,profe:string){
+    this.infoResp = {
+      profe:profe,
+      sections:[{
+        section:this.page,
+        data:[{
+          preg:id,
+          idResp:res
+        }]
+      }]
+    }
   }
+
+  /*Restorna TRUE si es que se pudo cambiar la respuesta (verificando que haya una existente)
+  Retorna FALSE si no existe una respuesta asociada a la pregunta*/
+  cambiarRespuesta(respSel,profe,pregid){
+    for(let respuesta of this.respuestas){
+      /*Recorrer para ver si existe respuesta y modificarla*/
+      if(respuesta.profe === profe){
+        for(let sect of respuesta.sections){
+          if(sect.section === this.page){
+            for(let resps of sect.data){
+              if(resps.preg === pregid){
+                resps.idResp = respSel
+                return true
+              }
+            }
+            /*Si no encuentra ID de pregunta, añadir respuesta a data*/
+            sect.data.push({preg:pregid,idResp:respSel})
+            console.log(respuesta)
+            return true
+          }
+        }
+
+      }
+    }
+    return false
+  }  
 
 }

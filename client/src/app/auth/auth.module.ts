@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RecoverAccountComponent } from './recover-account/recover-account.component';
-
+import { GuardGuard } from './guards/guard.guard';
 
 
 
@@ -29,6 +29,7 @@ import { RecoverAccountComponent } from './recover-account/recover-account.compo
   ],
   providers:[
     AuthService,
+    GuardGuard
   ]
 })
 export class AuthModule { }

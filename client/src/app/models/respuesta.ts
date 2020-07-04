@@ -1,7 +1,10 @@
 export interface RespuestaI{
     profe:string,
-    data: {
-      pregunta:number,
-      idResp:number,
-    }
+    sections: [{
+      section:number
+      data: [{
+        preg:string,
+        idResp:string,
+      }]
+    }]
 }
