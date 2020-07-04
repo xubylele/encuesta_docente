@@ -4,6 +4,9 @@ import { RespuestaI } from './../../models/respuesta';
 import { EncuestaService } from 'src/app/services/encuesta.service';
 import { sectionList } from './../../models/encuesta'
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { ProfesCursosI } from './../../models/profes-cursos';
+import { ProfCursosApi } from 'src/app/models/dataPrCu';
+
 
 
 @Component({
@@ -12,7 +15,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
   styleUrls: ['./encuesta.component.scss'],
 })
 export class EncuestaComponent implements OnInit {
-
+  profesAndC:Array<any>
   encuestaCompleta: any
   encuesta: sectionList
   page:number = 0
@@ -40,8 +43,7 @@ export class EncuestaComponent implements OnInit {
       console.log('Se obtuvo la wea de preguntas')
     })
     this.EncuestaSrv.getCoursesAlumno().subscribe((cursosAlumno)  =>{
-      console.log(cursosAlumno)
-      console.log('Se obtuvo los cursos del weta')
+      this.profesAndC = cursosAlumno.courses
     })
   }
 
@@ -50,58 +52,76 @@ export class EncuestaComponent implements OnInit {
     this.encuesta = this.encuestaCompleta.sectionList[this.page]
   }
 
-
-
   actualizarRespuesta(event){
-    let respuesta:string = event.target.value;
-    let idPregunta:string = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[1].id;
-    let profesor:string = event.target.parentElement.parentElement.children[0].textContent;
+    var respuesta:string = event.target.value;
+    var idPregunta:string = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[1].id;
+    var idProfesor:string = event.target.parentElement.parentElement.children[0].children[0].id;
+    var idCurso:string = event.target.parentElement.parentElement.children[1].id;
+ 
+    this.createInfoResp(respuesta,idPregunta,idProfesor,idCurso)
 
-    this.createInfoResp(respuesta,idPregunta,profesor)
-
-    if (!this.cambiarRespuesta(respuesta,profesor,idPregunta)){
+    if (!this.cambiarRespuesta(respuesta,idPregunta,idProfesor,idCurso)){
       this.respuestas.push(this.infoResp)
     }
     console.log(this.respuestas)
   }
 
-  createInfoResp(res:string,id:string,profe:string){
+
+  createInfoResp(idRes:string,idPregunta:string,idProfe:string,idCurso:string){
     this.infoResp = {
-      profe:profe,
-      sections:[{
-        section:this.page,
+      idCurso:idCurso,
+      profes:[{
+        id:idProfe,
         data:[{
-          preg:id,
-          idResp:res
+          idPreg:idPregunta,
+          idResp:idRes
         }]
       }]
     }
   }
 
-  /*Restorna TRUE si es que se pudo cambiar la respuesta (verificando que haya una existente)
-  Retorna FALSE si no existe una respuesta asociada a la pregunta*/
-  cambiarRespuesta(respSel,profe,pregid){
+  //Restorna TRUE si es que se pudo cambiar la respuesta (verificando que haya una existente)
+  //Retorna FALSE si no existe una respuesta asociada a la pregunta
+  
+  cambiarRespuesta(idRes:string,idPregunta:string,profeid:string,idCurso:string){
     for(let respuesta of this.respuestas){
-      /*Recorrer para ver si existe respuesta y modificarla*/
-      if(respuesta.profe === profe){
-        for(let sect of respuesta.sections){
-          if(sect.section === this.page){
-            for(let resps of sect.data){
-              if(resps.preg === pregid){
-                resps.idResp = respSel
+      //Recorrer para ver si existe respuesta y modificarla
+      if(respuesta.idCurso === idCurso){
+        for(let profe of respuesta.profes){
+          var id
+          console.log(profe.id)
+          id = profe.id
+          if(id === profeid){
+            for(let data of profe.data){
+              if(data.idPreg == idPregunta){
+                data.idResp = idRes
                 return true
               }
             }
-            /*Si no encuentra ID de pregunta, añadir respuesta a data*/
-            sect.data.push({preg:pregid,idResp:respSel})
-            console.log(respuesta)
+            var data = this.generateData(idPregunta,idRes)
+            profe.data.push(data)
             return true
           }
         }
-
       }
+
     }
     return false
-  }  
+  } 
+  
+  generateData(idPregunta,idRes){
+    var data = {
+      idPreg:idPregunta,
+      idResp:idRes
+    }
+    return data
+  }
 
+  /*sendEncuesta(){
+    this.EncuestaSrv.postEncuesta(this.respuestas).subscribe(res =>{
+      if(res.type === 'Alumno'){
+        this.router.navigate(["/auth/login"])
+      }
+    });
+  }*/
 }

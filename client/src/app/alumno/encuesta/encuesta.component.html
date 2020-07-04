@@ -4,7 +4,7 @@
 </nav>
 
 <section [ngSwitch]="page">
-  <div *ngSwitchCase=0>
+  <div *ngSwitchCase=0> 
     <div *ngFor="let qst of encuesta.questions;let i=index" class="preguntas">
       <br>
       <div id="{{qst._id}}" class="pregunta"> 
@@ -15,15 +15,17 @@
         <tbody>
           <tr>
             <th>Profesor(a)</th>
+            <th>Curso</th>
             <th *ngFor="let opt of options; let i=index">
               {{opt.name}}
             </th>
           </tr>
-  
-          <tr *ngFor="let profe of profesores">
-            <td>{{profe}}</td>
+ 
+          <tr *ngFor="let profe of profesAndC">
+            <td *ngFor="let prof of profe.teachers"><span id="{{prof._id}}"></span>{{prof.names}}</td>
+            <td id="{{profe.course._id}}">{{profe.course.acronym}}</td>
             <td *ngFor="let opt of options; let i=index">
-              <input type="radio" name="{{qst.question}}{{profe}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+              <input type="radio" name="{{qst._id}}{{profe.course.acronym}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
             </td>
           </tr>
         </tbody>
@@ -45,15 +47,17 @@
         <tbody>
           <tr>
             <th>Profesor(a)</th>
+            <th>Curso</th>
             <th *ngFor="let opt of options; let i=index">
               {{opt.name}}
             </th>
           </tr>
-  
-          <tr *ngFor="let profe of profesores">
-            <td>{{profe}}</td>
+ 
+          <tr *ngFor="let profe of profesAndC">
+            <td *ngFor="let prof of profe.teachers"><span id="{{prof._id}}"></span>{{prof.names}}</td>
+            <td id="{{profe.course._id}}">{{profe.course.acronym}}</td>
             <td *ngFor="let opt of options; let i=index">
-              <input type="radio" name="{{qst.question}}{{profe}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+              <input type="radio" name="{{qst._id}}{{profe.course.acronym}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
             </td>
           </tr>
         </tbody>
@@ -75,15 +79,17 @@
         <tbody>
           <tr>
             <th>Profesor(a)</th>
+            <th>Curso</th>
             <th *ngFor="let opt of options; let i=index">
               {{opt.name}}
             </th>
           </tr>
-  
-          <tr *ngFor="let profe of profesores">
-            <td>{{profe}}</td>
+ 
+          <tr *ngFor="let profe of profesAndC">
+            <td *ngFor="let prof of profe.teachers"><span id="{{prof._id}}"></span>{{prof.names}}</td>
+            <td id="{{profe.course._id}}">{{profe.course.acronym}}</td>
             <td *ngFor="let opt of options; let i=index">
-              <input type="radio" name="{{qst.question}}{{profe}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+              <input type="radio" name="{{qst._id}}{{profe.course.acronym}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
             </td>
           </tr>
         </tbody>
@@ -105,15 +111,17 @@
         <tbody>
           <tr>
             <th>Profesor(a)</th>
+            <th>Curso</th>
             <th *ngFor="let opt of options; let i=index">
               {{opt.name}}
             </th>
           </tr>
-  
-          <tr *ngFor="let profe of profesores">
-            <td>{{profe}}</td>
+ 
+          <tr *ngFor="let profe of profesAndC">
+            <td *ngFor="let prof of profe.teachers"><span id="{{prof._id}}"></span>{{prof.names}}</td>
+            <td id="{{profe.course._id}}">{{profe.course.acronym}}</td>
             <td *ngFor="let opt of options; let i=index">
-              <input type="radio" name="{{qst.question}}{{profe}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+              <input type="radio" name="{{qst._id}}{{profe.course.acronym}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
             </td>
           </tr>
         </tbody>
@@ -125,7 +133,7 @@
     </div>
   </div>
   <div *ngSwitchCase=4> 
-    <div *ngFor="let qst of encuesta.questions" class="preguntas">
+    <div *ngFor="let qst of encuesta.questions;let i=index" class="preguntas">
       <br>
       <div id="{{qst._id}}" class="pregunta"> 
         <h5>{{qst.question}}</h5>
@@ -135,15 +143,17 @@
         <tbody>
           <tr>
             <th>Profesor(a)</th>
+            <th>Curso</th>
             <th *ngFor="let opt of options; let i=index">
               {{opt.name}}
             </th>
           </tr>
-  
-          <tr *ngFor="let profe of profesores">
-            <td>{{profe}}</td>
+ 
+          <tr *ngFor="let profe of profesAndC">
+            <td *ngFor="let prof of profe.teachers"><span id="{{prof._id}}"></span>{{prof.names}}</td>
+            <td id="{{profe.course._id}}">{{profe.course.acronym}}</td>
             <td *ngFor="let opt of options; let i=index">
-              <input type="radio" name="{{qst.question}}{{profe}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+              <input type="radio" name="{{qst._id}}{{profe.course.acronym}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
             </td>
           </tr>
         </tbody>
@@ -151,7 +161,7 @@
     </div>
     <div>
       <p>FINALIZAR ENCUESTA</p>
-      <button type="button" class="btn btn-danger" id="next-button">Finalizar y Enviar</button>
+      <button type="button" class="btn btn-danger" id="next-button" (click)="sendEncuesta()">Finalizar y Enviar</button>
     </div>
   </div>
   
