@@ -52,12 +52,22 @@ participantListCtrl.create = async(req ,res) =>{
 
 participantListCtrl.getCourses = async (req, res) => {
     try {
-        console.log(req)
         const user = await User.findById(req.user._id)
         const participants = await ParticipantList.find({user: user._id})
         let courses = []
+        let specialCourse = {}
         for (let i = 0; i < participants.length; i++) {
-            courses.push(await Course.findOne({_id: participants[i].course}))
+            let teachers = []
+            let teacher
+            let course = await Course.findOne({_id: participants[i].course})
+            for (let j = 0; j < course.participantsList.length; j++) {
+                let participantTeacher = await ParticipantList.findById(course.participantsList[j])
+                let user = await User.findById(participantTeacher.user)
+                if(user.type == 'Profesor')
+                    teachers.push(user)
+            }
+            specialCourse = {course: course, teachers: teachers}
+            courses.push(specialCourse)
         }
 
         return res.status(200).json({courses})
