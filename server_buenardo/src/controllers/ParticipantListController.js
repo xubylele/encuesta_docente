@@ -66,9 +66,7 @@ participantListCtrl.getCourses = async (req, res) => {
                 if(user.type == 'Profesor')
                     teachers.push(user)
             }
-            console.log(teachers, course)
             specialCourse = {course: course, teachers: teachers}
-            console.log(specialCourse)
             courses.push(specialCourse)
         }
 
