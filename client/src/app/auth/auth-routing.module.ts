@@ -23,7 +23,7 @@ const routes: Routes = [
         path: 'encuesta',component:EncuestaComponent, canActivate:[GuardGuard],
     },
     {
-        path: '/auth/forgot_password/:token',component:ForgetPassComponent,
+        path: 'forgot_password/:token',component:ForgetPassComponent,
     }
     
     
