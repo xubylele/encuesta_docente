@@ -4,10 +4,9 @@ const badgeCtrl = {};
 badgeCtrl.create = async (req, res) =>{
     try {
         const badge = new Badge(req.body);
-        const exist = Badge.find({
+        const exist = await Badge.find({
            name: req.body.name
         })
-
         if(exist[0]!=null){
             return res.status(409).json({badge: badge, message: 'Badge already exists'});
         }
