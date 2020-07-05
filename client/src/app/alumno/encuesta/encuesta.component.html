@@ -160,11 +160,40 @@
       </table>
     </div>
     <div>
-      <p>FINALIZAR ENCUESTA</p>
-      <button type="button" class="btn btn-danger" id="next-button" (click)="sendEncuesta()">Finalizar y Enviar</button>
+      <p>NOTA: AL HACER CLICK EN SIGUIENTE NO PODRA VOLVER A EDITAR LAS RESPUESTAS DE ESTA PAGINA</p>
+      <button type="button" class="btn btn-success" id="next-button" (click)="changeEncuesta()">Siguiente</button>
     </div>
+    
   </div>
 
 
+  <div *ngSwitchCase=5> 
+    <div class="preguntas">
+      <br>
+      <table>
+        <tbody>
+          <tr>
+            <th>Insignia</th>
+            <th *ngFor="let profe of namesProfes">
+              {{profe}}
+            </th>
+          </tr>
+ 
+          <tr *ngFor="let badge of badges">
+            <td><div><i class="far fa-laugh-beam">{{badge.name}}</i></div></td>
+            <td *ngFor="let profe of namesProfes; let i=index">
+              <input type="checkbox" name="{{badge._id}}{{profe}}" [value]="badge._id">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <p>FINALIZAR ENCUESTA</p>
+      <button type="button" class="btn btn-danger" id="next-button" (click)="sendEncuesta()">Finalizar y Enviar</button>
+    </div>
+
+  </div>
 
 </section>

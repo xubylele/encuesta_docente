@@ -16,6 +16,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./encuesta.component.scss'],
 })
 export class EncuestaComponent implements OnInit {
+  namesProfes:Array<string> = new Array()
   badges:Array<any>
   profesAndC:Array<any>
   encuestaCompleta: any
@@ -33,8 +34,6 @@ export class EncuestaComponent implements OnInit {
 
   infoResp:RespuestaI
 
-  profesores = ["Rodolfo Villarroel", "Rafael Mellado", "Pamela Hermosilla"]
-
   constructor( private EncuestaSrv:EncuestaService,private router:Router,private authSrv:AuthService) {
   }
 
@@ -42,15 +41,15 @@ export class EncuestaComponent implements OnInit {
     this.EncuestaSrv.getPreguntas().subscribe((encuestaApi)  =>{
       this.encuestaCompleta = encuestaApi
       this.encuesta = this.encuestaCompleta.sectionList[this.page]
-      console.log('Se obtuvo la wea de preguntas')
     })
     this.EncuestaSrv.getCoursesAlumno().subscribe((cursosAlumno)  =>{
       this.profesAndC = cursosAlumno.courses
+      console.log(this.profesAndC)
+      this.getProfesOfData()
     })
     this.EncuestaSrv.getBadges().subscribe((badges) =>{
       this.badges = badges
-      console.log(this.badges)
-    } )
+    })
   }
 
   changeEncuesta(){
@@ -97,10 +96,7 @@ export class EncuestaComponent implements OnInit {
       //Recorrer para ver si existe respuesta y modificarla
       if(respuesta.idCurso === idCurso){
         for(let profe of respuesta.profes){
-          var id
-          console.log(profe.id)
-          id = profe.id
-          if(id === profeid){
+          if(profe.id === profeid){
             for(let data of profe.data){
               if(data.idPreg == idPregunta){
                 data.idResp = idRes
@@ -137,4 +133,17 @@ export class EncuestaComponent implements OnInit {
       this.router.navigate(["/auth/login"])  
     });
   }
+
+  getProfesOfData(){
+    for(let data of this.profesAndC){
+      console.log(data)
+      for(let teacher of data.teachers){
+        if((this.namesProfes.indexOf(teacher.names)) == -1){
+          this.namesProfes.push(teacher.names)
+        }
+      }
+    }
+    console.log(this.namesProfes)
+  }
+  
 }
