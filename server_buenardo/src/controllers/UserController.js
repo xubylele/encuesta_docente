@@ -61,10 +61,10 @@ userCtrl.editPassword = async (req, res) =>{
         console.log(`password: ${req.body.password}`)                                           // OBTENEMOS EL USUARIO BY ID
         user.password = req.body.password;                                                      // MODIFICAMOS LA PASSWORD LOCAL
         if(req.body.password.length < 8){
-            return res.status(400).json({message: 'Error, la contraseña no cumple con el minimo de caracteres'});
+            return res.status(400).json({status: false,message: 'Error, la contraseña no cumple con el minimo de caracteres'});
         }
         await user.save();                                                                 // LO GUARDAMOS
-    res.status(200).json({message: 'Contraseña modificada correctamnte'});                      // DEVOLVEMOS STATUS OK Y MENSAJE
+    res.status(200).json({status: true,message: 'Contraseña modificada correctamnte'});                      // DEVOLVEMOS STATUS OK Y MENSAJE
     } catch (error) {                                                                           // OBTENEMOS EL ERROR
         res.status(500).json({error});                                                          // DEVOLVEMOS STATUS 500 Y ERROR
     }
