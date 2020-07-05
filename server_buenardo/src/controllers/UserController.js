@@ -56,9 +56,11 @@ userCtrl.deleteUser = async(req ,res) =>{
 
 userCtrl.editPassword = async (req, res) =>{
     try {
-        const user = await userModel.findById(req.user);                                 // OBTENEMOS EL USUARIO BY ID
+        const user = await userModel.findById(req.user);  
+        console.log(`user: ${user}`)  
+        console.log(`password: ${req.body.password}`)                      // OBTENEMOS EL USUARIO BY ID
         user.password = req.body.password;                                                      // MODIFICAMOS LA PASSWORD LOCAL
-        await user.save();                                                                      // LO GUARDAMOS
+        await user.save();                                                                 // LO GUARDAMOS
     res.status(200).json({message: 'Contraseña modificada correctamnte'});                      // DEVOLVEMOS STATUS OK Y MENSAJE
     } catch (error) {                                                                           // OBTENEMOS EL ERROR
         res.status(500).json({error});                                                          // DEVOLVEMOS STATUS 500 Y ERROR
