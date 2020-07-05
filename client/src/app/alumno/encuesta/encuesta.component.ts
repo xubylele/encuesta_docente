@@ -8,7 +8,10 @@ import { ProfesCursosI } from './../../models/profes-cursos';
 import { ProfCursosApi } from 'src/app/models/dataPrCu';
 import { AuthService } from 'src/app/services/auth.service';
 
-
+interface ProfeSNid{
+  name:string,
+  id:string,
+}
 
 @Component({
   selector: 'app-encuesta',
@@ -16,7 +19,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./encuesta.component.scss'],
 })
 export class EncuestaComponent implements OnInit {
-  namesProfes:Array<string> = new Array()
+  namesProfes:Array<ProfeSNid> = new Array<ProfeSNid>()
   badges:Array<any>
   profesAndC:Array<any>
   encuestaCompleta: any
@@ -139,7 +142,10 @@ export class EncuestaComponent implements OnInit {
       console.log(data)
       for(let teacher of data.teachers){
         if((this.namesProfes.indexOf(teacher.names)) == -1){
-          this.namesProfes.push(teacher.names)
+          this.namesProfes.push({
+            name:teacher.names,
+            id:teacher._id
+          })
         }
       }
     }

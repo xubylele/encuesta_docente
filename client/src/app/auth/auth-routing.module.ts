@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { RecoverAccountComponent } from './recover-account/recover-account.component';
 import { EncuestaComponent } from '../alumno/encuesta/encuesta.component';
 import { GuardGuard } from './guards/guard.guard';
+import { ForgetPassComponent } from './forget-pass/forget-pass.component';
 
 
 
@@ -20,6 +21,9 @@ const routes: Routes = [
     },
     {
         path: 'encuesta',component:EncuestaComponent, canActivate:[GuardGuard],
+    },
+    {
+        path: '/auth/forgot_password/:token',component:ForgetPassComponent,
     }
     
     

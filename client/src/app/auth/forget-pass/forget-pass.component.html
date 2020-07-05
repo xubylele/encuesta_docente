@@ -1,0 +1,38 @@
+<div class="fondo h-100 w-100">
+    <section>
+        <div class="header" id="header-login">
+            <a>
+                <img id="logoinf" [src]="infPath" alt="logo_escuela">
+            </a>
+            <a>
+                <img id="logopucv" [src]="pucvPath" alt="">
+            </a>      
+        </div>
+    </section>
+    <div id="back-login">
+        <img [src]="fondoPath" alt="">
+        
+    </div>
+        <div  id="titulo-login">     
+        </div>
+        <div class="login-card">
+            <form  [formGroup]="formSetPass" id="form-login">
+                <div class="form-group" id="pass1">
+                  <h3>Ingrese su NUEVA constrasena</h3>
+                  <label for="exampleInputEmail1">Contrasena</label>
+                  <input class="form-control" formControlName="pass1">
+
+                </div>
+                <div class="form-group" id="pass2">
+                    <h3>Ingrese su NUEVA constrasena</h3>
+                    <label for="exampleInputEmail1">Contrasena2</label>
+                    <input class="form-control" formControlName="pass2">
+  
+                  </div>
+
+                <br>
+                <button type="submit" (click)="recoverAccount()" class="btn btn-primary">Actualizar Contrasena</button>
+            </form>
+            
+        </div>
+</div>

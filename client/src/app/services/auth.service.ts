@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserI } from '../models/user';
 import { JwtResponseI } from '../models/jwt-response';
 import { tap } from 'rxjs/operators';
@@ -62,20 +61,19 @@ export class AuthService {
     return this.token;
   }
 
-  recoverAccount(email:string):Observable<any>{
-    return this.httpClient.post<any>(`${this.AUTH_SERVER}/recover`,email)
-      .pipe(tap(
-        (res:any) => {
-          if(res){
-            
-          }
-        }
-
-      ))
+  recoverAccount(email:any):Observable<any>{
+    return this.httpClient.post<any>(`${this.AUTH_SERVER}/forgot_password`,email)
   }
 
   getCurrentUser(){
     return this.getCurrentUser()
+  }
+
+  sendNewPass(password:any,token:string):Observable<any>{
+    const headers = new HttpHeaders ({
+      'auth-token':token
+    });
+    return this.httpClient.post<any>(`${this.AUTH_SERVER}/api/users/editpassword`,password,{headers}) 
   }
 
 
