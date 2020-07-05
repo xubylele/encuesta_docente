@@ -5,6 +5,9 @@ export interface RespuestaI{
     data:[{
       idPreg:string,
       idResp:string,
+    }],
+    insignias:[{
+      id:string
     }]
   }]
 }

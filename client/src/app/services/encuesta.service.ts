@@ -12,6 +12,8 @@ import { RespuestaI } from '../models/respuesta';
 export class EncuestaService {
   HOST:string = 'http://localhost:3000/api/section';
   HOST_PARTICIPANT:string = 'http://localhost:3000/api/participantlist';
+  HOST_INSIGNIAS:string = 'http://localhost:3000/api/badges';
+  HOST_ENCUESTA:string = 'http://localhost:3000/api/poll';
   httpClient: any;
 
   constructor(private http:HttpClient) { }
@@ -19,6 +21,10 @@ export class EncuestaService {
 
   getPreguntas() : Observable<any>{
     return this.http.get<any>(`${this.HOST}/list`)
+  }
+
+  getBadges() : Observable<any>{
+    return this.http.get<any>(`${this.HOST_INSIGNIAS}/getallbadges`)
   }
 
   getCoursesAlumno() : Observable<any>{
@@ -30,8 +36,8 @@ export class EncuestaService {
     return this.http.get<any>(`${this.HOST_PARTICIPANT}/getCourses`,{headers})
   }
 
-  /*postEncuesta(respuestas):Observable<any>{
+  postEncuesta(respuestas:Array<RespuestaI>):Observable<any>{
+    return this.http.post<Array<RespuestaI>>(`${this.HOST_ENCUESTA}/savePoll`,respuestas)
     
-  }*/
-
+  }
 }

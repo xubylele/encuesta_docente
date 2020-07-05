@@ -6,6 +6,7 @@ import { sectionList } from './../../models/encuesta'
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { ProfesCursosI } from './../../models/profes-cursos';
 import { ProfCursosApi } from 'src/app/models/dataPrCu';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 
@@ -15,6 +16,7 @@ import { ProfCursosApi } from 'src/app/models/dataPrCu';
   styleUrls: ['./encuesta.component.scss'],
 })
 export class EncuestaComponent implements OnInit {
+  badges:Array<any>
   profesAndC:Array<any>
   encuestaCompleta: any
   encuesta: sectionList
@@ -33,7 +35,7 @@ export class EncuestaComponent implements OnInit {
 
   profesores = ["Rodolfo Villarroel", "Rafael Mellado", "Pamela Hermosilla"]
 
-  constructor( private EncuestaSrv:EncuestaService,private router:Router) {
+  constructor( private EncuestaSrv:EncuestaService,private router:Router,private authSrv:AuthService) {
   }
 
   ngOnInit(): void {
@@ -45,6 +47,10 @@ export class EncuestaComponent implements OnInit {
     this.EncuestaSrv.getCoursesAlumno().subscribe((cursosAlumno)  =>{
       this.profesAndC = cursosAlumno.courses
     })
+    this.EncuestaSrv.getBadges().subscribe((badges) =>{
+      this.badges = badges
+      console.log(this.badges)
+    } )
   }
 
   changeEncuesta(){
@@ -75,6 +81,9 @@ export class EncuestaComponent implements OnInit {
         data:[{
           idPreg:idPregunta,
           idResp:idRes
+        }],
+        insignias:[{
+          id:null
         }]
       }]
     }
@@ -117,11 +126,15 @@ export class EncuestaComponent implements OnInit {
     return data
   }
 
-  /*sendEncuesta(){
+  sendEncuesta(){
     this.EncuestaSrv.postEncuesta(this.respuestas).subscribe(res =>{
-      if(res.type === 'Alumno'){
+      if (window.confirm("Encuesta Enviada!")){
+        this.authSrv.logout()
         this.router.navigate(["/auth/login"])
+        return
       }
+      this.authSrv.logout()
+      this.router.navigate(["/auth/login"])  
     });
-  }*/
+  }
 }
