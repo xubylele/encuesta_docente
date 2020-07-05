@@ -15,7 +15,6 @@ const pollSchema = new mongoose.Schema({
     }],
     type: {
         type: String,
-        required: true,
         min:3, 
         max: 100
     },
