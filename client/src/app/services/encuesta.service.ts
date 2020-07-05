@@ -42,6 +42,5 @@ export class EncuestaService {
       'auth-token':token,
     });
     return this.http.post<Array<RespuestaI>>(`${this.HOST_ENCUESTA}/savePoll`,respuestas,{headers})
-    
   }
 }
