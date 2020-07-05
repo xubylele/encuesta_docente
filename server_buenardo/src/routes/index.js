@@ -3,6 +3,7 @@ const router = express.Router()
 const { AuthController} = require('../controllers')
 const auth = require('../middlewares/auth')
 
+
 module.exports = app => {
     
     router.post('/api/register', AuthController.register)
@@ -13,6 +14,7 @@ module.exports = app => {
     * Devuelve el token y el tipo de usuario
     */
     router.post('/api/login', AuthController.login)
+    router.post('/api/forgot_password', AuthController.forgotPassword)
 
     app.use(router)
     app.use('/api/users',require('./UserRouter'));

@@ -9,6 +9,7 @@ const { registerValidation, loginValidation } = require('../helpers/verifyAuth')
 
 const path = require('path')
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') })
+const nodemailer = require('nodemailer')
 
 ctrl.register = async (req, res) => {
     //Validate user data
@@ -64,6 +65,45 @@ ctrl.login = async (req, res) => {
     const token = jwt.sign({_id: user._id}, process.env.SECRET_TOKEN)
 
     res.header('auth-token', token).send({token: token, 'type': user.type})
+}
+
+ctrl.forgotPassword = async(req, res) => {
+    if(!req.body.email) return res.status(400).json({error: 'Debe ingresar un email'})
+
+    const user = await User.findOne({email: req.body.email})
+    if(!user) return res.status(400).json({error: 'Este correo no se encuentra registrado, intente con uno valido'})
+    
+    const token = jwt.sign({_id: user._id}, process.env.SECRET_TOKEN)
+
+    var locals = {
+        email: user.email,
+        subject: 'Restaurar Contraseña',
+        name: `${user.names} ${user.last_names}`,
+        resetUrl: `http://localhost:4200/auth/forgot_password/${token}`
+    }
+
+    var transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: process.env.MAILER_AUTH,
+            pass: process.env.MAILER_PASS
+        }
+    })
+
+    const mailOptions = {
+        from: process.env.MAILER_FROM,
+        to: user.email,
+        subject: 'Restaurar Contraseña',
+        html: `<a href=${locals.resetUrl} >Click aqui para restaurar tu  contraseña</a>`
+    }
+
+    transporter.sendMail(mailOptions, function(err, info) {
+        if(err) return res.status(400).json({error: err.message})
+
+        console.log(info)
+
+        return res.status(200).json({message: 'Correo enviado con exito'})
+    })
 }
 
 module.exports = ctrl
