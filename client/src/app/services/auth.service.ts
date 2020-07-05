@@ -70,6 +70,7 @@ export class AuthService {
   }
 
   sendNewPass(password:string,token:string):Observable<any>{
+    console.log(password)
     const headers = new HttpHeaders ({
       'auth-token':token
     });

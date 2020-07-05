@@ -40,6 +40,7 @@ export class ForgetPassComponent implements OnInit {
   }
 
   sendNewPass(){
+    console.log(this.formSetPass.value.pass1)
     this.authService.sendNewPass(this.formSetPass.value.pass1,this.token).subscribe(res =>{
       window.confirm(res)
     });
