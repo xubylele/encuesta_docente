@@ -52,33 +52,33 @@ pollCtrl.addAnswer = async (req, res) =>{
 
 pollCtrl.savePoll = async (req, res) => {
     for (let i = 0; i < req.body.length; i++) {
-        let courseReq = req.body[i]
-        let course = await Course.findById(courseReq.idCurso)
+        let courseReq = req.body[i] // OBTIENE EL CURSO REQ
+        let course = await Course.findById(courseReq.idCurso) // OBTIENE EL CURSO BD
         for (let j = 0; j < courseReq.profes.length; j++) {
-            let teacherReq = courseReq.profes[j];
-            let teacher = await ParticipantList.findOne({user: teacherReq.id, course: course._id})
-            let poll = new Poll()
-            let answers = []
-            poll.teacher = teacher
-            poll.questionSet = await QuestionSet.findOne({version: '1.0.0'})
-            await poll.save()
+            let teacherReq = courseReq.profes[j]; // OBTIENE EL PROFESOR REQ
+            let teacher = await ParticipantList.findOne({user: teacherReq.id, course: course._id}) // OBTIENE EL PROFESOR DE BD
+            let poll = new Poll() //CREAR POLL
+            let answers = [] // CREAR ARREGLO DE RESPUESTAS
+            poll.teacher = teacher // CREAR PROFESOR
+            poll.questionSet = await QuestionSet.findOne({version: '1.0.0'}) // ASIGNAR SET DE PREGUNTAS
+            await poll.save() //GUARDAR POLL
             for (let k = 0; k < teacherReq.data.length; k++) {
-                const answerReq = teacherReq.data[k];
-                let answer = new Answer()
-                answer.alternative = await Alternative.findOne({alternative: answerReq.idResp})
-                answer.question = await Question.findById(answerReq.idPreg)
-                answer.poll = poll
-                answers.push(answer)
+                const answerReq = teacherReq.data[k]; //OBTENER RESPUESTA REQ
+                let answer = new Answer() // CREAR RESPUESTA
+                answer.alternative = await Alternative.findOne({alternative: answerReq.idResp}) // ASIGNAR ALTERNATIVA
+                answer.question = await Question.findById(answerReq.idPreg) // ASIGNAR PREGUNTA
+                answer.poll = poll // ASIGNAR ENCUESTA
+                answers.push(answer) // GUARDAR EN ARREGLO
             }
 
-            await Answer.insertMany(answers)
+            await Answer.insertMany(answers) // GUARDAR ARREGLO DE PREGUNTAS
             Poll.update(
                 {"_id": poll._id}, 
                 {"$push": { "answers": {"$each": answers} } },
                 function (err, callback) {
                     
                 }
-            )
+            ) // GUARDAR ARREGLO DE PREUNTAS DENTRO DE LA ENCUESTA
         }
         
     }
