@@ -23,6 +23,14 @@ teacherBadgeCtrl.createTeacherBadge = async (req, res) => {
                     
                 }
             )   
+
+            ParticipantList.update(
+                {"_id": req.body.teacherID},
+                {"$push": { teachersBadge: teacherBadge} },
+                function (err, callback) {
+                    
+                }
+            )
                 
             res.status(200).json({teacherBadge: teacherBadge, message:'Badge asignada con exito'});
         }
