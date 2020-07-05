@@ -37,7 +37,11 @@ export class EncuestaService {
   }
 
   postEncuesta(respuestas:Array<RespuestaI>):Observable<any>{
-    return this.http.post<Array<RespuestaI>>(`${this.HOST_ENCUESTA}/savePoll`,respuestas)
-    
+    let token = localStorage.getItem("ACCESS_TOKEN");
+    console.log(token)
+    const headers = new HttpHeaders ({
+      'auth-token':token,
+    });
+    return this.http.post<Array<RespuestaI>>(`${this.HOST_ENCUESTA}/savePoll`,respuestas,{headers})
   }
 }
