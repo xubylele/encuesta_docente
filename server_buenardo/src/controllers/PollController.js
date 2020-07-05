@@ -1,4 +1,4 @@
-const { Poll } = require('../models');
+const { Poll, Course, ParticipantList, User, QuestionSet, Answer, Alternative, Question } = require('../models');
 const pollCtrl = {};
 
 
@@ -50,4 +50,38 @@ pollCtrl.addAnswer = async (req, res) =>{
     }
 }
 
+pollCtrl.savePoll = async (req, res) => {
+    for (let i = 0; i < req.body.length; i++) {
+        let courseReq = req.body[i]
+        let course = await Course.findById(courseReq.idCurso)
+        for (let j = 0; j < courseReq.profes.length; j++) {
+            let teacherReq = courseReq.profes[j];
+            let teacher = await ParticipantList.findOne({user: teacherReq.id, course: course._id})
+            let poll = new Poll()
+            let answers = []
+            poll.teacher = teacher
+            poll.questionSet = await QuestionSet.findOne({version: '1.0.0'})
+            await poll.save()
+            for (let k = 0; k < teacherReq.data.length; k++) {
+                const answerReq = teacherReq.data[k];
+                let answer = new Answer()
+                answer.alternative = await Alternative.findOne({alternative: answerReq.idResp})
+                answer.question = await Question.findById(answerReq.idPreg)
+                answer.poll = poll
+                answers.push(answer)
+            }
+
+            await Answer.insertMany(answers)
+            Poll.update(
+                {"_id": poll._id}, 
+                {"$push": { "answers": {"$each": answers} } },
+                function (err, callback) {
+                    
+                }
+            )
+        }
+        
+    }
+    return res.status(200).json('Encuesta guardada con exito!!!')
+}
 module.exports = pollCtrl;

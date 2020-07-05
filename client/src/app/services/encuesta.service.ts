@@ -13,7 +13,7 @@ export class EncuestaService {
   HOST:string = 'http://localhost:3000/api/section';
   HOST_PARTICIPANT:string = 'http://localhost:3000/api/participantlist';
   HOST_INSIGNIAS:string = 'http://localhost:3000/api/badges';
-  HOST_ENCUESTA:string = 'http://localhost:3000/api/poll';
+  HOST_ENCUESTA:string = 'http://localhost:3000/api/polls';
   httpClient: any;
 
   constructor(private http:HttpClient) { }
