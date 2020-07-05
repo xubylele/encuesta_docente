@@ -65,7 +65,7 @@ userCtrl.editPassword = async (req, res) =>{
     }
 }
 
-userCtrl.addParticipants = async (req, res) =>{
+userCtrl.addParticipants = async (req, res) => {
     try {
         const user = await userModel.findById(req.body.userID);                                                     // OBTENEMOS USUARIO
         const tentativeParticipantList = await participantList.findById(req.body.participantID);                    // OBTENEMOS PARTICIPANT LIST

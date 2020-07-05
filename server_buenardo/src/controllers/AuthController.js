@@ -79,7 +79,7 @@ ctrl.forgotPassword = async(req, res) => {
         email: user.email,
         subject: 'Restaurar Contraseña',
         name: `${user.names} ${user.last_names}`,
-        resetUrl: `http://localhost:4200/auth/forget_password/${token}`
+        resetUrl: `http://localhost:4200/auth/forgot_password/${token}`
     }
 
     var transporter = nodemailer.createTransport({
