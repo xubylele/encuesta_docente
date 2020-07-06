@@ -157,4 +157,9 @@ export class EncuestaComponent implements OnInit {
     console.log(this.namesProfes)
     }
   }
+
+  logout(){
+    this.authSrv.logout()
+    this.router.navigate(["/auth/login"])  
+  }
 }
