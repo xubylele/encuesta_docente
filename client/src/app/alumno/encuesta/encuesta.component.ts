@@ -142,15 +142,19 @@ export class EncuestaComponent implements OnInit {
     for(let data of this.profesAndC){
       console.log(data)
       for(let teacher of data.teachers){
-        if((this.namesProfes.indexOf(teacher.names)) == -1){
+        if((!this.namesProfes.find(function (profe){
+          return profe.name == teacher.names
+          })
+        ))
+        {
           this.namesProfes.push({
             name:teacher.names,
             id:teacher._id
           })
-        }
+        }  
+
       }
-    }
     console.log(this.namesProfes)
+    }
   }
-  
 }
