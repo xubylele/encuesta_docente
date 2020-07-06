@@ -69,12 +69,11 @@ export class AuthService {
     return this.getCurrentUser()
   }
 
-  sendNewPass(password:string,token:string):Observable<any>{
+  sendNewPass(password:any,token:string):Observable<any>{
     const headers = new HttpHeaders ({
       'auth-token':token
     });
     return this.httpClient.put<any>(`${this.AUTH_SERVER}/users/editpassword`,password,{headers}) 
   }
-
 
 }

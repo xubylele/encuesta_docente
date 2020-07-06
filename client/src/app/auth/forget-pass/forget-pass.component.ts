@@ -34,14 +34,21 @@ export class ForgetPassComponent implements OnInit {
 
   createForm(){
     this.formSetPass = this.formBuilder.group({
-      pass1: ['',Validators.required],
-      pass2: ['',Validators.required],
+      password: ['',Validators.compose([
+        Validators.required,
+        Validators.minLength(8)
+      ])],
     })
   }
 
   sendNewPass(){
-    this.authService.sendNewPass(this.formSetPass.value.pass1,this.token).subscribe(res =>{
-      window.confirm(res)
+    this.authService.sendNewPass(this.formSetPass.value,this.token).subscribe(res =>{
+      if(res.status){
+        window.alert(res.message)
+        this.router.navigate(["/auth/login"])
+        return
+      }
+      window.alert(res.message)
     });
   }
 }
