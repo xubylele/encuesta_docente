@@ -36,6 +36,9 @@ export class LoginComponent implements OnInit {
       if(res.type === 'Alumno'){
         this.router.navigate(["/auth/encuesta"])
       }
+      if(res.type === 'Profesor'){
+        this.router.navigate(["/auth/profe"])
+      }
     });
   }
 

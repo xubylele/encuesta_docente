@@ -6,6 +6,7 @@ import { RecoverAccountComponent } from './recover-account/recover-account.compo
 import { EncuestaComponent } from '../alumno/encuesta/encuesta.component';
 import { GuardGuard } from './guards/guard.guard';
 import { ForgetPassComponent } from './forget-pass/forget-pass.component';
+import { SidebarComponent } from '../profesor/sidebar/sidebar.component';
 
 
 
@@ -24,7 +25,10 @@ const routes: Routes = [
     },
     {
         path: 'forgot_password/:token',component:ForgetPassComponent,
-    }
+    },
+    {
+        path: 'profe',component:SidebarComponent, canActivate:[GuardGuard],
+    },
     
     
 ];

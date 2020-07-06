@@ -14,7 +14,7 @@ interface ProfeSNid{
 }
 
 @Component({
-  selector: 'app-encuesta',
+  selector: 'app-encuesta', 
   templateUrl: './encuesta.component.html',
   styleUrls: ['./encuesta.component.scss'],
 })
@@ -56,6 +56,7 @@ export class EncuestaComponent implements OnInit {
   }
 
   changeEncuesta(){
+    
     this.page = this.page + 1
     this.encuesta = this.encuestaCompleta.sectionList[this.page]
   }
