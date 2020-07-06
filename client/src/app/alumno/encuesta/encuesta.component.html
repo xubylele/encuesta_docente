@@ -169,6 +169,7 @@
 
   <div *ngSwitchCase=5> 
     <div class="preguntas">
+      <h4>Insignias</h4>
       <br>
       <table>
         <tbody>
@@ -180,7 +181,7 @@
           </tr>
  
           <tr *ngFor="let badge of badges">
-            <td><div><i class="far fa-laugh-beam">{{badge.name}}</i></div></td>
+            <td><div>{{badge.name}}</div></td>
             <td *ngFor="let profe of namesProfes; let i=index">
               <input type="checkbox" name="{{badge._id}}{{profe}}" [value]="badge._id">
             </td>
