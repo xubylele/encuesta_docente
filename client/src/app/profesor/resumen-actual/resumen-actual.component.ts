@@ -70,7 +70,7 @@ export class ResumenActualComponent implements OnInit {
     
     */
 /* DATA PLANA */
-    const data = [2 ,2, 2, 2, 2]; 
+    const data = [3.4 ,2.8, 3.1, 3.0, 2.9]; 
     const labels = ["Uso Del Aula Virtual", "Contenido Del Curso", "Actitud", "Responsabilidad", "Metodología De La Enseñanza"];
     if(data!=null && labels != null){
       this.chartData = data;
