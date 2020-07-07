@@ -13,7 +13,7 @@ export class ResumenActualComponent implements OnInit {
   canvas:any;
   ctx:any;
 
-  getData()
+  //getData()
 
 
   ngOnInit(): void {
