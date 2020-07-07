@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfesorService } from './../../services/profesor.service'
+import { ProfesorService } from './../../services/profesor.service';
+import * as Chart from 'chart.js';
 
 @Component({
   selector: 'app-resumen-actual',
@@ -12,9 +13,6 @@ export class ResumenActualComponent implements OnInit {
 
   canvas:any;
   ctx:any;
-
-  //getData()
-
 
   ngOnInit(): void {
 
