@@ -33,16 +33,16 @@ export class LoginComponent implements OnInit {
 
   login(){
     this.authService.login(this.formLoginPage.value).subscribe(res =>{
-      //console.log(res)
-      if(res.type === 'Alumno'){
-        console.log(res)
-        this.router.navigate(["/auth/encuesta"])
-      }
-      if(res.type === 'Profesor'){
-        console.log(res)
-        this.router.navigate(["/auth/profe/home"])
-      }
-    });
+        if(res.type === 'Alumno'){
+          console.log(res)
+          this.router.navigate(["/auth/encuesta"])
+        }
+        if(res.type === 'Profesor'){
+          console.log(res)
+          this.router.navigate(["/auth/profe/home"])
+        }
+        
+    },(err) => window.alert(err.error.error));
   }
 
 

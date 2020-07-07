@@ -20,6 +20,7 @@ interface ProfeSNid{
   styleUrls: ['./encuesta.component.scss'],
 })
 export class EncuestaComponent implements OnInit {
+  data: any;
   namesProfes:Array<ProfeSNid> = new Array<ProfeSNid>()
   badges:Array<any>
   profesAndC:Array<any>
@@ -57,9 +58,34 @@ export class EncuestaComponent implements OnInit {
   }
 
   changeEncuesta(){
+    if(this.page < 5){
+      if(this.checkAnswerComplete()){
+        this.page = this.page + 1
+        this.encuesta = this.encuestaCompleta.sectionList[this.page]
+      }
+      else{
+        window.alert('Asegurese de completar la encuesta!')
+      }
+    }
     
-    this.page = this.page + 1
-    this.encuesta = this.encuestaCompleta.sectionList[this.page]
+    
+  }
+
+  checkAnswerComplete(){
+    let cantProfes:number = 0
+    let count:number = 0
+    let respPorProfe:number
+    for(let respuesta of this.respuestas){
+        for(let profe of respuesta.profes){
+          respPorProfe = profe.data.length
+          count = count + respPorProfe
+        }
+    }
+    let cant = 6 * (this.page+1)
+    if(count == cant){
+      return true
+    }
+    return false
   }
 
   actualizarRespuesta(event){
@@ -67,7 +93,7 @@ export class EncuestaComponent implements OnInit {
     var idPregunta:string = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[1].id;
     var idProfesor:string = event.target.parentElement.parentElement.children[0].children[0].id;
     var idCurso:string = event.target.parentElement.parentElement.children[1].id;
- 
+
     this.createInfoResp(respuesta,idPregunta,idProfesor,idCurso)
 
     if (!this.cambiarRespuesta(respuesta,idPregunta,idProfesor,idCurso)){
@@ -87,7 +113,7 @@ export class EncuestaComponent implements OnInit {
           idResp:idRes
         }],
         insignias:[{
-          id:null
+          id:''
         }]
       }]
     }
@@ -119,7 +145,7 @@ export class EncuestaComponent implements OnInit {
     return false
   } 
   
-  generateData(idPregunta,idRes){
+  generateData(idPregunta,idRes){ 
     var data = {
       idPreg:idPregunta,
       idResp:idRes
@@ -162,5 +188,35 @@ export class EncuestaComponent implements OnInit {
   logout(){
     this.authSrv.logout()
     this.router.navigate(["/auth/login"])  
+  }
+
+  addBadge(e){
+    let idBadge = e.target.value
+    let idCurso = e.target.id
+    let idProfe = e.target.parentElement.id
+    let data = {id:''}
+    for(let respuesta of this.respuestas){
+      //Recorrer para ver si existe respuesta y modificarla
+      if(respuesta.idCurso === idCurso){
+        for(let profe of respuesta.profes){
+          if(profe.id === idProfe){
+            for(let badge of profe.insignias){
+              if(badge.id === idBadge){
+                let index = profe.insignias.indexOf(badge,0)
+                console.log(index)
+                profe.insignias.splice(index,1)
+                return
+              }
+              
+            }
+            data.id = idBadge
+            profe.insignias.push(data)
+            console.log(this.respuestas)
+            return
+          }
+        }
+      }
+
+    }
   }
 }

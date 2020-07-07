@@ -31,7 +31,9 @@ import { EncuestaComponent } from './alumno/encuesta/encuesta.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
+
   ],
   providers: [
     EncuestaService,

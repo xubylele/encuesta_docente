@@ -1,12 +1,12 @@
 export interface RespuestaI{
   idCurso:string,
   profes: [{
-    id:string,
+    id:string, 
     data:[{
       idPreg:string,
       idResp:string,
     }],
-    insignias:[{
+    insignias?:[{
       id:string
     }]
   }]

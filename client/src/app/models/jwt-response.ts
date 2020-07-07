@@ -6,5 +6,4 @@ export interface JwtResponseI{
     token?:string,
     type?:string,
     expiresIn?:string,
-    errror?:string
 }

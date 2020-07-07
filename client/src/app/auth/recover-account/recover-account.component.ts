@@ -38,7 +38,8 @@ export class RecoverAccountComponent implements OnInit {
   recoverAccount(){
     if (window.confirm("'Aceptar' para enviar correo de confirmacion!\nCorrobore su Email")){
       this.authService.recoverAccount(this.formRecover.value).subscribe(res =>{
-        window.confirm(res)
+        window.confirm(res.message)
+        this.router.navigate(["/auth/login"])
       });
     }  
   }
