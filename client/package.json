@@ -21,6 +21,8 @@
     "@angular/router": "~9.1.9",
     "chart.js": "^2.9.3",
     "cors": "^2.8.5",
+    "primeicons": "^2.0.0",
+    "primeng": "^8.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
