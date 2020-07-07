@@ -24,19 +24,18 @@
         <tbody>
           <tr>
             <th>Profesor(a)</th>
-            <th>Curso</th>
+            <th>Curso</th>       
             <th *ngFor="let opt of options; let i=index">
               {{opt.name}}
             </th>
           </tr>
- 
-          <tr *ngFor="let profe of profesAndC">
-            <td *ngFor="let prof of profe.teachers"><span id="{{prof._id}}"></span>{{prof.names}}</td>
-            <td id="{{profe.course._id}}">{{profe.course.acronym}}</td>
-            <td *ngFor="let opt of options; let i=index">
-              <input type="radio" name="{{qst._id}}{{profe.course.acronym}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
-            </td>
-          </tr>
+            <tr *ngFor="let profe of namesProfes">
+              <td id="{{profe.idP}}">{{profe.nameP}}</td>
+              <td id="{{profe.idC}}">{{profe.nameC}}</td>         
+              <td *ngFor="let opt of options; let i=index">
+                <input type="radio" name="{{qst._id}}{{profe.idC}}{{profe.idP}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+              </td>
+            </tr>     
         </tbody>
       </table>
     </div>
@@ -56,19 +55,18 @@
         <tbody>
           <tr>
             <th>Profesor(a)</th>
-            <th>Curso</th>
+            <th>Curso</th>       
             <th *ngFor="let opt of options; let i=index">
               {{opt.name}}
             </th>
           </tr>
- 
-          <tr *ngFor="let profe of profesAndC">
-            <td *ngFor="let prof of profe.teachers"><span id="{{prof._id}}"></span>{{prof.names}}</td>
-            <td id="{{profe.course._id}}">{{profe.course.acronym}}</td>
-            <td *ngFor="let opt of options; let i=index">
-              <input type="radio" name="{{qst._id}}{{profe.course.acronym}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
-            </td>
-          </tr>
+            <tr *ngFor="let profe of namesProfes">
+              <td id="{{profe.idP}}">{{profe.nameP}}</td>
+              <td id="{{profe.idC}}">{{profe.nameC}}</td>         
+              <td *ngFor="let opt of options; let i=index">
+                <input type="radio" name="{{qst._id}}{{profe.idC}}{{profe.idP}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+              </td>
+            </tr>     
         </tbody>
       </table>
     </div>
@@ -88,19 +86,18 @@
         <tbody>
           <tr>
             <th>Profesor(a)</th>
-            <th>Curso</th>
+            <th>Curso</th>       
             <th *ngFor="let opt of options; let i=index">
               {{opt.name}}
             </th>
           </tr>
- 
-          <tr *ngFor="let profe of profesAndC">
-            <td *ngFor="let prof of profe.teachers"><span id="{{prof._id}}"></span>{{prof.names}}</td>
-            <td id="{{profe.course._id}}">{{profe.course.acronym}}</td>
-            <td *ngFor="let opt of options; let i=index">
-              <input type="radio" name="{{qst._id}}{{profe.course.acronym}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
-            </td>
-          </tr>
+            <tr *ngFor="let profe of namesProfes">
+              <td id="{{profe.idP}}">{{profe.nameP}}</td>
+              <td id="{{profe.idC}}">{{profe.nameC}}</td>         
+              <td *ngFor="let opt of options; let i=index">
+                <input type="radio" name="{{qst._id}}{{profe.idC}}{{profe.idP}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+              </td>
+            </tr>     
         </tbody>
       </table>
     </div>
@@ -120,19 +117,18 @@
         <tbody>
           <tr>
             <th>Profesor(a)</th>
-            <th>Curso</th>
+            <th>Curso</th>       
             <th *ngFor="let opt of options; let i=index">
               {{opt.name}}
             </th>
           </tr>
- 
-          <tr *ngFor="let profe of profesAndC">
-            <td *ngFor="let prof of profe.teachers"><span id="{{prof._id}}"></span>{{prof.names}}</td>
-            <td id="{{profe.course._id}}">{{profe.course.acronym}}</td>
-            <td *ngFor="let opt of options; let i=index">
-              <input type="radio" name="{{qst._id}}{{profe.course.acronym}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
-            </td>
-          </tr>
+            <tr *ngFor="let profe of namesProfes">
+              <td id="{{profe.idP}}">{{profe.nameP}}</td>
+              <td id="{{profe.idC}}">{{profe.nameC}}</td>         
+              <td *ngFor="let opt of options; let i=index">
+                <input type="radio" name="{{qst._id}}{{profe.idC}}{{profe.idP}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+              </td>
+            </tr>     
         </tbody>
       </table>
     </div>
@@ -152,19 +148,18 @@
         <tbody>
           <tr>
             <th>Profesor(a)</th>
-            <th>Curso</th>
+            <th>Curso</th>       
             <th *ngFor="let opt of options; let i=index">
               {{opt.name}}
             </th>
           </tr>
- 
-          <tr *ngFor="let profe of profesAndC">
-            <td *ngFor="let prof of profe.teachers"><span id="{{prof._id}}"></span>{{prof.names}}</td>
-            <td id="{{profe.course._id}}">{{profe.course.acronym}}</td>
-            <td *ngFor="let opt of options; let i=index">
-              <input type="radio" name="{{qst._id}}{{profe.course.acronym}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
-            </td>
-          </tr>
+            <tr *ngFor="let profe of namesProfes">
+              <td id="{{profe.idP}}">{{profe.nameP}}</td>
+              <td id="{{profe.idC}}">{{profe.nameC}}</td>         
+              <td *ngFor="let opt of options; let i=index">
+                <input type="radio" name="{{qst._id}}{{profe.idC}}{{profe.idP}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+              </td>
+            </tr>     
         </tbody>
       </table>
     </div>
@@ -184,19 +179,17 @@
         <tbody>
           <tr>
             <th>Insignia</th>
-            <th *ngFor="let profe of profesAndC">
-              <div *ngFor="let prof of profe.teachers;let i=index">
-                <span>{{prof.names}}</span><br>
-                <span>{{profe.course.acronym}}</span>
-              </div>
+            <th *ngFor="let profe of namesProfes" id="{{profe.idP}}{{profe.idC}}">
+              <span>{{profe.nameP}}</span><br>
+              <span>{{profe.nameC}}</span>
             </th>
           </tr>
  
           <tr *ngFor="let badge of badges">
             <td><div>{{badge.name}}</div></td>
-            <td *ngFor="let profe of profesAndC">
-              <div *ngFor="let prof of profe.teachers;let i=index" id="{{prof._id}}">
-                <input type="checkbox" id="{{profe.course._id}}" name="{{profe.course._id}}{{prof._id}}" [value]="badge._id" (click)="addBadge($event)">
+            <td *ngFor="let profe of namesProfes">
+              <div id="{{profe.idP}}">
+                <input type="checkbox" id="{{profe.idC}}" name="{{profe.idC}}{{profe.idP}}" [value]="badge._id" (click)="addBadge($event)">
               </div>
             </td>
           </tr>

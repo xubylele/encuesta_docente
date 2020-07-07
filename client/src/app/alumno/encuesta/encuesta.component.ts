@@ -10,11 +10,13 @@ import { ProfCursosApi } from 'src/app/models/dataPrCu';
 import { AuthService } from 'src/app/services/auth.service';
 
 interface ProfeSNid{
-  name:string,
-  id:string,
+  nameP:string,
+  idP:string,
+  idC:string,
+  nameC:string,
 }
 
-@Component({
+@Component({ 
   selector: 'app-encuesta', 
   templateUrl: './encuesta.component.html',
   styleUrls: ['./encuesta.component.scss'],
@@ -49,7 +51,6 @@ export class EncuestaComponent implements OnInit {
     })
     this.EncuestaSrv.getCoursesAlumno().subscribe((cursosAlumno)  =>{
       this.profesAndC = cursosAlumno.courses
-      console.log(this.profesAndC)
       this.getProfesOfData()
     })
     this.EncuestaSrv.getBadges().subscribe((badges) =>{
@@ -81,7 +82,7 @@ export class EncuestaComponent implements OnInit {
           count = count + respPorProfe
         }
     }
-    let cant = 6 * (this.page+1)
+    let cant = (this.namesProfes.length)*3 * (this.page+1)
     if(count == cant){
       return true
     }
@@ -91,7 +92,7 @@ export class EncuestaComponent implements OnInit {
   actualizarRespuesta(event){
     var respuesta:string = event.target.value;
     var idPregunta:string = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[1].id;
-    var idProfesor:string = event.target.parentElement.parentElement.children[0].children[0].id;
+    var idProfesor:string = event.target.parentElement.parentElement.children[0].id;
     var idCurso:string = event.target.parentElement.parentElement.children[1].id;
 
     this.createInfoResp(respuesta,idPregunta,idProfesor,idCurso)
@@ -137,15 +138,26 @@ export class EncuestaComponent implements OnInit {
             var data = this.generateData(idPregunta,idRes)
             profe.data.push(data)
             return true
-          }
+          }   
         }
+        respuesta.profes.push({
+          id:profeid,
+          data:[{
+            idPreg:idPregunta,
+            idResp:idRes
+          }],
+          insignias:[{
+            id:''
+          }]
+        })
+        return true
       }
 
     }
     return false
   } 
   
-  generateData(idPregunta,idRes){ 
+  generateData(idPregunta,idRes){
     var data = {
       idPreg:idPregunta,
       idResp:idRes
@@ -170,19 +182,26 @@ export class EncuestaComponent implements OnInit {
       console.log(data)
       for(let teacher of data.teachers){
         if((!this.namesProfes.find(function (profe){
-          return profe.name == teacher.names
-          })
+          if(profe.idP == teacher._id){
+            if(data.course.id == profe.idC){
+              return true
+            }
+            return false
+          }
+        })
         ))
         {
           this.namesProfes.push({
-            name:teacher.names,
-            id:teacher._id
+            nameP:teacher.names,
+            idP:teacher._id,
+            idC:data.course._id,
+            nameC:data.course.acronym
           })
         }  
-
       }
-    console.log(this.namesProfes)
+    
     }
+    console.log(this.namesProfes)
   }
 
   logout(){
