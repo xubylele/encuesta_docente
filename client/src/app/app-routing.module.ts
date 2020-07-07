@@ -8,10 +8,6 @@ const routes: Routes = [
   {
     path: 'auth', loadChildren: () => import('src/app/auth/auth.module').then(m => m.AuthModule)
   },
-  {
-    path: 'encuesta',redirectTo:'/encuesta',pathMatch:'full'
-  }
-  
 ];
 
 @NgModule({

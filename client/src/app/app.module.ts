@@ -8,14 +8,13 @@ import { InicioComponent } from './profesor/inicio/inicio.component';
 import { AsignaturasComponent } from './profesor/asignaturas/asignaturas.component';
 import { ResumenActualComponent } from './profesor/resumen-actual/resumen-actual.component';
 import { EvaluacionesAnterioresComponent } from './profesor/evaluaciones-anteriores/evaluaciones-anteriores.component';
-import { InsigniasComponent } from './profesor/insignias/insignias.component';
+
 import { RecomendacionesComponent } from './profesor/recomendaciones/recomendaciones.component';
 import { HttpClientModule } from '@angular/common/http';
-import { EncuestaComponent } from './alumno/encuesta/encuesta.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EncuestaService } from './services/encuesta.service';
 import { GuardGuard } from './auth/guards/guard.guard';
-
+import { EncuestaComponent } from './alumno/encuesta/encuesta.component';
 
 
 @NgModule({
@@ -27,9 +26,8 @@ import { GuardGuard } from './auth/guards/guard.guard';
     AsignaturasComponent,
     ResumenActualComponent,
     EvaluacionesAnterioresComponent,
-    InsigniasComponent,
     RecomendacionesComponent,
-    EncuestaComponent,
+    EncuestaComponent
   ],
   imports: [
     BrowserModule,

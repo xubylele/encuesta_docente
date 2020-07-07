@@ -12,7 +12,7 @@
   
 </nav>
 
-<section [ngSwitch]="page">
+<div [ngSwitch]="page" class="container">
   <div *ngSwitchCase=0> 
     <div *ngFor="let qst of encuesta.questions;let i=index" class="preguntas">
       <br>
@@ -206,4 +206,4 @@
 
   </div>
 
-</section>
+</div>

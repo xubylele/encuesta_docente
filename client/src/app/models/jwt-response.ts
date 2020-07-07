@@ -3,7 +3,8 @@ export interface JwtResponseI{
     names?:string,
     last_names?:string,
     email?:string,
-    token:string,
-    type:string,
+    token?:string,
+    type?:string,
     expiresIn?:string,
+    errror?:string
 }

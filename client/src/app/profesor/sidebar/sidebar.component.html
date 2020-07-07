@@ -8,15 +8,16 @@
         </div>
         
         <div class="menu">
-            <a class="d-block" routerLink="/home" ><i class="fas fa-home" style="color:#6247E9;"></i> Resumen Semestre Actual</a>
-            <a class="d-block" routerLink="/asignaturas" (mouseenter)="fondoActive($event)" (mouseleave)="fondoDisable($event)"><i class="fas fa-swatchbook" style="color:#EB2A45;" ></i>Asignaturas </a>
-            <a class="d-block" routerLink="/evaluaciones-anteriores" (mouseenter)="fondoActive($event)" (mouseleave)="fondoDisable($event)"><i class="far fa-chart-bar" style="color:#11CDEF;"></i>Evaluaciones Anteriores </a>
-            <a class="d-block" routerLink="/insignias" (mouseenter)="fondoActive($event)" (mouseleave)="fondoDisable($event)"><i class="fas fa-chart-pie" style="color:#15B325;"></i>Insignias </a>
-            <a class="d-block" routerLink="/recomendaciones" (mouseenter)="fondoActive($event)" (mouseleave)="fondoDisable($event)"><i class="fas fa-medal" style="color:#FEB969;"></i>Recomendaciones</a>
+            <a class="d-block" routerLink="home" ><i class="fas fa-home" style="color:#6247E9;"></i> Resumen Semestre Actual</a>
+            <a class="d-block" routerLink="asignaturas" (mouseenter)="fondoActive($event)" (mouseleave)="fondoDisable($event)"><i class="fas fa-swatchbook" style="color:#EB2A45;" ></i>Asignaturas </a>
+            <a class="d-block" routerLink="eval-ant" (mouseenter)="fondoActive($event)" (mouseleave)="fondoDisable($event)"><i class="far fa-chart-bar" style="color:#11CDEF;"></i>Evaluaciones Anteriores </a>
+            <a class="d-block" routerLink="insignias" (mouseenter)="fondoActive($event)" (mouseleave)="fondoDisable($event)"><i class="fas fa-chart-pie" style="color:#15B325;"></i>Insignias </a>
+            <a class="d-block" routerLink="recomendaciones" (mouseenter)="fondoActive($event)" (mouseleave)="fondoDisable($event)"><i class="fas fa-medal" style="color:#FEB969;"></i>Recomendaciones</a>
         </div>
     </div>
     <div class="w-100 fondo">
         <app-header></app-header>
+        <router-outlet></router-outlet>
     </div>
     
 

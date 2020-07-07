@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { RespuestaI } from './../../models/respuesta';
 import { EncuestaService } from 'src/app/services/encuesta.service';

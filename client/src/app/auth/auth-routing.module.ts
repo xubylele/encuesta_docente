@@ -7,6 +7,11 @@ import { EncuestaComponent } from '../alumno/encuesta/encuesta.component';
 import { GuardGuard } from './guards/guard.guard';
 import { ForgetPassComponent } from './forget-pass/forget-pass.component';
 import { SidebarComponent } from '../profesor/sidebar/sidebar.component';
+import { InsigniasComponent } from '../profesor/insignias/insignias.component';
+import { AsignaturasComponent } from '../profesor/asignaturas/asignaturas.component';
+import { RecomendacionesComponent } from '../profesor/recomendaciones/recomendaciones.component';
+import { EvaluacionesAnterioresComponent } from '../profesor/evaluaciones-anteriores/evaluaciones-anteriores.component';
+import { ResumenActualComponent } from '../profesor/resumen-actual/resumen-actual.component';
 
 
 
@@ -27,9 +32,27 @@ const routes: Routes = [
         path: 'forgot_password/:token',component:ForgetPassComponent,
     },
     {
-        path: 'profe',component:SidebarComponent, canActivate:[GuardGuard],
+        path: 'profe',
+        component:SidebarComponent,
+        canActivate:[GuardGuard],
+        children:[
+            {
+                path:'insignias',component:InsigniasComponent
+            },
+            {
+                path:'asignaturas',component:AsignaturasComponent
+            },
+            {
+                path:'recomendaciones',component:RecomendacionesComponent
+            },
+            {
+                path:'eval-ant',component:EvaluacionesAnterioresComponent
+            },
+            {
+                path:'home',component:ResumenActualComponent
+            },
+        ]
     },
-    
     
 ];
 

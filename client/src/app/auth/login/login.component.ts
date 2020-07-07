@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   userLoged:UserI
   
 
-  constructor(private formBuilder: FormBuilder, 
+  constructor(private formBuilder: FormBuilder,
               private http:HttpClient,
               private authService: AuthService,
               private router:Router
@@ -33,10 +33,13 @@ export class LoginComponent implements OnInit {
 
   login(){
     this.authService.login(this.formLoginPage.value).subscribe(res =>{
+      //console.log(res)
       if(res.type === 'Alumno'){
+        console.log(res)
         this.router.navigate(["/auth/encuesta"])
       }
       if(res.type === 'Profesor'){
+        console.log(res)
         this.router.navigate(["/auth/profe"])
       }
     });

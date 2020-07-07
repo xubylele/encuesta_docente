@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { RecoverAccountComponent } from './recover-account/recover-account.component';
 import { GuardGuard } from './guards/guard.guard';
 import { ForgetPassComponent } from './forget-pass/forget-pass.component';
+import { InsigniasComponent } from '../profesor/insignias/insignias.component';
 
 
 
@@ -21,6 +22,7 @@ import { ForgetPassComponent } from './forget-pass/forget-pass.component';
     LoginComponent,
     RecoverAccountComponent,
     ForgetPassComponent,
+    InsigniasComponent,
   ],
   imports: [
     CommonModule,
