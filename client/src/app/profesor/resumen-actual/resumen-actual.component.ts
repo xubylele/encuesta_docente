@@ -11,11 +11,13 @@ export class ResumenActualComponent implements OnInit {
 
   constructor(private profeService:ProfesorService) { }
 
-  canvas:any;
-  ctx:any;
+  canvas: any;
+  ctx: any;
+  chartLabels: any;
+  chartData: any;
 
   ngOnInit(): void {
-
+    this.setData();
     this.canvas = document.getElementById('resumeChart');
     this.ctx = this.canvas.getContext('2d');
     let myChart = new Chart(this.ctx, {
@@ -25,10 +27,10 @@ export class ResumenActualComponent implements OnInit {
           max: 5
       },
       data: {
-          labels: ["Uso Del Aula Virtual", "Contenido Del Curso", "Actitud", "Responsabilidad", "Metodología De La Enseñanza"],
+          labels: this.chartLabels,
           datasets: [{
               fill: 2,
-              data: [2 ,2, 2, 2, 2],
+              data: this.chartData,
               backgroundColor: ["rgba(255, 99, 132, 0.8)","rgba(75, 192, 192, 0.8)","rgba(255, 205, 86, 0.8)","rgba(201, 203, 207, 0.8)","rgba(54, 162, 235, 0.8)"  ],
               borderWidth: 1
           }]
@@ -47,10 +49,40 @@ export class ResumenActualComponent implements OnInit {
         display:true
       }
     });
-  
-  
-
-
   }
 
+
+
+  setData():void{
+    //const resData = // obtenemos desde back
+    /* 
+    let data;                                 // VARIABLE TEMPORAL DATA
+    let labels;                               // VARIABLE TEMPORAL LABELS
+
+    for(let i = 0; i < resData.length;i++){   // FOR EACH 
+        labels[i] = resData[i].name[i];       // ASIGNAMOS EL NOMBRE DE LABEL POR CADA ITERACIÓN
+        data[i] = resData[i].puntuacion;      // ASIGNAMOS LA PUNTUACIÓN DE DATA POR CADA ITERACIÓN
+    }                                         // COMO AMBAS TIENEN EL MISMO INDICE SE PUEDE OCUPAR DE PANA
+    if(data!=null && labels != null){         // VERIFICAMOS QUE LA DATA NO SEA NULA
+    this.chartData = data;                    // LA SETEAMOS A LAS VARIABLES GLOBALES DE MAS ARRIBA
+    this.chartLabels = labels;                // X2
+    } else{                                   // SI NO 
+      this.chartData = null;                  // DEJAMOS EN NULL 
+      this.chartLabels = null;                // X2
+    }
+
+    
+    */
+/* DATA PLANA */
+    const data = [2 ,2, 2, 2, 2]; 
+    const labels = ["Uso Del Aula Virtual", "Contenido Del Curso", "Actitud", "Responsabilidad", "Metodología De La Enseñanza"];
+    if(data!=null && labels != null){
+      this.chartData = data;
+      this.chartLabels = labels;
+    } 
+    else{
+      this.chartData = null;
+      this.chartLabels = null;
+    }
+  }
 }
