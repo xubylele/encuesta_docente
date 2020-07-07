@@ -1,1 +1,9 @@
-<p>asignaturas works!</p>
+<div class="row">
+    <div class="column" *ngFor="let course of courseList">
+      <div class="card">
+          <h2>{{course.name}}</h2>
+          <p>paralelo: {{course.acronym}}</p>
+          <p>cantidad de alumnos: {{course.participantsCount}}</p>
+      </div>
+    </div>
+  </div>
