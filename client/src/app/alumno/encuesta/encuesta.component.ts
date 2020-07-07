@@ -40,7 +40,7 @@ export class EncuestaComponent implements OnInit {
 
   constructor( private EncuestaSrv:EncuestaService,private router:Router,private authSrv:AuthService) {
   }
-
+ 
   ngOnInit(): void {
     this.EncuestaSrv.getPreguntas().subscribe((encuestaApi)  =>{
       this.encuestaCompleta = encuestaApi

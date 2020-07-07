@@ -25,7 +25,7 @@ export class EncuestaService {
 
   getBadges() : Observable<any>{
     return this.http.get<any>(`${this.HOST_INSIGNIAS}/getallbadges`)
-  }
+  } 
 
   getCoursesAlumno() : Observable<any>{
     let token = localStorage.getItem("ACCESS_TOKEN");

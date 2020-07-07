@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './profesor/header/header.component';
 import { SidebarComponent } from './profesor/sidebar/sidebar.component';
-import { InicioComponent } from './profesor/inicio/inicio.component';
 import { AsignaturasComponent } from './profesor/asignaturas/asignaturas.component';
 import { ResumenActualComponent } from './profesor/resumen-actual/resumen-actual.component';
 import { EvaluacionesAnterioresComponent } from './profesor/evaluaciones-anteriores/evaluaciones-anteriores.component';
@@ -22,7 +21,6 @@ import { EncuestaComponent } from './alumno/encuesta/encuesta.component';
     AppComponent,
     HeaderComponent,
     SidebarComponent,
-    InicioComponent,
     AsignaturasComponent,
     ResumenActualComponent,
     EvaluacionesAnterioresComponent,

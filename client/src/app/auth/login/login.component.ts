@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       }
       if(res.type === 'Profesor'){
         console.log(res)
-        this.router.navigate(["/auth/profe"])
+        this.router.navigate(["/auth/profe/home"])
       }
     });
   }
