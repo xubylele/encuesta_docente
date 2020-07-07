@@ -14,10 +14,19 @@ export class AsignaturasComponent implements OnInit {
 
 
   ngOnInit(): void {
+    //this.courseList = obtenerCourseList();
     this.courseList = [{name:"first",acronym:"INF-12", participantsCount: 30},
                        {name:"second",acronym:"INF-13", participantsCount: 20},
                        {name:"thirth",acronym:"INF-14", participantsCount: 220},
                        {name:"fourty",acronym:"INF-15", participantsCount: 35}];
   }
+
+  /*
+  obtenerCourseList(){
+    let courseList = resData.couserList// AQUI PEDIREMOS AL BACK
+    return courseList
+  }
+
+  */
 
 }
