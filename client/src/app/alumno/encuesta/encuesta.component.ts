@@ -7,7 +7,7 @@ import { sectionList } from './../../models/encuesta'
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { ProfesCursosI } from './../../models/profes-cursos';
 import { ProfCursosApi } from 'src/app/models/dataPrCu';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service'; 
 
 interface ProfeSNid{
   nameP:string,
@@ -68,10 +68,31 @@ export class EncuestaComponent implements OnInit {
         window.alert('Asegurese de completar la encuesta!')
       }
     }
-    
-    
   }
 
+  changeEncuestaComm(){
+    for(let profe of this.namesProfes){
+      let id = profe.idP.concat(profe.idC)
+      let comment = (<HTMLInputElement>document.getElementById(id)).value
+      this.insertCommentOnJson(profe.idP,profe.idC,comment)
+    }
+    this.page = this.page + 1
+    this.encuesta = this.encuestaCompleta.sectionList[this.page]
+  }
+
+  insertCommentOnJson(idProfe:string,idCurso:string,comment:string){
+    for(let respuesta of this.respuestas){
+      if(respuesta.idCurso === idCurso){
+        for(let profe of respuesta.profes){
+          if(profe.id === idProfe){
+            profe.comment = comment
+          }  
+        }
+      }
+    }
+  }
+  
+  
   checkAnswerComplete(){
     let cantProfes:number = 0
     let count:number = 0
@@ -114,7 +135,7 @@ export class EncuestaComponent implements OnInit {
           idResp:idRes
         }],
         insignias:[{
-          id:''
+          id:null
         }]
       }]
     }
@@ -238,4 +259,5 @@ export class EncuestaComponent implements OnInit {
 
     }
   }
+
 }
