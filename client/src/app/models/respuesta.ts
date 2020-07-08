@@ -9,5 +9,6 @@ export interface RespuestaI{
     insignias?:[{
       id:string
     }]
+    comment?:string
   }]
 }

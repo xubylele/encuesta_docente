@@ -170,8 +170,27 @@
     
   </div>
 
+  <div *ngSwitchCase=5>
+    <div class="preguntas">
+      <br>
+      <h4>Comentarios</h4>
+      <br>
+        <div class="input-group" *ngFor="let profe of namesProfes" id="box-comentario">
+          <div class="input-group-prepend" id="{{profe.idC}}">
+            <span id="{{profe.idP}}" class="input-group-text">{{profe.nameP}}<br>{{profe.nameC}}</span>
+          </div>
+          <textarea class="form-control" aria-label="With textarea" id="{{profe.idP}}{{profe.idC}}"></textarea>
+        </div>
+    </div>
+    <div>
+      <p>NOTA: AL HACER CLICK EN SIGUIENTE NO PODRA VOLVER A EDITAR LAS RESPUESTAS DE ESTA PAGINA</p>
+      <button type="button" class="btn btn-success" id="next-button" (click)="changeEncuestaComm()">Siguiente</button>
+    </div>
+    
+  </div>
 
-  <div *ngSwitchCase=5 class="container"> 
+
+  <div *ngSwitchCase=6 class="container"> 
     <div class="preguntas">
       <h4>Insignias</h4>
       <br>
