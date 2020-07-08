@@ -11,6 +11,6 @@ module.exports = {
     Question: require('./Question'),
     QuestionSet: require('./QuestionSet'),
     Section: require('./Section'),
-    TeachesBadge: require('./TeachersBadge')
+    TeachersBadge: require('./TeachersBadge')
 
 }
