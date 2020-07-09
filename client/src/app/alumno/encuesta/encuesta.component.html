@@ -66,7 +66,7 @@
               <td scope="row" id="{{profe.idP}}">{{profe.nameP}}</td>
               <td scope="row" id="{{profe.idC}}">{{profe.nameC}}</td>         
               <td scope="row" *ngFor="let opt of options; let i=index">
-                <input type="radio" name="{{qst._id}}{{profe.idC}}{{profe.idP}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+                <input type="radio" id="{{qst._id}}" name="{{qst._id}}{{profe.idC}}{{profe.idP}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
               </td>
             </tr>     
         </tbody>
@@ -98,7 +98,7 @@
               <td  scope="row" id="{{profe.idP}}">{{profe.nameP}}</td>
               <td  scope="row" id="{{profe.idC}}">{{profe.nameC}}</td>         
               <td scope="row" *ngFor="let opt of options; let i=index">
-                <input type="radio" name="{{qst._id}}{{profe.idC}}{{profe.idP}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+                <input type="radio" id="{{qst._id}}" name="{{qst._id}}{{profe.idC}}{{profe.idP}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
               </td>
             </tr>     
         </tbody>
@@ -130,7 +130,7 @@
               <td scope="row" id="{{profe.idP}}">{{profe.nameP}}</td>
               <td scope="row" id="{{profe.idC}}">{{profe.nameC}}</td>         
               <td scope="row" *ngFor="let opt of options; let i=index">
-                <input type="radio" name="{{qst._id}}{{profe.idC}}{{profe.idP}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+                <input type="radio" id="{{qst._id}}" name="{{qst._id}}{{profe.idC}}{{profe.idP}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
               </td>
             </tr>     
         </tbody>
@@ -162,7 +162,7 @@
               <td scope="row" id="{{profe.idP}}">{{profe.nameP}}</td>
               <td scope="row" id="{{profe.idC}}">{{profe.nameC}}</td>         
               <td scope="row" *ngFor="let opt of options; let i=index">
-                <input type="radio" name="{{qst._id}}{{profe.idC}}{{profe.idP}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
+                <input type="radio" id="{{qst._id}}" name="{{qst._id}}{{profe.idC}}{{profe.idP}}" [value]="opt.value" (click)="actualizarRespuesta($event)">
               </td>
             </tr>     
         </tbody>

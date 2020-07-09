@@ -7,7 +7,7 @@ import { sectionList } from './../../models/encuesta'
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { ProfesCursosI } from './../../models/profes-cursos';
 import { ProfCursosApi } from 'src/app/models/dataPrCu';
-import { AuthService } from 'src/app/services/auth.service'; 
+import { AuthService } from 'src/app/services/auth.service';
 
 interface ProfeSNid{
   nameP:string,
@@ -134,9 +134,6 @@ export class EncuestaComponent implements OnInit {
     var idPregunta:string = event.target.id;
     var idProfesor:string = event.target.parentElement.parentElement.children[0].id;
     var idCurso:string = event.target.parentElement.parentElement.children[1].id;
-
-    
-    
 
     this.createInfoResp(respuesta,idPregunta,idProfesor,idCurso)
 
