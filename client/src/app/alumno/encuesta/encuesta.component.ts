@@ -37,6 +37,23 @@ export class EncuestaComponent implements OnInit {
     { name: 'Muy De Acuerdo', value: '4'},
   ];
 
+  classIcons: Array<any> = [
+    'far fa-laugh-beam',
+    'far fa-clock',
+    'fas fa-user-check',
+    'fas fa-user-cog',
+    'far fa-handshake',
+    'far fa-comment-dots',
+    'fas fa-book',
+    'far fa-meh',
+    'fas fa-clock',
+    'fas fa-user-minus',
+    'far fa-thumbs-down',
+    'far fa-frown',
+    'fas fa-comment-slash',
+    'far fa-times-circle',
+  ]
+
   respuestas:Array<RespuestaI> = new Array<RespuestaI>();
 
   infoResp:RespuestaI
@@ -59,6 +76,7 @@ export class EncuestaComponent implements OnInit {
   }
 
   changeEncuesta(){
+    
     if(this.page < 5){
       if(this.checkAnswerComplete()){
         this.page = this.page + 1
