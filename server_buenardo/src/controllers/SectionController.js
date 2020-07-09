@@ -1,6 +1,5 @@
-const {  } = require('../models')
 const sectionCtrl = {}
-const { Section } = require('../models')
+const { Section, User, ParticipantList, Poll, Answer, Question, Alternative } = require('../models')
 
 sectionCtrl.create = async(req ,res) =>{    
     try {
@@ -24,6 +23,42 @@ sectionCtrl.getSectionList = async(req, res) => {
     } catch (error) {
         res.status(500).json({error: error.message});     
     }
+}
+
+sectionCtrl.averagePerSection = async(req , res) => {
+    const user = await User.findById(req.user)
+    const sections = await Section.find()
+    let totalAverage = []
+    let pollCount = 0
+    for (let k = 0; k < sections.length; k++) {
+        let section = sections[k]
+        let sum = 0
+        for (let i = 0; i < user.participants.length; i++) {
+            let cont = 0
+            let participant = await ParticipantList.findById(user.participants[i])
+            for (let j = 0; j < participant.polls.length; j++) {
+                let poll = await Poll.findById(participant.polls[j])
+                if(poll != null)
+                    for (let l = 0; l < poll.answers.length; l++) {
+                        let answer = await Answer.findById(poll.answers[l])
+                        let question = await Question.findById(answer.question)
+                        pollCount++
+
+                        if(question.section.toString() === section._id.toString()){
+                            let alternative = await Alternative.findById(answer.alternative) 
+                            sum = sum + alternative.alternative
+                            cont++
+                        }
+                    }
+            }
+            if(i == user.participants.length - 1){
+                totalAverage.push({categoria: section.name, puntuacion: sum / cont})
+            }
+        }
+        
+    }
+
+    return res.status(200).json({promedio: totalAverage})
 }
 
 module.exports = sectionCtrl

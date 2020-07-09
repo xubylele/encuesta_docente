@@ -1,8 +1,8 @@
 const { User } = require("../models")
 
-module.exports = function (req, res, next){
+module.exports = async function (req, res, next){
     try{
-        const user = User.findById(req.user)
+        const user = await User.findById(req.user)
     
         if(!user)
             return res.status(400).json({error: 'User not found'})
