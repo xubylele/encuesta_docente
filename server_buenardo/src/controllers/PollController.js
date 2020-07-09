@@ -66,14 +66,22 @@ pollCtrl.savePoll = async (req, res) => {
             poll.teacher = teacher                                                                  // CREAR PROFESOR
             poll.questionSet = questionSet                                                          // ASIGNAR SET DE PREGUNTAS
             poll.user = await User.findById(req.user)
-            // QuestionSet.update(
-            //     {"_id": questionSet._id}, 
-            //     {"$push": { "polls": poll } },
-            //     function (err, callback) {
+            await poll.save()
+            QuestionSet.update(
+                {"_id": questionSet._id}, 
+                {"$push": { "polls": poll } },
+                function (err, callback) {
                     
-            //     }
-            // )
-            // await poll.save()                                                                       // GUARDAR POLL
+                }
+            )
+            ParticipantList.update(
+                {"_id": teacher._id}, 
+                {"$push": { "polls":  poll} },
+                function (err, callback) {
+                    
+                }
+            )
+            console.log(teacherReq.data.length)
             for (let k = 0; k < teacherReq.data.length; k++) {
                 const answerReq = teacherReq.data[k];                                               // OBTENER RESPUESTA REQ
                 let answer = new Answer()                                                           // CREAR RESPUESTA
@@ -81,31 +89,39 @@ pollCtrl.savePoll = async (req, res) => {
                 let question = await Question.findById(answerReq.idPreg)
                 answer.alternative = alternative                                                    // ASIGNAR ALTERNATIVA
                 answer.question = question                                                          // ASIGNAR PREGUNTA
-                answer.poll = poll
-                answers.push(answer)                                                                // GUARDAR EN ARREGLO
+                answer.poll = poll                                                                  // GUARDAR EN ARREGLO
+                await answer.save()
 
-                // Alternative.update(
-                //     {"_id": alternative._id}, 
-                //     {"$push": { "answers": answer } },
-                //     function (err, callback) {
+                Alternative.update(
+                    {"_id": alternative._id}, 
+                    {"$push": { "answers": answer } },
+                    function (err, callback) {
                         
-                //     }
-                // )
+                    }
+                )
 
-                // Question.update(
-                //     {"_id": question._id}, 
-                //     {"$push": { "answers": answer } },
-                //     function (err, callback) {
+                Question.update(
+                    {"_id": question._id}, 
+                    {"$push": { "answers": answer } },
+                    function (err, callback) {
                         
-                //     }
-                // )
+                    }
+                )
+
+                Poll.update(
+                    {"_id": poll._id}, 
+                    {"$push": { "answers": answer } },
+                    function (err, callback) {
+                        
+                    }
+                )   
             }
 
 
             for (let l = 0; l < teacherReq.insignias.length; l++) {
                 const badgeReq = teacherReq.insignias[l]
 
-                if(badgeReq.id != ''){
+                if(badgeReq.id != '' && badgeReq.id != null){
 
                     let badge = await Badge.findById(badgeReq.id)
 
@@ -117,17 +133,23 @@ pollCtrl.savePoll = async (req, res) => {
                    
 
                     if(teachersBadge != null){          
-                        teachersBadge.push(teacherBadge)
+                        await teacherBadge.save()
 
-                        // console.log(badge)
-
-                        // Badge.update(
-                        //     {"_id": badge._id},
-                        //     {"$push": {"teachersBadge": teacherBadge}},
-                        //     function (err, callback) {
+                        Badge.update(
+                            {"_id": badge._id},
+                            {"$push": {"teachersBadge": teacherBadge}},
+                            function (err, callback) {
                                 
-                        //     }
-                        // )
+                            }
+                        )
+
+                        ParticipantList.update(
+                            {"_id": teacher._id},
+                            {"$push": {"teachersBadge": teacherBadge}},
+                            function (err, callback) {
+                                
+                            }
+                        )
                     }
                 }
             }
@@ -139,27 +161,19 @@ pollCtrl.savePoll = async (req, res) => {
                     answer.commentary = teacherReq.comment
                     answer.poll = poll 
                     await answer.save()
-                    answers.push(answer)
+
+                    Poll.update(
+                        {"_id": poll._id}, 
+                        {"$push": { "answers": answer } },
+                        function (err, callback) {
+                            
+                        }
+                    )
                 }
             }
+                                                                                                
             
-            // await TeachersBadge.insertMany(teachersBadge)
-            // Poll.update(
-            //     {"_id": poll._id}, 
-            //     {"$push": { "answers": {"$each": answers} } },
-            //     function (err, callback) {
-                    
-            //     }
-            // )                                                                                       
             
-            // ParticipantList.update(
-            //     {"_id": teacher._id}, 
-            //     {"$push": { "polls":  poll} },
-            //     {"$push": {  "teachersBadge": {"$each": teachersBadge}}},
-            //     function (err, callback) {
-                    
-            //     }
-            // )
 
             
         }
