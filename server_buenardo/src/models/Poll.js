@@ -18,6 +18,10 @@ const pollSchema = new mongoose.Schema({
         min:3, 
         max: 100
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
     timestamp: {
         type: Date,
         default: Date.now

@@ -50,6 +50,10 @@ participantListCtrl.create = async(req ,res) =>{
     }
 }
 
+participantListCtrl.courseRecord = async(req, res) => {
+    
+}
+
 participantListCtrl.getCourses = async (req, res) => {
     try {
         const user = await User.findById(req.user._id)

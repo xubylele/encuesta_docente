@@ -46,6 +46,14 @@ questionController.create = async(req ,res) =>{
                 
             }
         )
+
+        AlternativeSet.update(
+            {"_id": req.body.alternativeSetID}, 
+            {"$push": { "questions": question } },
+            function (err, callback) {
+                
+            }
+        )
                                                                           // GUARDAMOS EN LA BASE DE DATOS
         return res.status(200).json({question: question, message: 'Pregunta creada exitosamente'});             // RESPONDEMOS CON HTTP 200, OK
     } catch (error) {                                                                           // OBTENEMOS EL ERROR
