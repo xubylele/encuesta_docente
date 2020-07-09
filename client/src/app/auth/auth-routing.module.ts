@@ -53,7 +53,7 @@ const routes: Routes = [
                 path:'home',component:ResumenActualComponent
             },
             {
-                path:'asignaturas/detalle/:idC',component:DetalleAsignaturaComponent
+                path:'asignaturas/detalle/:idC/:nameC/:siglaC',component:DetalleAsignaturaComponent
             },
         ]
     },
