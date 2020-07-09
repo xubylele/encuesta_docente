@@ -15,6 +15,7 @@ export class ProfesorService {
   HOST_PARTICIPANTLIST:string = `${this.HOST}participantlist/`;
   HOST_USERS:string = `${this.HOST}users/`;
   HOST_COURSES:string = `${this.HOST}courses/`;
+  HOST_SECTIONS:string = `${this.HOST}section/`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -31,7 +32,7 @@ export class ProfesorService {
     const headers = new HttpHeaders ({
       'auth-token':token
     });
-    return this.httpClient.get<any>(`${this.HOST_PARTICIPANTLIST}courseRecord`,{headers})
+    return this.httpClient.get<any>(`${this.HOST_PARTICIPANTLIST}averagePerSection`,{headers})
   }
 
 }
