@@ -1,5 +1,6 @@
 const userModel = require('../models/User');
-const participantList = require('../models/ParticipantList');
+const ParticipantList = require('../models/ParticipantList');
+const coursesModel = require('../models/Course');
 const userCtrl = {};
 
 
@@ -73,7 +74,7 @@ userCtrl.editPassword = async (req, res) =>{
 userCtrl.addParticipants = async (req, res) => {
     try {
         const user = await userModel.findById(req.body.userID);                                                     // OBTENEMOS USUARIO
-        const tentativeParticipantList = await participantList.findById(req.body.participantID);                    // OBTENEMOS PARTICIPANT LIST
+        const tentativeParticipantList = await ParticipantList.findById(req.body.participantID);                    // OBTENEMOS PARTICIPANT LIST
         user.participants.push(tentativeParticipantList);                                                           // AÑADIMOS PARTICIPANT LIST A ARREGLO
         user.save();                                                                                                // GUARDAMOS EN BASE DE DATOS 
        res.status(200).json({participant: tentativeParticipantList ,message: 'participante agregado con exito '});  // DEVOLVEMOS STATUS OK Y MENSAJE
@@ -82,5 +83,21 @@ userCtrl.addParticipants = async (req, res) => {
     }
 }
 
+userCtrl.getAllUserCourses = async (req, res) =>{
+    let courses= [];
+    let tempCourse;
+    let tempParticipant
+    try {
+        const user = await userModel.findById(req.user._id);
+         for(let i = 0; i< user.participants.length;i++){
+            tempParticipant = await ParticipantList.findById(user.participants[i]);
+            tempCourse = await coursesModel.findById(tempParticipant.course);
+            courses.push(tempCourse);
+         }
+         res.status(200).json({coursesList : courses});
+    } catch (error) {
+        res.status(500).json({error: error,message:"Error"});
+    }
+}
 
 module.exports = userCtrl;

@@ -8,7 +8,8 @@ const auth = require('../middlewares/auth');
     router.get('/:id/get',UserController.getUser);
     router.delete('/delete', UserController.deleteUser);
     router.put('/editpassword', auth, UserController.editPassword);
-    router.put('/addparticipant',UserController.addParticipants);   
+    router.put('/addparticipant',UserController.addParticipants);
+    router.get('/getallusercourses',UserController.getAllUserCourses);   
     //router.post('/create_much', userController.createUsers)
 
     module.exports = router;
