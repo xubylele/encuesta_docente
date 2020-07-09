@@ -26,7 +26,7 @@ sectionCtrl.getSectionList = async(req, res) => {
 }
 
 sectionCtrl.averagePerSection = async(req , res) => {
-    const user = await User.findById(req.user)
+    const user = await User.findById(req.user._id)
     const sections = await Section.find()
     let totalAverage = []
     let pollCount = 0

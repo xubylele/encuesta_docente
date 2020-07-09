@@ -60,6 +60,7 @@ participantListCtrl.getCourses = async (req, res) => {
         const participants = await ParticipantList.find({user: user._id})
         let courses = []
         let specialCourse = {}
+        console.log(user)
         for (let i = 0; i < participants.length; i++) {
             let teachers = []
             let teacher
