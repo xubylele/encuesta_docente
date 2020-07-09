@@ -1,4 +1,6 @@
-const { Course, ParticipantList } = require('../models')
+const { Course, ParticipantList,Question } = require('../models');
+const Poll = require('../models/Poll');
+const Answer = require('../models/Answer');
 const courseCtrl = {};
 
 
@@ -70,6 +72,28 @@ courseCtrl.addparticipantList = async (req, res)=>{
         res.status(200).json({participantList: participantList, message:'Participant List agregada con exito'});// DEVOLVEMOS STATUS OK, EL PARTICIPANTE AGREGADO Y MENSAJE
     } catch (error) {                                                                                           // OBTENEMOS ERROR
         res.status(500).json({error});                                                                          // RESPONDEMOS CON STATUS 500 Y ERROR
+    }
+}
+
+courseCtrl.resumeCourse = async (req,res) =>{
+    const teacher = req.user._id;
+    const course = await Course.findById(req.body.courseID);
+    let tempParticipantList;
+    let tempPoll;
+    let tempAnswer;
+
+    for(let i = 0; i<course.participantsList.length;i++){
+        tempParticipantList = course.participantList[i];
+        for(let u = 0 ; u < tempParticipantList;u++){
+            tempPoll = await Poll.findById(tempParticipantList.polls[u]);
+            if(tempPoll.teacher == teacher){
+                for(let k = 0 ; k< tempPoll.answers.length;k++){
+                    tempAnswer = await Answer.findById(tempPoll.answers[k])
+
+
+                }
+            }
+        }
     }
 }
 

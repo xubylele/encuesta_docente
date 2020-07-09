@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ProfesorService } from './../../services/profesor.service';
 import * as Chart from 'chart.js';
 
+interface AverageCourse{
+
+}
+
 @Component({
   selector: 'app-resumen-actual',
   templateUrl: './resumen-actual.component.html',
@@ -9,14 +13,23 @@ import * as Chart from 'chart.js';
 })
 export class ResumenActualComponent implements OnInit {
 
-  constructor(private profeService:ProfesorService) { }
+  constructor(private profeSrv:ProfesorService) { }
 
   canvas: any;
   ctx: any;
   chartLabels: any;
   chartData: any;
+  resData:Array<any>;
 
   ngOnInit(): void {
+    this.profeSrv.getAveragesPoll().subscribe((coursesApi)  =>{
+      console.log(coursesApi.promedio)
+      this.resData = coursesApi.promedio
+      this.initGraph()
+    })  
+  }
+
+  initGraph(){
     this.setData();                                                 // SETEAMOS LA DATA
     this.canvas = document.getElementById('resumeChart');           // OBTENEMOS EL ELEMENTO POR ID
     this.ctx = this.canvas.getContext('2d');                        // LE DAMOS CONTEXTO DE 2 DIMENSIONES
@@ -49,27 +62,24 @@ export class ResumenActualComponent implements OnInit {
       }
     });
   }
+
+
   setData():void{
-    //const resData =                                                // OBTENEMOS LA DATA DESDE EL BACK 
-    /* 
-    let data;                                                        // VARIABLE TEMPORAL DATA
-    let labels;                                                      // VARIABLE TEMPORAL LABELS
 
-    for(let i = 0; i < resData.length;i++){                          // FOR EACH 
-        labels[i] = resData[i].name[i];                              // ASIGNAMOS EL NOMBRE DE LABEL POR CADA ITERACIÓN
-        data[i] = resData[i].puntuacion;                             // ASIGNAMOS LA PUNTUACIÓN DE DATA POR CADA ITERACIÓN
-    }                                                                // COMO AMBAS TIENEN EL MISMO INDICE SE PUEDE OCUPAR DE PANA
-    if(data!=null && labels != null){                                // VERIFICAMOS QUE LA DATA NO SEA NULA
-    this.chartData = data;                                           // LA SETEAMOS A LAS VARIABLES GLOBALES DE MAS ARRIBA
-    this.chartLabels = labels;                                       // X2
-    } else{                                                          // SI NO 
-      this.chartData = null;                                         // DEJAMOS EN NULL 
-      this.chartLabels = null;                                       // X2
+    let data = [];                                                        // VARIABLE TEMPORAL DATA
+    let labels = [];                                                      // VARIABLE TEMPORAL LABELS
+
+    for(let response of this.resData){
+      labels.push(response.categoria);
+      data.push(response.puntuacion);
     }
+    console.log(labels);
+    console.log(data);
 
-    
-    */
-/* DATA PLANA */
+    this.chartLabels = labels;
+    this.chartData = labels;
+   
+/* DATA PLANA 
     const data = [3.4 ,2.8, 3.1, 3.0, 2.9]; 
     const labels = ["Uso Del Aula Virtual", "Contenido Del Curso", "Actitud", "Responsabilidad", "Metodología De La Enseñanza"];
     if(data!=null && labels != null){
@@ -80,5 +90,6 @@ export class ResumenActualComponent implements OnInit {
       this.chartData = null;
       this.chartLabels = null;
     }
+    */
   }
 }

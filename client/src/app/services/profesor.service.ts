@@ -9,10 +9,30 @@ import { RespuestaI } from '../models/respuesta';
   providedIn: 'root'
 })
 export class ProfesorService {
-  HOST:string = 'http://localhost:300/api/';
+  HOST:string = 'http://localhost:3000/api/';
   HOST_POLLS:string = `${this.HOST}polls/`;
   HOST_TEACHERSBADGES:string = `${this.HOST}teachersbadges/`;
   HOST_PARTICIPANTLIST:string = `${this.HOST}participantlist/`;
   HOST_USERS:string = `${this.HOST}users/`;
-  constructor() { }
+  HOST_COURSES:string = `${this.HOST}courses/`;
+  HOST_SECTIONS:string = `${this.HOST}section/`;
+
+  constructor(private httpClient: HttpClient) { }
+
+  getCourses(){
+    let token = localStorage.getItem("ACCESS_TOKEN");
+    const headers = new HttpHeaders ({
+      'auth-token':token
+    });
+    return this.httpClient.get<any>(`${this.HOST_COURSES}getallcourses`,{headers})
+  }
+
+  getAveragesPoll():Observable<any>{
+    let token = localStorage.getItem("ACCESS_TOKEN");
+    const headers = new HttpHeaders ({
+      'auth-token':token
+    });
+    return this.httpClient.get<any>(`${this.HOST_SECTIONS}averagePerSection`,{headers})
+  }
+
 }
