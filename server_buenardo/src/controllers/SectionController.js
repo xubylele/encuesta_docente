@@ -42,7 +42,6 @@ sectionCtrl.averagePerSection = async(req , res) => {
                     for (let l = 0; l < poll.answers.length; l++) {
                         let answer = await Answer.findById(poll.answers[l])
                         if(answer.question != null){
-                            console.log(answer.question)
                             let question = await Question.findById(answer.question)
                             pollCount++
     
