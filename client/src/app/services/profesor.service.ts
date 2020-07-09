@@ -9,7 +9,7 @@ import { RespuestaI } from '../models/respuesta';
   providedIn: 'root'
 })
 export class ProfesorService {
-  HOST:string = 'http://localhost:300/api/';
+  HOST:string = 'http://localhost:3000/api/';
   HOST_POLLS:string = `${this.HOST}polls/`;
   HOST_TEACHERSBADGES:string = `${this.HOST}teachersbadges/`;
   HOST_PARTICIPANTLIST:string = `${this.HOST}participantlist/`;
@@ -26,7 +26,12 @@ export class ProfesorService {
     return this.httpClient.get<any>(`${this.HOST_COURSES}getallcourses`,{headers})
   }
 
-  
-
+  getAveragesPoll(){
+    let token = localStorage.getItem("ACCESS_TOKEN");
+    const headers = new HttpHeaders ({
+      'auth-token':token
+    });
+    return this.httpClient.get<any>(`${this.HOST_PARTICIPANTLIST}courseRecord`,{headers})
+  }
 
 }

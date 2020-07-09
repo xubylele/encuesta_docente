@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProfesorService } from './../../services/profesor.service';
 import * as Chart from 'chart.js';
 
+
 @Component({
   selector: 'app-resumen-actual',
   templateUrl: './resumen-actual.component.html',
@@ -9,7 +10,7 @@ import * as Chart from 'chart.js';
 })
 export class ResumenActualComponent implements OnInit {
 
-  constructor(private profeService:ProfesorService) { }
+  constructor(private profeSrv:ProfesorService) { }
 
   canvas: any;
   ctx: any;
@@ -17,6 +18,10 @@ export class ResumenActualComponent implements OnInit {
   chartData: any;
 
   ngOnInit(): void {
+    this.profeSrv.getAveragesPoll().subscribe((coursesApi)  =>{
+      console.log(coursesApi)
+    })
+    
     this.setData();                                                 // SETEAMOS LA DATA
     this.canvas = document.getElementById('resumeChart');           // OBTENEMOS EL ELEMENTO POR ID
     this.ctx = this.canvas.getContext('2d');                        // LE DAMOS CONTEXTO DE 2 DIMENSIONES
