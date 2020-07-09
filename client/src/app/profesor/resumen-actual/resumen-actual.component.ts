@@ -77,7 +77,7 @@ export class ResumenActualComponent implements OnInit {
     console.log(data);
 
     this.chartLabels = labels;
-    this.chartData = labels;
+    this.chartData = data;
    
 /* DATA PLANA 
     const data = [3.4 ,2.8, 3.1, 3.0, 2.9]; 

@@ -1,9 +1,15 @@
-<div class="row">
-    <div class="column" *ngFor="let course of courseList">
-      <div class="card">
-          <h2>{{course.name}}</h2>
-          <p>paralelo: {{course.acronym}}</p>
-          <p>cantidad de alumnos: {{course.participantsCount}}</p>
+<div class="container" id="card-courses">
+  <div class="card-columns">
+    <div *ngFor="let course of courses" class="card" style="width: 18rem;">
+      <br>
+      <div class="card-body">
+        <h5 class="card-title">{{course.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{course.acronym}}</h6>
+        <br>
+        <button type="button" class="btn btn-danger" >Historial de Evaluaciones</button><br>
+        <button type="button" class="btn btn-danger">Evaluacion Intermedia</button><br>
+        <button type="button" class="btn btn-dark" [routerLink]="['detalle',course._id,course.name,course.acronym]">Evaluacion Final</button>
       </div>
     </div>
   </div>
+</div>
