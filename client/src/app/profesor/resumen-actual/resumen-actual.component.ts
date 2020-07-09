@@ -75,20 +75,9 @@ export class ResumenActualComponent implements OnInit {
     }
     console.log(labels);
     console.log(data);
-/*
-    for(let i = 0; i < this.resData.length;i++){                          // FOR EACH 
-        labels[i] = this.resData[i].name;                              // ASIGNAMOS EL NOMBRE DE LABEL POR CADA ITERACIÓN
-        data[i] = this.resData[i].puntuacion;                             // ASIGNAMOS LA PUNTUACIÓN DE DATA POR CADA ITERACIÓN
-    }                                                                // COMO AMBAS TIENEN EL MISMO INDICE SE PUEDE OCUPAR DE PANA
-    if(data!=null && labels != null){                                // VERIFICAMOS QUE LA DATA NO SEA NULA
-    this.chartData = data;                                           // LA SETEAMOS A LAS VARIABLES GLOBALES DE MAS ARRIBA
-    this.chartLabels = labels;                                       // X2
-    } else{                                                          // SI NO 
-      this.chartData = null;                                         // DEJAMOS EN NULL 
-      this.chartLabels = null;                                       // X2
-    }
-*/
-    
+
+    this.chartLabels = labels;
+    this.chartData = labels;
    
 /* DATA PLANA 
     const data = [3.4 ,2.8, 3.1, 3.0, 2.9]; 
