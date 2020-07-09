@@ -32,7 +32,7 @@ export class ProfesorService {
     const headers = new HttpHeaders ({
       'auth-token':token
     });
-    return this.httpClient.get<any>(`${this.HOST_PARTICIPANTLIST}averagePerSection`,{headers})
+    return this.httpClient.get<any>(`${this.HOST_SECTIONS}averagePerSection`,{headers})
   }
 
 }
