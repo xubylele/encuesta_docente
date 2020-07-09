@@ -76,7 +76,6 @@ export class EncuestaComponent implements OnInit {
   }
 
   changeEncuesta(){
-    
     if(this.page < 5){
       if(this.checkAnswerComplete()){
         this.page = this.page + 1
@@ -114,14 +113,16 @@ export class EncuestaComponent implements OnInit {
   checkAnswerComplete(){
     let cantProfes:number = 0
     let count:number = 0
-    let respPorProfe:number
+    let respPorProfe:number = 0
     for(let respuesta of this.respuestas){
         for(let profe of respuesta.profes){
           respPorProfe = profe.data.length
           count = count + respPorProfe
         }
     }
-    let cant = (this.namesProfes.length)*3 * (this.page+1)
+    let cant = (this.namesProfes.length) * 3 * (this.page+1)
+    console.log(cant)
+    console.log(count)
     if(count == cant){
       return true
     }
@@ -130,9 +131,12 @@ export class EncuestaComponent implements OnInit {
 
   actualizarRespuesta(event){
     var respuesta:string = event.target.value;
-    var idPregunta:string = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[1].id;
+    var idPregunta:string = event.target.id;
     var idProfesor:string = event.target.parentElement.parentElement.children[0].id;
     var idCurso:string = event.target.parentElement.parentElement.children[1].id;
+
+    
+    
 
     this.createInfoResp(respuesta,idPregunta,idProfesor,idCurso)
 
