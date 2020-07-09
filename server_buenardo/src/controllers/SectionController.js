@@ -41,13 +41,16 @@ sectionCtrl.averagePerSection = async(req , res) => {
                 if(poll != null)
                     for (let l = 0; l < poll.answers.length; l++) {
                         let answer = await Answer.findById(poll.answers[l])
-                        let question = await Question.findById(answer.question)
-                        pollCount++
+                        if(answer.question != null){
+                            let question = await Question.findById(answer.question)
+                            pollCount++
+    
+                            if(question.section.toString() === section._id.toString()){
+                                let alternative = await Alternative.findById(answer.alternative) 
+                                sum = sum + alternative.alternative
+                                cont++
+                            }
 
-                        if(question.section.toString() === section._id.toString()){
-                            let alternative = await Alternative.findById(answer.alternative) 
-                            sum = sum + alternative.alternative
-                            cont++
                         }
                     }
             }
