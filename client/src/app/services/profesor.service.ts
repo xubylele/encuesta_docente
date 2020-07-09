@@ -14,5 +14,16 @@ export class ProfesorService {
   HOST_TEACHERSBADGES:string = `${this.HOST}teachersbadges/`;
   HOST_PARTICIPANTLIST:string = `${this.HOST}participantlist/`;
   HOST_USERS:string = `${this.HOST}users/`;
-  constructor() { }
+
+  constructor(private httpClient: HttpClient) { }
+
+  getCourses(){
+    let token = localStorage.getItem("ACCESS_TOKEN");
+    const headers = new HttpHeaders ({
+      'auth-token':token
+    });
+    return this.httpClient.get<any>(`${this.HOST}login`,{headers})
+  }
+
+
 }

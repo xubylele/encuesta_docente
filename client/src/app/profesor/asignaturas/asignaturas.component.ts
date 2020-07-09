@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfesorService } from 'src/app/services/profesor.service';
 
 @Component({
   selector: 'app-asignaturas',
@@ -8,25 +9,18 @@ import { Component, OnInit } from '@angular/core';
 export class AsignaturasComponent implements OnInit {
 
   courseList: Array<any>;
+  courses:any
 
-  constructor() { }
+  constructor(private profeSrv:ProfesorService) { }
 
 
 
   ngOnInit(): void {
-    //this.courseList = obtenerCourseList();
-    this.courseList = [{name:"first",acronym:"INF-12", participantsCount: 30},
-                       {name:"second",acronym:"INF-13", participantsCount: 20},
-                       {name:"thirth",acronym:"INF-14", participantsCount: 220},
-                       {name:"fourty",acronym:"INF-15", participantsCount: 35}];
+    this.profeSrv.getCourses().subscribe((coursesApi)  =>{
+      this.courses = coursesApi
+    })
   }
 
-  /*
-  obtenerCourseList(){
-    let courseList = resData.couserList// AQUI PEDIREMOS AL BACK
-    return courseList
-  }
-
-  */
+  
 
 }
