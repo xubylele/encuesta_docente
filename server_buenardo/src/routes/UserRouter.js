@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { UserController } = require('../controllers');
 const auth = require('../middlewares/auth');
+const isTeacher = require('../middlewares/isTeacher')
 
     router.post('/create',UserController.createUser);
     router.get('/getallusers', UserController.getAllUsers);
@@ -9,7 +10,7 @@ const auth = require('../middlewares/auth');
     router.delete('/delete', UserController.deleteUser);
     router.put('/editpassword', auth, UserController.editPassword);
     router.put('/addparticipant',UserController.addParticipants);
-    router.get('/getallusercourses',UserController.getAllUserCourses);   
+    router.get('/getallusercourses', auth, UserController.getAllUserCourses);   
     //router.post('/create_much', userController.createUsers)
 
     module.exports = router;

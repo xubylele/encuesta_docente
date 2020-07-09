@@ -96,7 +96,7 @@ userCtrl.getAllUserCourses = async (req, res) =>{
          }
          res.status(200).json({coursesList : courses});
     } catch (error) {
-        res.status(500).json({error: error,message:"Error"});
+        res.status(500).json({error: error.message,message:"Error"});
     }
 }
 
