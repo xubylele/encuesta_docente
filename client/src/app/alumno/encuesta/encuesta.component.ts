@@ -59,6 +59,8 @@ export class EncuestaComponent implements OnInit {
   }
 
   changeEncuesta(){
+    this.page = this.page + 1
+    this.encuesta = this.encuestaCompleta.sectionList[this.page]
     if(this.page < 5){
       if(this.checkAnswerComplete()){
         this.page = this.page + 1

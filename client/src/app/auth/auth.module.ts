@@ -13,7 +13,7 @@ import { RecoverAccountComponent } from './recover-account/recover-account.compo
 import { GuardGuard } from './guards/guard.guard';
 import { ForgetPassComponent } from './forget-pass/forget-pass.component';
 import { InsigniasComponent } from '../profesor/insignias/insignias.component';
-
+import { DetalleAsignaturaComponent } from '../profesor/asignaturas/detalle-asignatura/detalle-asignatura.component';
 
 
 @NgModule({
@@ -23,6 +23,7 @@ import { InsigniasComponent } from '../profesor/insignias/insignias.component';
     RecoverAccountComponent,
     ForgetPassComponent,
     InsigniasComponent,
+    DetalleAsignaturaComponent,
   ],
   imports: [
     CommonModule,

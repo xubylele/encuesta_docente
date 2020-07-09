@@ -12,6 +12,7 @@ import { AsignaturasComponent } from '../profesor/asignaturas/asignaturas.compon
 import { RecomendacionesComponent } from '../profesor/recomendaciones/recomendaciones.component';
 import { EvaluacionesAnterioresComponent } from '../profesor/evaluaciones-anteriores/evaluaciones-anteriores.component';
 import { ResumenActualComponent } from '../profesor/resumen-actual/resumen-actual.component';
+import { DetalleAsignaturaComponent } from '../profesor/asignaturas/detalle-asignatura/detalle-asignatura.component';
 
 
 
@@ -40,7 +41,7 @@ const routes: Routes = [
                 path:'insignias',component:InsigniasComponent
             },
             {
-                path:'asignaturas',component:AsignaturasComponent
+                path:'asignaturas',component:AsignaturasComponent,
             },
             {
                 path:'recomendaciones',component:RecomendacionesComponent
@@ -50,6 +51,9 @@ const routes: Routes = [
             },
             {
                 path:'home',component:ResumenActualComponent
+            },
+            {
+                path:'asignaturas/detalle/:idC',component:DetalleAsignaturaComponent
             },
         ]
     },
