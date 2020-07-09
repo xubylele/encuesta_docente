@@ -94,7 +94,7 @@ userCtrl.getAllUserCourses = async (req, res) =>{
             tempCourse = await coursesModel.findById(tempParticipant.course);
             courses.push(tempCourse);
          }
-         res.status(200).json({coursesList : courses});
+         res.status(200).json(courses);
     } catch (error) {
         res.status(500).json({error: error.message,message:"Error"});
     }
