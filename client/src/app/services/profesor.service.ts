@@ -14,6 +14,7 @@ export class ProfesorService {
   HOST_TEACHERSBADGES:string = `${this.HOST}teachersbadges/`;
   HOST_PARTICIPANTLIST:string = `${this.HOST}participantlist/`;
   HOST_USERS:string = `${this.HOST}users/`;
+  HOST_COURSES:string = `${this.HOST}courses/`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,8 +23,10 @@ export class ProfesorService {
     const headers = new HttpHeaders ({
       'auth-token':token
     });
-    return this.httpClient.get<any>(`${this.HOST}login`,{headers})
+    return this.httpClient.get<any>(`${this.HOST_COURSES}getallcourses`,{headers})
   }
+
+  
 
 
 }
