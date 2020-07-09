@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ProfesorService } from './../../services/profesor.service';
 import * as Chart from 'chart.js';
 
+interface AverageCourse{
 
+}
 
 @Component({
   selector: 'app-resumen-actual',
@@ -21,9 +23,13 @@ export class ResumenActualComponent implements OnInit {
 
   ngOnInit(): void {
     this.profeSrv.getAveragesPoll().subscribe((coursesApi)  =>{
-      this.resData = coursesApi;
-    })
-    
+      console.log(coursesApi.promedio)
+      this.resData = coursesApi.promedio
+      this.initGraph()
+    })  
+  }
+
+  initGraph(){
     this.setData();                                                 // SETEAMOS LA DATA
     this.canvas = document.getElementById('resumeChart');           // OBTENEMOS EL ELEMENTO POR ID
     this.ctx = this.canvas.getContext('2d');                        // LE DAMOS CONTEXTO DE 2 DIMENSIONES
@@ -56,6 +62,8 @@ export class ResumenActualComponent implements OnInit {
       }
     });
   }
+
+
   setData():void{
 
     let data = [];                                                        // VARIABLE TEMPORAL DATA

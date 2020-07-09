@@ -27,7 +27,7 @@ export class ProfesorService {
     return this.httpClient.get<any>(`${this.HOST_COURSES}getallcourses`,{headers})
   }
 
-  getAveragesPoll(){
+  getAveragesPoll():Observable<any>{
     let token = localStorage.getItem("ACCESS_TOKEN");
     const headers = new HttpHeaders ({
       'auth-token':token
