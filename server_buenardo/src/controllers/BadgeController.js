@@ -1,6 +1,28 @@
 const { Badge } = require('../models');
 const badgeCtrl = {};
 
+badgeCtrl.createMuch = async (req, res) =>{
+    for (let i = 0; i < req.body.badges.length; i++) {
+        try {
+            const badge = new Badge();
+            badge.name = req.body.badges[i].name
+            const exist = await Badge.find({
+               name: badge.name
+            })
+            if(exist[0]!=null){
+                return res.status(409).json({badge: exist[0], message: 'Badge already exists'});
+            }
+    
+            await badge.save();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).json({error: error.message ,message: 'No se pudo crear el badge'});
+        }
+        
+    }
+    return res.status(200).json({message:'Creadas con exito'});
+}
+
 badgeCtrl.create = async (req, res) =>{
     try {
         const badge = new Badge(req.body);

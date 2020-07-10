@@ -3,6 +3,7 @@ const router = express.Router();
 const { QuestionController } = require('../controllers');
 
     router.post('/create', QuestionController.create);
+    router.post('/createMuch', QuestionController.createMuch)
 
     /**
     * Mandas el id de la pregunta, y te paso las alternativas

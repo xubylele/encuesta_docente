@@ -4,6 +4,31 @@ const Answer = require('../models/Answer');
 const courseCtrl = {};
 
 
+courseCtrl.createMuch = async (req, res) =>{
+    for (let i = 0; i < req.body.courses.length; i++) {
+        try {
+            const course = new Course();
+
+            course.name = req.body.courses[i].name
+            course.acronym = req.body.courses[i].acronym
+
+            const exist = await Course.find({
+               name: course.name,
+               acronym: course.acronym
+            })
+            if(exist[0]!=null){
+                return res.status(409).json({course: exist[0], message: 'Course already exists'});
+            }
+    
+            await course.save();
+        } catch (error) {
+            return res.status(500).json({error: error.message ,message: 'No se pudo crear el curso'});
+        }
+        
+    }
+    return res.status(200).json({message:'Creadas con exito'});
+}
+
 courseCtrl.create = async (req, res) => {
     try {
         const course= new Course(req.body);                                                                     // CREAMOS UN NUEVO OBJETO CURSO

@@ -1,6 +1,71 @@
 const questionController = {}
 const { Question, Section, QuestionSet, AlternativeSet, Alternative } = require('../models')
 
+questionController.createMuch = async(req , res) =>{
+    for (let i = 0; i < req.body.questions.length; i++) {
+        try {
+            const question = new Question()
+            const section = await Section.findOne({name: req.body.questions[i].section})
+            const alternativeSet = await AlternativeSet.findOne({version: req.body.questions[i].alternativeSet})
+            const questionSet = await QuestionSet.findOne({version: req.body.questions[i].questionSet})
+    
+            console.log(section)
+
+            question.question = req.body.questions[i].question
+            question.section = section
+            question.alternativeSet = alternativeSet
+            question.questionSet = questionSet
+            
+            const exist = await Question.find({                                                    // CONSULATAMOS CON LA BASE DE DATOS
+                section: section._id,
+                question: req.body.question,
+                questionSet: questionSet._id,
+                alternativeSet: alternativeSet._id                                                   // EMAIL
+            });
+    
+            if(exist[0]!=null){                                                                     // SI ES QUE EXISTE
+                return res.status(409).json({                                                       // RETORNAMOS UN HTTP STATUS 409 (EXISTS)
+                    question: exist,
+                    message: 'Question Exists'});                                                       // MENSAJE USUARIO EXISTE
+            }
+    
+            await question.save()
+            
+            Section.update(
+                {"_id": section._id}, 
+                {"$push": { "questions": question } },
+                function (err, callback) {
+                    
+                }
+            )
+    
+            QuestionSet.update(
+                {"_id": questionSet._id}, 
+                {"$push": { "questions": question } },
+                function (err, callback) {
+                    
+                }
+            )
+    
+            AlternativeSet.update(
+                {"_id": alternativeSet._id}, 
+                {"$push": { "questions": question } },
+                function (err, callback) {
+                    
+                }
+            )
+                                                                              // GUARDAMOS EN LA BASE DE DATOS
+                         // RESPONDEMOS CON HTTP 200, OK
+        } catch (error) {                                                                           // OBTENEMOS EL ERROR
+            console.log(error)
+            return res.status(500).json({error: error.message});                                                          // DEVOLVEMOS ESTADO 500 CON EL ERROR
+        } 
+        
+    }
+    return res.status(200).json({message: 'Preguntas creada exitosamente'});
+    
+}
+
 questionController.create = async(req ,res) =>{  
     console.log(req.body.questionSetID)  
     if(req.body.sectionID == null || req.body.questionSetID == null || req.body.alternativeSetID == null)

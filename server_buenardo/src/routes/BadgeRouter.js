@@ -3,6 +3,7 @@ const router = express.Router();
 const { BadgeController } = require('../controllers');
 
     router.post('/create',BadgeController.create);
+    router.post('/createMuch', BadgeController.createMuch)
     router.get('/getallbadges',BadgeController.getAllBadges);
     router.get('/:id/get',BadgeController.getBadge);
     router.put('/editname',BadgeController.editBadgename);
