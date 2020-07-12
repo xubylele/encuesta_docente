@@ -80,4 +80,19 @@ participantListCtrl.getCourses = async (req, res) => {
         return res.status(400).json({error: error.message})
     }
 }
+
+participantListCtrl.removeArrays = async(req , res) =>{
+    try {
+        participants = await ParticipantList.find()
+        for (let i = 0; i < participants.length; i++) {
+            await ParticipantList.update({_id: participants[i]._id}, {'$set': {'polls': [], 'teachersBadge': []}})
+            
+        }
+
+    } catch (error) {
+        return res.status(400).json({error: error.message})        
+    }
+    return res.status(200).json({message: 'Participants updated successfully'})
+}
+
 module.exports = participantListCtrl

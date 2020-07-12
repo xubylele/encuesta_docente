@@ -79,4 +79,18 @@ alternativeCtrl.createMuch = async (req, res) =>{
     } 
 }
 
+alternativeCtrl.removeArrays = async(req , res) =>{
+    try {
+        alternatives = await Alternative.find()
+        for (let i = 0; i < alternatives.length; i++) {
+            await Alternative.update({_id: alternatives[i]._id}, {'$set': {'answers': []}})
+            
+        }
+
+    } catch (error) {
+        return res.status(400).json({error: error.message})        
+    }
+    return res.status(200).json({message: 'Alternatives updated successfully'})
+}
+
 module.exports = alternativeCtrl

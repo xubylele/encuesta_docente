@@ -8,6 +8,7 @@ const { BadgeController } = require('../controllers');
     router.get('/:id/get',BadgeController.getBadge);
     router.put('/editname',BadgeController.editBadgename);
     router.delete('/delete',BadgeController.removeBadge);
+    router.get('/removeAllArrays', BadgeController.removeArrays)
 
     module.exports = router;
 

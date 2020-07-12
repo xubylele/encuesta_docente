@@ -19,4 +19,18 @@ questionSetCtrl.create = async (req, res) => {
     }
 }
 
+questionSetCtrl.removeArrays = async(req , res) =>{
+    try {
+        questionSets = await QuestionSet.find()
+        for (let i = 0; i < questionSets.length; i++) {
+            await QuestionSet.update({_id: questionSets[i]._id}, {'$set': {'polls': []}})
+            
+        }
+
+    } catch (error) {
+        return res.status(400).json({error: error.message})        
+    }
+    return res.status(200).json({message: 'Question Sets updated successfully'})
+}
+
 module.exports = questionSetCtrl

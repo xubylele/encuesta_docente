@@ -5,6 +5,7 @@ const courseCtrl = {};
 
 
 courseCtrl.createMuch = async (req, res) =>{
+    let courses = []
     for (let i = 0; i < req.body.courses.length; i++) {
         try {
             const course = new Course();
@@ -19,14 +20,14 @@ courseCtrl.createMuch = async (req, res) =>{
             if(exist[0]!=null){
                 return res.status(409).json({course: exist[0], message: 'Course already exists'});
             }
-    
-            await course.save();
+            
+            courses.push(await course.save())
         } catch (error) {
             return res.status(500).json({error: error.message ,message: 'No se pudo crear el curso'});
         }
         
     }
-    return res.status(200).json({message:'Creadas con exito'});
+    return res.status(200).json({message:'Creadas con exito', courses: courses});
 }
 
 courseCtrl.create = async (req, res) => {

@@ -79,4 +79,18 @@ badgeCtrl.removeBadge = async (req ,res) =>{
  }   
 }
 
+badgeCtrl.removeArrays = async(req , res) =>{
+    try {
+        badges = await Badge.find()
+        for (let i = 0; i < badges.length; i++) {
+            await Badge.update({_id: badges[i]._id}, {'$set': {'teachersBadge': []}})
+            
+        }
+
+    } catch (error) {
+        return res.status(400).json({error: error.message})        
+    }
+    return res.status(200).json({message: 'Badges updated successfully'})
+}
+
 module.exports = badgeCtrl;

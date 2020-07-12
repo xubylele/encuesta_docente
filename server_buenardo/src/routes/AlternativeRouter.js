@@ -4,5 +4,6 @@ const { AlternativeController } = require('../controllers');
 
     router.post('/create', AlternativeController.create);
     router.post('/createMuch', AlternativeController.createMuch)
+    router.get('/removeAllArrays', AlternativeController.removeArrays)
 
 module.exports = router;

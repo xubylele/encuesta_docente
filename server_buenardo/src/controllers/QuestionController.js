@@ -136,4 +136,18 @@ questionController.getAlternatives = async(req, res) =>{
     }
 }
 
+questionController.removeArrays = async(req , res) =>{
+    try {
+        questions = await Question.find()
+        for (let i = 0; i < questions.length; i++) {
+            await Question.update({_id: questions[i]._id}, {'$set': {'answers': []}})
+            
+        }
+
+    } catch (error) {
+        return res.status(400).json({error: error.message})        
+    }
+    return res.status(200).json({message: 'Questions updated successfully'})
+}
+
 module.exports = questionController
