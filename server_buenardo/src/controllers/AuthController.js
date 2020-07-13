@@ -51,6 +51,8 @@ ctrl.login = async (req, res) => {
 
     //Check if email exist
     const user = await User.findOne({email: req.body.email})
+    console.log(await User.find())
+    console.log(user)
     if(!user)
         return res.status(400).json({error: 'Email no registrado, intenta con un valido'})
 

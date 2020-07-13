@@ -36,27 +36,26 @@ sectionCtrl.getSectionList = async(req, res) => {
 }
 
 sectionCtrl.averagePerSection = async(req , res) => {
-    const user = await User.findById(req.user._id)
+    const user = await User.findById(req.user._id).populate('participants')
     const sections = await Section.find()
     let totalAverage = []
-    let pollCount = 0
     for (let k = 0; k < sections.length; k++) {
+        let cont = 0
         let section = sections[k]
         let sum = 0
         for (let i = 0; i < user.participants.length; i++) {
-            let cont = 0
-            let participant = await ParticipantList.findById(user.participants[i])
+            let participant = user.participants[i].populate('polls')
             for (let j = 0; j < participant.polls.length; j++) {
                 let poll = await Poll.findById(participant.polls[j])
                 if(poll != null)
-                    for (let l = 0; l < poll.answers.length; l++) {
+                for (let l = 0; l < poll.answers.length; l++) {
                         let answer = await Answer.findById(poll.answers[l])
                         if(answer.question != null){
                             let question = await Question.findById(answer.question)
-                            pollCount++
     
                             if(question.section.toString() === section._id.toString()){
-                                let alternative = await Alternative.findById(answer.alternative) 
+                                let alternative = await Alternative.findById(answer.alternative)
+                                console.log(alternative.alternative) 
                                 sum = sum + alternative.alternative
                                 cont++
                             }
@@ -65,6 +64,7 @@ sectionCtrl.averagePerSection = async(req , res) => {
                     }
             }
             if(i == user.participants.length - 1){
+                console.log(sum, cont)
                 totalAverage.push({categoria: section.name, puntuacion: sum / cont})
             }
         }
