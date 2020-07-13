@@ -11,5 +11,6 @@ const isTeacher = require('../middlewares/isTeacher')
     */
     router.get('/getCourses', auth, ParticipantListController.getCourses)
     router.get('/courseRecord', auth, isTeacher, ParticipantListController.courseRecord)
+    router.get('/removeAllArrays', ParticipantListController.removeArrays)
 
 module.exports = router;
