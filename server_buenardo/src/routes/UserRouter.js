@@ -1,19 +1,19 @@
-const express = require('express');
-const router = express.Router();
-const { UserController } = require('../controllers');
-const auth = require('../middlewares/auth');
+const express = require('express')
+const router = express.Router()
+const { UserController } = require('../controllers')
+const auth = require('../middlewares/auth')
 const isTeacher = require('../middlewares/isTeacher')
 
-    router.post('/create',UserController.createUser);
-    router.get('/getallusers', UserController.getAllUsers);
-    router.get('/:id/get',UserController.getUser);
-    router.delete('/delete', UserController.deleteUser);
-    router.put('/editpassword', auth, UserController.editPassword);
-    router.put('/addparticipant',UserController.addParticipants);
-    router.get('/getallusercourses', auth, UserController.getAllUserCourses);   
+    router.post('/create',UserController.createUser)
+    router.get('/getallusers', UserController.getAllUsers)
+    router.get('/:id/get',UserController.getUser)
+    router.delete('/delete', UserController.deleteUser)
+    router.put('/editpassword', auth, UserController.editPassword)
+    router.put('/addparticipant',UserController.addParticipants)
+    router.get('/getallusercourses', auth, UserController.getAllUserCourses)   
     //router.post('/create_much', userController.createUsers)
 
-    module.exports = router;
+    module.exports = router
 
     /* FORMA DE LLAMAR A LOS DATOS 
 

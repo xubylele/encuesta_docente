@@ -1,14 +1,14 @@
-const express = require('express');
-const router = express.Router();
-const { TeacherBadgeController } = require('../controllers');
+const express = require('express')
+const router = express.Router()
+const { TeacherBadgeController } = require('../controllers')
 
 
-    router.post('/create',TeacherBadgeController.createTeacherBadge);
-    router.get('/getallteachersbadge',TeacherBadgeController.getAllTeacherBadges);
-    router.get('/:id/get',TeacherBadgeController.getTeacherBadge);
-    router.delete('/delete',TeacherBadgeController.remove);
+    router.post('/create',TeacherBadgeController.createTeacherBadge)
+    router.get('/getallteachersbadge',TeacherBadgeController.getAllTeacherBadges)
+    router.get('/:id/get',TeacherBadgeController.getTeacherBadge)
+    router.delete('/delete',TeacherBadgeController.remove)
 
-    module.exports = router;
+    module.exports = router
 
 /* COMO RECIBE LOS DATOS:
 

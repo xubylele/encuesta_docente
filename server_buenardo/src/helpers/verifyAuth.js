@@ -10,7 +10,7 @@ const registerValidation = (data) => {
     })
 
 
-    return schema.validate(data);
+    return schema.validate(data)
 
 }
 
@@ -21,7 +21,7 @@ const loginValidation = (data) => {
     })
 
 
-    return schema.validate(data);
+    return schema.validate(data)
 
 }
 

@@ -31,7 +31,7 @@ sectionCtrl.getSectionList = async(req, res) => {
 
         return res.status(200).json({sectionList: sectionList})
     } catch (error) {
-        res.status(500).json({error: error.message});     
+        res.status(500).json({error: error.message})     
     }
 }
 
@@ -63,6 +63,7 @@ sectionCtrl.averagePerSection = async(req , res) => {
                     }
             }
             if(i == user.participants.length - 1){
+                console.log(sum, cont, sum/cont)
                 totalAverage.push({categoria: section.name, puntuacion: sum / cont})
             }
         }

@@ -1,5 +1,5 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 const {CourseController } = require('../controllers')
 
 
@@ -7,11 +7,12 @@ const {CourseController } = require('../controllers')
     router.post('/createMuch', CourseController.createMuch)
     router.get('/getallcourses',CourseController.getAllCourses)
     router.get('/:id/get',CourseController.getCourse)
+    router.get('/:courseID/getCourseData', CourseController.getCourseData)
     router.put('/edit',CourseController.editCourse)
     router.put('/addparticipantlist',CourseController.addparticipantList)
     router.delete('/delete',CourseController.deleteCourse)
 
-    module.exports = router;
+    module.exports = router
     /* COMO RECIBE LOS DATOS:
 
     CREATE:

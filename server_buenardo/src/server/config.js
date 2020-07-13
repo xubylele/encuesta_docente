@@ -23,9 +23,9 @@ module.exports = app => {
     var corsOpt = {
         origin: function (origin,callback){
             if(whitelist.indexOf(origin) != -1){
-                callback(null,true);
+                callback(null,true)
             } else{
-                callback(new Error('No Cors'));
+                callback(new Error('No Cors'))
             }
         }
     }

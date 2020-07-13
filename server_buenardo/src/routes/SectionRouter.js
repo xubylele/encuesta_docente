@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const { SectionController } = require('../controllers');
-const auth = require('../middlewares/auth');
+const express = require('express')
+const router = express.Router()
+const { SectionController } = require('../controllers')
+const auth = require('../middlewares/auth')
 const isTeacher = require('../middlewares/isTeacher')
 
     router.post('/create', SectionController.create)
@@ -12,4 +12,4 @@ const isTeacher = require('../middlewares/isTeacher')
     router.get('/list', SectionController.getSectionList)
     router.get('/averagePerSection', auth, isTeacher, SectionController.averagePerSection)
 
-module.exports = router;
+module.exports = router

@@ -20,12 +20,12 @@ questionController.createMuch = async(req , res) =>{
                 question: req.body.question,
                 questionSet: questionSet._id,
                 alternativeSet: alternativeSet._id                                                   // EMAIL
-            });
+            })
     
             if(exist[0]!=null){                                                                     // SI ES QUE EXISTE
                 return res.status(409).json({                                                       // RETORNAMOS UN HTTP STATUS 409 (EXISTS)
                     question: exist,
-                    message: 'Question Exists'});                                                       // MENSAJE USUARIO EXISTE
+                    message: 'Question Exists'})                                                       // MENSAJE USUARIO EXISTE
             }
     
             await question.save()
@@ -57,11 +57,11 @@ questionController.createMuch = async(req , res) =>{
                          // RESPONDEMOS CON HTTP 200, OK
         } catch (error) {                                                                           // OBTENEMOS EL ERROR
             console.log(error)
-            return res.status(500).json({error: error.message});                                                          // DEVOLVEMOS ESTADO 500 CON EL ERROR
+            return res.status(500).json({error: error.message})                                                          // DEVOLVEMOS ESTADO 500 CON EL ERROR
         } 
         
     }
-    return res.status(200).json({message: 'Preguntas creada exitosamente'});
+    return res.status(200).json({message: 'Preguntas creada exitosamente'})
     
 }
 
@@ -84,12 +84,12 @@ questionController.create = async(req ,res) =>{
             question: req.body.question,
             questionSet: questionSet._id,
             alternativeSet: alternativeSet._id                                                   // EMAIL
-        });
+        })
 
         if(exist[0]!=null){                                                                     // SI ES QUE EXISTE
             return res.status(409).json({                                                       // RETORNAMOS UN HTTP STATUS 409 (EXISTS)
                 question: exist,
-                message: 'Question Exists'});                                                       // MENSAJE USUARIO EXISTE
+                message: 'Question Exists'})                                                       // MENSAJE USUARIO EXISTE
         }
 
         await question.save()
@@ -118,9 +118,9 @@ questionController.create = async(req ,res) =>{
             }
         )
                                                                           // GUARDAMOS EN LA BASE DE DATOS
-        return res.status(200).json({question: question, message: 'Pregunta creada exitosamente'});             // RESPONDEMOS CON HTTP 200, OK
+        return res.status(200).json({question: question, message: 'Pregunta creada exitosamente'})             // RESPONDEMOS CON HTTP 200, OK
     } catch (error) {                                                                           // OBTENEMOS EL ERROR
-        return res.status(500).json({error: error.message});                                                          // DEVOLVEMOS ESTADO 500 CON EL ERROR
+        return res.status(500).json({error: error.message})                                                          // DEVOLVEMOS ESTADO 500 CON EL ERROR
     } 
 }
 

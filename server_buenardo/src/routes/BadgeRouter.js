@@ -1,16 +1,16 @@
-const express = require('express');
-const router = express.Router();
-const { BadgeController } = require('../controllers');
+const express = require('express')
+const router = express.Router()
+const { BadgeController } = require('../controllers')
 
-    router.post('/create',BadgeController.create);
+    router.post('/create',BadgeController.create)
     router.post('/createMuch', BadgeController.createMuch)
-    router.get('/getallbadges',BadgeController.getAllBadges);
-    router.get('/:id/get',BadgeController.getBadge);
-    router.put('/editname',BadgeController.editBadgename);
-    router.delete('/delete',BadgeController.removeBadge);
+    router.get('/getallbadges',BadgeController.getAllBadges)
+    router.get('/:id/get',BadgeController.getBadge)
+    router.put('/editname',BadgeController.editBadgename)
+    router.delete('/delete',BadgeController.removeBadge)
     router.get('/removeAllArrays', BadgeController.removeArrays)
 
-    module.exports = router;
+    module.exports = router
 
 /* COMO RECIBE LOS DATOS
 

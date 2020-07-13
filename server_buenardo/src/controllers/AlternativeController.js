@@ -14,12 +14,12 @@ alternativeCtrl.create = async(req ,res) =>{
         const exist = await Alternative.find({
             alternative: req.body.alternative,
             alternativeSet: alternativeSet._id                                                        // EMAIL
-        });
+        })
 
         if(exist[0]!=null){                                                                     // SI ES QUE EXISTE
             return res.status(409).json({                                                       // RETORNAMOS UN HTTP STATUS 409 (EXISTS)
                 alternative: exist,
-                message: 'Alternative already exists'});                                                       // MENSAJE USUARIO EXISTE
+                message: 'Alternative already exists'})                                                       // MENSAJE USUARIO EXISTE
         }
 
         await alternative.save()
@@ -32,9 +32,9 @@ alternativeCtrl.create = async(req ,res) =>{
             }
         )
                                                                           // GUARDAMOS EN LA BASE DE DATOS
-        return res.status(200).json({alternative: alternative, message: 'Alternativa creada exitosamente'});             // RESPONDEMOS CON HTTP 200, OK
+        return res.status(200).json({alternative: alternative, message: 'Alternativa creada exitosamente'})             // RESPONDEMOS CON HTTP 200, OK
     } catch (error) {                                                                           // OBTENEMOS EL ERROR
-        return res.status(500).json({error: error.message});                                                          // DEVOLVEMOS ESTADO 500 CON EL ERROR
+        return res.status(500).json({error: error.message})                                                          // DEVOLVEMOS ESTADO 500 CON EL ERROR
     } 
 }
 
@@ -53,7 +53,7 @@ alternativeCtrl.createMuch = async (req, res) =>{
             const exist = await Alternative.find({
                 alternative: req.body.alternatives[i].alternative,
                 alternativeSet: alternativeSet._id                                                        // EMAIL
-            });
+            })
 
             if(exist[0]==null){                                                                     // SI ES QUE EXISTE
                 await alternative.save()
@@ -72,10 +72,10 @@ alternativeCtrl.createMuch = async (req, res) =>{
 
         
                                                                           // GUARDAMOS EN LA BASE DE DATOS
-        return res.status(200).json({message: 'Alternativas creada exitosamente'});             // RESPONDEMOS CON HTTP 200, OK
+        return res.status(200).json({message: 'Alternativas creada exitosamente'})             // RESPONDEMOS CON HTTP 200, OK
     } catch (error) {                                                    
         console.log(error)                       // OBTENEMOS EL ERROR
-        return res.status(500).json({error: error.message});                                                          // DEVOLVEMOS ESTADO 500 CON EL ERROR
+        return res.status(500).json({error: error.message})                                                          // DEVOLVEMOS ESTADO 500 CON EL ERROR
     } 
 }
 

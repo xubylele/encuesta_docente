@@ -1,5 +1,5 @@
 const { ParticipantList, User, Course } = require('../models')
-const participantListCtrl = {};
+const participantListCtrl = {}
 
 
 
@@ -14,12 +14,12 @@ participantListCtrl.create = async(req ,res) =>{
         const exist = await ParticipantList.find({                                                    // CONSULATAMOS CON LA BASE DE DATOS
             user: user._id,
             course: course._id                                                        // EMAIL
-        });
+        })
 
         if(exist[0]!=null){                                                                     // SI ES QUE EXISTE
             return res.status(409).json({                                                       // RETORNAMOS UN HTTP STATUS 409 (EXISTS)
                 participant: exist,
-                message: 'Participant Exists'});                                                       // MENSAJE USUARIO EXISTE
+                message: 'Participant Exists'})                                                       // MENSAJE USUARIO EXISTE
         }
 
         participantList.user = user                             // asignamos el user al participante
