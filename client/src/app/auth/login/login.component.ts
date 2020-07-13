@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UserI } from './../../models/user';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -30,10 +30,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void { 
     this.createForm();
-   /* this.spinSrv.show()
-    setTimeout(() => {
-      this.spinSrv.hide()
-    },5000)*/
   }
 
   login(){
@@ -48,8 +44,13 @@ export class LoginComponent implements OnInit {
           this.router.navigate(["/auth/profe/home"])
         }
         
-    },(err) => window.alert(err.error.error));
+    },(err) => Swal.fire({
+      icon: 'error',
+      title: 'Verifique sus datos',
+      text: err.error.error,
+    }))
   }
+  
 
 
   createForm(){

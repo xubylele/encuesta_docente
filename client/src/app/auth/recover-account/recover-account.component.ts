@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-
-
+import Swal from 'sweetalert2';
+import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 
 @Component({
   selector: 'app-recover-account',
@@ -24,6 +24,7 @@ export class RecoverAccountComponent implements OnInit {
               private http:HttpClient,
               private authService: AuthService,
               private router:Router,
+              private spinSrv:NgxSpinnerService,
               
   ) { }
 
@@ -42,12 +43,22 @@ export class RecoverAccountComponent implements OnInit {
   }
 
   recoverAccount(){
-    if (window.confirm("'Aceptar' para enviar correo de confirmacion!\nCorrobore su Email")){
-      this.authService.recoverAccount(this.formRecover.value).subscribe(res =>{
-        window.confirm(res.message)
+    this.spinSrv.show()
+    this.authService.recoverAccount(this.formRecover.value).subscribe(res =>{
+      this.spinSrv.hide()
+      Swal.fire(
+        'Exitoso',
+        res.messge,
+        'success'
+      ).then(result =>{
         this.router.navigate(["/auth/login"])
-      });
-    }  
+      })
+    },(err) => 
+      Swal.fire({
+        icon: 'error',
+        title: 'Verifique sus datos',
+        text: err.error.error,
+    }))
   }
   
 }

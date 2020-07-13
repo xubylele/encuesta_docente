@@ -1,5 +1,5 @@
 <div class="fondo h-100 w-100">
-    <section>
+    <section> 
         <div class="header" id="header-login">
             <a>
                 <img id="logoinf" [src]="infPath" alt="logo_escuela">
@@ -21,10 +21,13 @@
                   <h4>Actualizar Contraseña</h4>
                   <label for="exampleInputEmail1">Nueva Contraseña</label>
                   <input type="password" class="form-control" formControlName="password">
+                  <div id="alert" *ngIf="formSetPass.controls['password'].invalid && formSetPass.controls['password'].dirty">
+                    <small class="text-danger">Ingrese clave válida (Min 8 caracteres)</small>
+                  </div>
                 </div>
 
                 <br>
-                <button type="submit" (click)="sendNewPass()" class="btn btn-primary">Actualizar</button>
+                <button type="submit" [disabled]="!formSetPass.valid" (click)="sendNewPass()" class="btn btn-primary">Actualizar</button>
             </form>
         </div>
 </div>
