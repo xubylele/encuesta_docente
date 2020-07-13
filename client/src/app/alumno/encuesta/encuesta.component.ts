@@ -8,7 +8,8 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import { ProfesCursosI } from './../../models/profes-cursos';
 import { ProfCursosApi } from 'src/app/models/dataPrCu';
 import { AuthService } from 'src/app/services/auth.service';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
+
 
 interface ProfeSNid{
   nameP:string,
@@ -23,6 +24,7 @@ interface ProfeSNid{
   styleUrls: ['./encuesta.component.scss'],
 })
 export class EncuestaComponent implements OnInit {
+  instPage:boolean = true
   data: any;
   namesProfes:Array<ProfeSNid> = new Array<ProfeSNid>()
   badges:Array<any>
@@ -70,11 +72,11 @@ export class EncuestaComponent implements OnInit {
     this.EncuestaSrv.getPreguntas().subscribe((encuestaApi)  =>{
       this.encuestaCompleta = encuestaApi
       this.encuesta = this.encuestaCompleta.sectionList[this.page]
-      this.spinSrv.hide()
     })
     this.EncuestaSrv.getCoursesAlumno().subscribe((cursosAlumno)  =>{
       this.profesAndC = cursosAlumno.courses
       this.getProfesOfData()
+      this.spinSrv.hide()
     })
     this.EncuestaSrv.getBadges().subscribe((badges) =>{
       this.badges = badges
@@ -82,7 +84,10 @@ export class EncuestaComponent implements OnInit {
   }
 
   changeEncuesta(){
-    if(this.page < 5){
+    this.page = this.page + 1
+        this.encuesta = this.encuestaCompleta.sectionList[this.page]
+        window.scroll(0,0);
+   /* if(this.page < 5 && this.page >= 0){
       if(this.checkAnswerComplete()){
         this.page = this.page + 1
         this.encuesta = this.encuestaCompleta.sectionList[this.page]
@@ -90,7 +95,7 @@ export class EncuestaComponent implements OnInit {
       else{
         window.alert('Asegurese de completar la encuesta!')
       }
-    }
+    }*/
   }
 
   changeEncuestaComm(){
@@ -214,7 +219,7 @@ export class EncuestaComponent implements OnInit {
   sendEncuesta(){
     this.spinSrv.show()
     this.EncuestaSrv.postEncuesta(this.respuestas).subscribe(res =>{
-      this.spinSrv.hide
+      this.spinSrv.hide()
       if (window.confirm("Encuesta Enviada!")){
         this.authSrv.logout()
         this.router.navigate(["/auth/login"])
@@ -285,6 +290,10 @@ export class EncuestaComponent implements OnInit {
       }
 
     }
+  }
+
+  comenzarEncuesta(){
+    this.instPage = false
   }
 
 }

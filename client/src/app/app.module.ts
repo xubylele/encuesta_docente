@@ -14,6 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EncuestaService } from './services/encuesta.service';
 import { GuardGuard } from './auth/guards/guard.guard';
 import { EncuestaComponent } from './alumno/encuesta/encuesta.component';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 @NgModule({
@@ -32,13 +34,14 @@ import { EncuestaComponent } from './alumno/encuesta/encuesta.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxSpinnerModule
 
 
   ],
   providers: [
     EncuestaService,
     GuardGuard,
-    
+    NgxSpinnerService
   ],
   bootstrap: [AppComponent]
 })

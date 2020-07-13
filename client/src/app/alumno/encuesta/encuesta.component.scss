@@ -1,3 +1,15 @@
+#fondo{
+    background-image: url('../../../assets/fondo-encuesta.jpg') !important;
+    background-size: cover;
+    position: initial;
+    min-width: 110vh;
+}
+
+.card-instructions{
+    margin: 10px;
+    margin-top: 15px;
+}
+
 .preguntas {
     margin: auto;
     width: 70% !important;
@@ -8,6 +20,7 @@
     background-color: #F1F3F9;
     top: 20px;
     margin-bottom: 20px;
+    padding: 20px;
 }
 
 #box-comentario{
