@@ -9,7 +9,6 @@ questionController.createMuch = async(req , res) =>{
             const alternativeSet = await AlternativeSet.findOne({version: req.body.questions[i].alternativeSet})
             const questionSet = await QuestionSet.findOne({version: req.body.questions[i].questionSet})
     
-            console.log(section)
 
             question.question = req.body.questions[i].question
             question.section = section
@@ -67,7 +66,6 @@ questionController.createMuch = async(req , res) =>{
 }
 
 questionController.create = async(req ,res) =>{  
-    console.log(req.body.questionSetID)  
     if(req.body.sectionID == null || req.body.questionSetID == null || req.body.alternativeSetID == null)
         return res.status(400).json({error: 'Debes proporcionar una seccion, un set de alternativas y un set de preguntas'})
 

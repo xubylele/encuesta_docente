@@ -55,7 +55,6 @@ sectionCtrl.averagePerSection = async(req , res) => {
     
                             if(question.section.toString() === section._id.toString()){
                                 let alternative = await Alternative.findById(answer.alternative)
-                                console.log(alternative.alternative) 
                                 sum = sum + alternative.alternative
                                 cont++
                             }
@@ -64,7 +63,6 @@ sectionCtrl.averagePerSection = async(req , res) => {
                     }
             }
             if(i == user.participants.length - 1){
-                console.log(sum, cont)
                 totalAverage.push({categoria: section.name, puntuacion: sum / cont})
             }
         }

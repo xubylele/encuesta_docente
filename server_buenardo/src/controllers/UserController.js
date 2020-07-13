@@ -57,9 +57,7 @@ userCtrl.deleteUser = async(req ,res) =>{
 
 userCtrl.editPassword = async (req, res) =>{
     try {
-        const user = await userModel.findById(req.user);  
-        console.log(`user: ${user}`)  
-        console.log(`password: ${req.body.password}`)                                           // OBTENEMOS EL USUARIO BY ID
+        const user = await userModel.findById(req.user);                                   // OBTENEMOS EL USUARIO BY ID
         user.password = req.body.password;                                                      // MODIFICAMOS LA PASSWORD LOCAL
         if(req.body.password.length < 8){
             return res.status(400).json({status: false,message: 'Error, la contraseña no cumple con el minimo de caracteres'});
