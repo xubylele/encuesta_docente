@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 
+
 @Component({
   selector: 'app-recover-account',
   templateUrl: './recover-account.component.html',
@@ -22,7 +23,8 @@ export class RecoverAccountComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, 
               private http:HttpClient,
               private authService: AuthService,
-              private router:Router
+              private router:Router,
+              
   ) { }
 
   ngOnInit(): void { 
@@ -31,7 +33,11 @@ export class RecoverAccountComponent implements OnInit {
 
   createForm(){
     this.formRecover = this.formBuilder.group({
-      email: ['',Validators.required],
+      email: ['',Validators.compose([
+        Validators.required,Validators.email
+      ])
+        
+      ],
     })
   }
 

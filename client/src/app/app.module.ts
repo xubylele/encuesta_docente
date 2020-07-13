@@ -15,6 +15,7 @@ import { EncuestaService } from './services/encuesta.service';
 import { GuardGuard } from './auth/guards/guard.guard';
 import { EncuestaComponent } from './alumno/encuesta/encuesta.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { EncuestaComponent } from './alumno/encuesta/encuesta.component';
   ],
   providers: [
     EncuestaService,
-    GuardGuard
+    GuardGuard,
+    
   ],
   bootstrap: [AppComponent]
 })

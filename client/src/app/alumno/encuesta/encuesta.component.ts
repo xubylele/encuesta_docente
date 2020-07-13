@@ -8,6 +8,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import { ProfesCursosI } from './../../models/profes-cursos';
 import { ProfCursosApi } from 'src/app/models/dataPrCu';
 import { AuthService } from 'src/app/services/auth.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 interface ProfeSNid{
   nameP:string,
@@ -58,13 +59,18 @@ export class EncuestaComponent implements OnInit {
 
   infoResp:RespuestaI
 
-  constructor( private EncuestaSrv:EncuestaService,private router:Router,private authSrv:AuthService) {
-  }
+  constructor( private EncuestaSrv:EncuestaService,
+               private router:Router,
+               private authSrv:AuthService,
+               private spinSrv:NgxSpinnerService,
+    ) { }
  
   ngOnInit(): void {
+    this.spinSrv.show()
     this.EncuestaSrv.getPreguntas().subscribe((encuestaApi)  =>{
       this.encuestaCompleta = encuestaApi
       this.encuesta = this.encuestaCompleta.sectionList[this.page]
+      this.spinSrv.hide()
     })
     this.EncuestaSrv.getCoursesAlumno().subscribe((cursosAlumno)  =>{
       this.profesAndC = cursosAlumno.courses
@@ -206,7 +212,9 @@ export class EncuestaComponent implements OnInit {
   }
 
   sendEncuesta(){
+    this.spinSrv.show()
     this.EncuestaSrv.postEncuesta(this.respuestas).subscribe(res =>{
+      this.spinSrv.hide
       if (window.confirm("Encuesta Enviada!")){
         this.authSrv.logout()
         this.router.navigate(["/auth/login"])

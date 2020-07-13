@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-dark bg-primary">
   <a class="navbar-brand" href="#">Encuesta Docente</a>
   <div class="dropdown">
@@ -8,8 +9,6 @@
       <a class="dropdown-item" (click)="logout()" href="#" style="color:#000000;">Logout</a>
     </div>
   </div>
-
-  
 </nav>
 
 <div [ngSwitch]="page" class="container">
@@ -176,6 +175,7 @@
   </div>
 
   <div *ngSwitchCase=5>
+   
     <div class="preguntas">
       <br>
       <p class="text-xl-center">COMENTARIOS</p>
@@ -195,7 +195,8 @@
   </div>
 
 
-  <div *ngSwitchCase=6 class="container"> 
+  <div *ngSwitchCase=6 class="container">
+    
     <div class="preguntas">
       <br>
       <p class="text-xl-center">INSIGNIAS</p>

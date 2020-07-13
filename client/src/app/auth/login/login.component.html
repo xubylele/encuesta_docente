@@ -1,3 +1,4 @@
+<ngx-spinner></ngx-spinner>
 <div class="fondo h-100 w-100">
     <section>
         <div class="header" id="header-login">
@@ -23,23 +24,26 @@
                 <div class="form-group" id="email">
                   <label for="exampleInputEmail1">Email</label>
                   <input class="form-control" formControlName="email">
-                  <div id="alert">
-                    <small class="form-text text-muted">Ingrese rut valido</small>
+                  <div id="alert" *ngIf="formLoginPage.controls['email'].invalid && formLoginPage.controls['email'].dirty">
+                    
+                    
+                    <small class="text-danger">Ingrese Email Valido</small>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Constraseña</label>
                   <input type="password" class="form-control" placeholder="Constraseña" formControlName="password">
-                  <div id="alert">
-                    <small class="form-text text-muted">Ingrese clave válida</small>
+                  <div id="alert" *ngIf="formLoginPage.controls['password'].invalid && formLoginPage.controls['password'].dirty">
+                    <small class="text-danger">Ingrese clave válida</small>
                   </div>
                   
                 </div>
                 <div>
+                    
                     <a [routerLink]="'/auth/recuperar'">Recuperar Contraseña</a>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-primary" (click)="login()">Iniciar Sesión</button>
+                <button type="submit" [disabled]="!formLoginPage.valid" class="btn btn-primary" (click)="login()">Iniciar Sesión</button>
             </form>
         </div>
 </div>
