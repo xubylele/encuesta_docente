@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { UserI } from './../../models/user'
+import { UserI } from './../../models/user';
 
 
 @Component({
@@ -24,14 +24,20 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private http:HttpClient,
               private authService: AuthService,
-              private router:Router
+              private router:Router,
+              //private spinSrv:NgxSpinnerService,
   ) { }
 
   ngOnInit(): void { 
     this.createForm();
+   /* this.spinSrv.show()
+    setTimeout(() => {
+      this.spinSrv.hide()
+    },5000)*/
   }
 
   login(){
+    console.log(this.formLoginPage.value)
     this.authService.login(this.formLoginPage.value).subscribe(res =>{
         if(res.type === 'Alumno'){
           console.log(res)
@@ -52,7 +58,7 @@ export class LoginComponent implements OnInit {
         Validators.required,Validators.email
       ])],
       password: ['',Validators.compose([
-        Validators.required,Validators.minLength(5)
+        Validators.required,Validators.minLength(8)
       ])]
     })
   }
