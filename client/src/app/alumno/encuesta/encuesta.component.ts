@@ -84,18 +84,16 @@ export class EncuestaComponent implements OnInit {
   }
 
   changeEncuesta(){
-    this.page = this.page + 1
-        this.encuesta = this.encuestaCompleta.sectionList[this.page]
-        window.scroll(0,0);
-   /* if(this.page < 5 && this.page >= 0){
+    if(this.page < 5 && this.page >= 0){
       if(this.checkAnswerComplete()){
         this.page = this.page + 1
         this.encuesta = this.encuestaCompleta.sectionList[this.page]
+        window.scroll(0,0);
       }
       else{
         window.alert('Asegurese de completar la encuesta!')
       }
-    }*/
+    }
   }
 
   changeEncuestaComm(){
