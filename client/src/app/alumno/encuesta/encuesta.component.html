@@ -84,10 +84,17 @@
           </tbody>
         </table>
       </div>
-      <div>
-        <p>NOTA: AL HACER CLICK EN SIGUIENTE NO PODRA VOLVER A EDITAR LAS RESPUESTAS DE ESTA PAGINA</p>
+      <br>
+      <div class="col-md-3 offset-md-3 card" id="card-progress">
+        <h6>Progreso:</h6>
+        <div class="progress"> 
+          <div class="progress-bar bg-success" role="progressbar" style="width: 12%" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <br>
         <button type="button" class="btn btn-success" id="next-button" (click)="changeEncuesta()">Siguiente</button>
+
       </div>
+      <br>
     </div>
     <div *ngSwitchCase=1> 
       <div *ngFor="let qst of encuesta.questions;let i=index" class="preguntas card">
@@ -116,11 +123,18 @@
           </tbody>
         </table>
       </div>
-      <div>
-        <p>NOTA: AL HACER CLICK EN SIGUIENTE NO PODRA VOLVER A EDITAR LAS RESPUESTAS DE ESTA PAGINA</p>
+      <br>
+      <div class="col-md-3 offset-md-3 card" id="card-progress">
+        <h6>Progreso:</h6>
+        <div class="progress"> 
+          <div class="progress-bar bg-success" role="progressbar" style="width: 24%" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <br>
         <button type="button" class="btn btn-success" id="next-button" (click)="changeEncuesta()">Siguiente</button>
       </div>
+      <br>
     </div>
+
     <div *ngSwitchCase=2> 
       <div *ngFor="let qst of encuesta.questions;let i=index" class="preguntas card">
         <br>
@@ -148,10 +162,16 @@
           </tbody>
         </table>
       </div>
-      <div>
-        <p>NOTA: AL HACER CLICK EN SIGUIENTE NO PODRA VOLVER A EDITAR LAS RESPUESTAS DE ESTA PAGINA</p>
-        <button type="button" class="btn btn-success" id="next-button" (click)="changeEncuesta()">Siguiente</button>
-      </div>
+        <br>
+        <div class="col-md-3 offset-md-3 card" id="card-progress">
+          <h6>Progreso:</h6>
+          <div class="progress"> 
+            <div class="progress-bar bg-success" role="progressbar" style="width: 36%" aria-valuenow="36" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <br>
+          <button type="button" class="btn btn-success" id="next-button" (click)="changeEncuesta()">Siguiente</button>
+        </div>
+        <br>
     </div>
     <div *ngSwitchCase=3> 
       <div *ngFor="let qst of encuesta.questions;let i=index" class="preguntas card">
@@ -180,10 +200,16 @@
           </tbody>
         </table>
       </div>
-      <div>
-        <p>NOTA: AL HACER CLICK EN SIGUIENTE NO PODRA VOLVER A EDITAR LAS RESPUESTAS DE ESTA PAGINA</p>
+      <br>
+      <div class="col-md-3 offset-md-3 card" id="card-progress">
+        <h6>Progreso:</h6>
+        <div class="progress"> 
+          <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <br>
         <button type="button" class="btn btn-success" id="next-button" (click)="changeEncuesta()">Siguiente</button>
       </div>
+      <br>
     </div>
     <div *ngSwitchCase=4> 
       <div *ngFor="let qst of encuesta.questions;let i=index" class="preguntas card">
@@ -212,10 +238,16 @@
           </tbody>
         </table>
       </div>
-      <div>
-        <p>NOTA: AL HACER CLICK EN SIGUIENTE NO PODRA VOLVER A EDITAR LAS RESPUESTAS DE ESTA PAGINA</p>
+      <br>
+      <div class="col-md-3 offset-md-3 card" id="card-progress">
+        <h6>Progreso:</h6>
+        <div class="progress"> 
+          <div class="progress-bar bg-success" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <br>
         <button type="button" class="btn btn-success" id="next-button" (click)="changeEncuesta()">Siguiente</button>
       </div>
+      <br>
       
     </div>
   
@@ -232,13 +264,19 @@
             <textarea class="form-control" aria-label="With textarea" id="{{profe.idP}}{{profe.idC}}"></textarea>
           </div>
       </div>
-      <div>
-        <p>NOTA: AL HACER CLICK EN SIGUIENTE NO PODRA VOLVER A EDITAR LAS RESPUESTAS DE ESTA PAGINA</p>
-        <button type="button" class="btn btn-success" id="next-button" (click)="changeEncuestaComm()">Siguiente</button>
-      </div>
+        <br>
+        <div class="col-md-3 offset-md-3 card" id="card-progress">
+          <h6>Progreso:</h6>
+          <div class="progress"> 
+            <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <br>
+          <button type="button" class="btn btn-success" id="next-button" (click)="changeEncuestaComm()">Siguiente</button>
+        </div> 
+        <br>
       
     </div>
-  
+      
   
     <div *ngSwitchCase=6 class="container">
       <ngx-spinner></ngx-spinner>
@@ -267,12 +305,19 @@
           </tbody>
         </table>
       </div>
-  
-      <div>
-        <p>FINALIZAR ENCUESTA</p>
+
+
+      <br>
+      <div class="col-md-3 offset-md-3 card" id="card-progress">
+        <h6>Progreso:</h6>
+        <div class="progress"> 
+          <div class="progress-bar bg-success" role="progressbar" style="width: 97%" aria-valuenow="97" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <br>
         <button type="button" class="btn btn-danger" id="next-button" (click)="sendEncuesta()">Finalizar y Enviar</button>
       </div>
-  
+      <br>
+      
     </div>
   
   </div> 

@@ -9,7 +9,7 @@ import { ProfesCursosI } from './../../models/profes-cursos';
 import { ProfCursosApi } from 'src/app/models/dataPrCu';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
-
+import Swal from 'sweetalert2';
 
 interface ProfeSNid{
   nameP:string,
@@ -91,7 +91,11 @@ export class EncuestaComponent implements OnInit {
         window.scroll(0,0);
       }
       else{
-        window.alert('Asegurese de completar la encuesta!')
+        Swal.fire({
+          icon: 'error',
+          title: 'Encuesta incompleta',
+          text: 'Asegurese de completar sus respuestas',
+        })
       }
     }
   }
@@ -218,13 +222,14 @@ export class EncuestaComponent implements OnInit {
     this.spinSrv.show()
     this.EncuestaSrv.postEncuesta(this.respuestas).subscribe(res =>{
       this.spinSrv.hide()
-      if (window.confirm("Encuesta Enviada!")){
+      Swal.fire(
+        'Encuesta enviada con éxito!',
+        'Gracias por participar',
+        'success'
+      ).then(result =>{
         this.authSrv.logout()
-        this.router.navigate(["/auth/login"])
-        return
-      }
-      this.authSrv.logout()
-      this.router.navigate(["/auth/login"])  
+        this.router.navigate(["/auth/login"])  
+      })
     });
   }
 
