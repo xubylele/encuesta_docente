@@ -17,28 +17,39 @@ export class ResumenActualComponent implements OnInit {
 
   canvas: any;
   ctx: any;
-  chartLabels: any;
-  chartData: any;
+  resumeChartLabels: any;
+  resumeChartData: any;
+  comparationCourseChartData_1:any;
+  comparationCourseChartLabels_1:any;
+  comparationCourseChartData_2:any;
+  comparationCourseChartLabels_2:any;
   resData:Array<any>;
+  courses:any;
 
   ngOnInit(): void {
     this.profeSrv.getAveragesPoll().subscribe((coursesApi)  =>{
       console.log(coursesApi.promedio)
       this.resData = coursesApi.promedio
-      this.initGraph()
-    })  
+      this.initResumeGraph()
+    })
+    
+    this.profeSrv.getCourses().subscribe((courseApi) =>{
+      this.courses =courseApi;
+      console.log(this.courses);
+    })
+    
   }
 
-  initGraph(){
-    this.setData();                                                 // SETEAMOS LA DATA
+  initResumeGraph(){
+    this.setResumeData();                                                 // SETEAMOS LA DATA
     this.canvas = document.getElementById('resumeChart');           // OBTENEMOS EL ELEMENTO POR ID
     this.ctx = this.canvas.getContext('2d');                        // LE DAMOS CONTEXTO DE 2 DIMENSIONES
     let resumeChart = new Chart(this.ctx, {                         // CREAMOS EL CHART             
       type: 'polarArea',                                            // LE ASIGNAMOS EL TIPO
       data: {                                                       // SETEAMOS LA DATA DEL CHART
-          labels: this.chartLabels,                                 // ASIGNAMOS LOS LABELS A LOS GLOBALES
+          labels: this.resumeChartLabels,                                 // ASIGNAMOS LOS LABELS A LOS GLOBALES
           datasets: [{                                              // DECLARAMOS EL DATA SET
-              data: this.chartData,                                 // ASIGNAMOS LA DATA A LA GLOBAL
+              data: this.resumeChartData,                                 // ASIGNAMOS LA DATA A LA GLOBAL
               backgroundColor: ["rgba(255, 99, 132, 0.8)",          // COLOR LABEL 1
                                 "rgba(75, 192, 192, 0.8)",          // COLOR LABEL 2
                                 "rgba(255, 205, 86, 0.8)",          // COLOR LABEL 3
@@ -63,8 +74,39 @@ export class ResumenActualComponent implements OnInit {
     });
   }
 
+  initComparationGraph(){
+    this.setComparationData();                                                 // SETEAMOS LA DATA
+    this.canvas = document.getElementById('comparationChart');           // OBTENEMOS EL ELEMENTO POR ID
+    this.ctx = this.canvas.getContext('2d');                        // LE DAMOS CONTEXTO DE 2 DIMENSIONES
+    let comparationChart = new Chart(this.ctx, {                         // CREAMOS EL CHART             
+      type: 'bar',                                            // LE ASIGNAMOS EL TIPO
+      data: {                                                       // SETEAMOS LA DATA DEL CHART
+          labels: this.resumeChartLabels,                                 // ASIGNAMOS LOS LABELS A LOS GLOBALES
+          datasets: [{
+                                         // DECLARAMOS EL DATA SET
+              data: this.resumeChartData,                                 // ASIGNAMOS LA DATA A LA GLOBAL
+              backgroundColor: ["rgba(255, 99, 132, 0.8)",          // COLOR LABEL 1
+                                "rgba(75, 192, 192, 0.8)",          // COLOR LABEL 2
+                                "rgba(255, 205, 86, 0.8)",          // COLOR LABEL 3
+                                "rgba(201, 203, 207, 0.8)",         // COLOR LABEL 3
+                                "rgba(54, 162, 235, 0.8)"],         // COLOR LABEL 5
+              borderWidth: 1                                        // LE ASIGNAMOS EL ANCHO DEL BORDE
+          },
+          {                                              // DECLARAMOS EL DATA SET
+            data: this.comparationCourseChartData_2,                                 // ASIGNAMOS LA DATA A LA GLOBAL
+            backgroundColor: ["rgba(255, 99, 132, 0.8)",          // COLOR LABEL 1
+                              "rgba(75, 192, 192, 0.8)",          // COLOR LABEL 2
+                              "rgba(255, 205, 86, 0.8)",          // COLOR LABEL 3
+                              "rgba(201, 203, 207, 0.8)",         // COLOR LABEL 3
+                              "rgba(54, 162, 235, 0.8)"],         // COLOR LABEL 5
+            borderWidth: 1                                        // LE ASIGNAMOS EL ANCHO DEL BORDE
+        }]
+      }
+    });
+  }
 
-  setData():void{
+
+  setResumeData():void{
 
     let data = [];                                                        // VARIABLE TEMPORAL DATA
     let labels = [];                                                      // VARIABLE TEMPORAL LABELS
@@ -76,20 +118,32 @@ export class ResumenActualComponent implements OnInit {
     console.log(labels);
     console.log(data);
 
-    this.chartLabels = labels;
-    this.chartData = data;
-   
-/* DATA PLANA 
-    const data = [3.4 ,2.8, 3.1, 3.0, 2.9]; 
-    const labels = ["Uso Del Aula Virtual", "Contenido Del Curso", "Actitud", "Responsabilidad", "Metodología De La Enseñanza"];
-    if(data!=null && labels != null){
-      this.chartData = data;
-      this.chartLabels = labels;
-    } 
-    else{
-      this.chartData = null;
-      this.chartLabels = null;
-    }
-    */
+    this.resumeChartLabels = labels;
+    this.resumeChartData = data;
   }
+
+setComparationData():void{
+
+  let data = [];                                                        // VARIABLE TEMPORAL DATA
+  let labels = [];                                                      // VARIABLE TEMPORAL LABELS
+
+//  let resData;
+
+
+  /*for(let response of this.resData){
+    labels.push(response.categoria);
+    data.push(response.puntuacion);
+  }
+  console.log(labels);
+  console.log(data);
+*/
+  this.comparationCourseChartLabels_1 = this.resumeChartLabels;
+  this.comparationCourseChartData_1 = this.resumeChartData;
+
+  this.comparationCourseChartLabels_2 =this.resumeChartLabels;
+  this.comparationCourseChartData_2 =[1.25,3.4,3,2,1.5];
+
 }
+}
+
+
