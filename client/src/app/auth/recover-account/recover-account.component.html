@@ -1,3 +1,4 @@
+<ngx-spinner></ngx-spinner>
 <div class="fondo h-100 w-100">
     <section>
         <div class="header" id="header-login">
@@ -23,6 +24,9 @@
                   <h3>Recuperacion de Contrasena</h3>
                   <label for="exampleInputEmail1">Ingrese su email:</label>
                   <input class="form-control" formControlName="email">
+                  <div id="alert" *ngIf="formRecover.controls['email'].invalid && formRecover.controls['email'].dirty"> 
+                    <small class="text-danger">Ingrese Email Valido</small>
+                  </div>
 
                 </div>
                 <div>
@@ -30,7 +34,7 @@
                 </div>
 
                 <br>
-                <button type="submit" (click)="recoverAccount()" class="btn btn-primary">Recuperar Contrasena</button>
+                <button [disabled]="!formRecover.valid" type="submit" (click)="recoverAccount()" class="btn btn-primary">Recuperar Contrasena</button>
             </form>
             
         </div>

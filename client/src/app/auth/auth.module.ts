@@ -14,7 +14,8 @@ import { GuardGuard } from './guards/guard.guard';
 import { ForgetPassComponent } from './forget-pass/forget-pass.component';
 import { InsigniasComponent } from '../profesor/insignias/insignias.component';
 import { DetalleAsignaturaComponent } from '../profesor/asignaturas/detalle-asignatura/detalle-asignatura.component';
-
+import { NgxSpinnerService } from 'ngx-spinner';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -31,10 +32,12 @@ import { DetalleAsignaturaComponent } from '../profesor/asignaturas/detalle-asig
     AuthRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxSpinnerModule
   ],
   providers:[
     AuthService,
-    GuardGuard
+    GuardGuard,
+    NgxSpinnerService
   ]
 })
 export class AuthModule { }
