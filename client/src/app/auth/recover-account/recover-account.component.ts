@@ -28,7 +28,7 @@ export class RecoverAccountComponent implements OnInit {
               
   ) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.createForm();
   }
 
@@ -54,11 +54,17 @@ export class RecoverAccountComponent implements OnInit {
         this.router.navigate(["/auth/login"])
       })
     },(err) => 
-      Swal.fire({
-        icon: 'error',
-        title: 'Verifique sus datos',
-        text: err.error.error,
-    }))
+      this.showError(err)
+    )
+    
   }
-  
+
+  showError(err){
+    this.spinSrv.hide(),
+    Swal.fire({
+      icon: 'error',
+      title: 'Verifique sus datos',
+      text: err.error.error,
+    })
+  }
 }

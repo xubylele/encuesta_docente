@@ -1,0 +1,61 @@
+.card-instructions{
+    margin: 10px;
+    margin-top: 15px;
+}
+
+#card-progress{
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    padding-bottom: 20px;
+    right: 93px;
+}
+
+.preguntas {
+    margin: auto;
+    width: 70% !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    background-color: #F1F3F9;
+    top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+#box-comentario{
+    padding-bottom: 40px;
+}
+
+.card-qst{
+    position: relative;
+}
+
+.pregunta{
+    position: relative;
+    width: 100%;
+}
+
+.pregunta h5{
+    position: relative;
+}
+
+#badges-list td{
+    vertical-align: bottom;
+}
+
+#badge-card{
+    
+    
+	margin: 10px;
+}
+
+#profes-list{
+	float:left;
+}
+
+#opts-bagdeProfe{
+    margin: 5px;
+}

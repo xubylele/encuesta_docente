@@ -13,6 +13,7 @@ import { RecomendacionesComponent } from '../profesor/recomendaciones/recomendac
 import { EvaluacionesAnterioresComponent } from '../profesor/evaluaciones-anteriores/evaluaciones-anteriores.component';
 import { ResumenActualComponent } from '../profesor/resumen-actual/resumen-actual.component';
 import { DetalleAsignaturaComponent } from '../profesor/asignaturas/detalle-asignatura/detalle-asignatura.component';
+import { DetalleEncuestaAsgComponent } from '../profesor/asignaturas/detalle-encuesta-asg/detalle-encuesta-asg.component';
 
 
 
@@ -53,8 +54,14 @@ const routes: Routes = [
                 path:'home',component:ResumenActualComponent
             },
             {
-                path:'asignaturas/detalle/:idC/:nameC/:siglaC',component:DetalleAsignaturaComponent
+                path:'asignaturas/detalle/:idC/:nameC/:siglaC',component:DetalleAsignaturaComponent,children:[
+                    
+                ]
             },
+            {
+                path:'asignaturas/detalle/:idC/:nameC/:siglaC/detalle-encuesta/:idC',component:DetalleEncuestaAsgComponent
+            },
+            
         ]
     },
     
