@@ -16,6 +16,7 @@ import { GuardGuard } from './auth/guards/guard.guard';
 import { EncuestaComponent } from './alumno/encuesta/encuesta.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { DetalleEncuestaAsgComponent } from './profesor/asignaturas/detalle-encuesta-asg/detalle-encuesta-asg.component';
 
 
 
@@ -28,7 +29,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ResumenActualComponent,
     EvaluacionesAnterioresComponent,
     RecomendacionesComponent,
-    EncuestaComponent
+    EncuestaComponent,
+    DetalleEncuestaAsgComponent
   ],
   imports: [
     BrowserModule,

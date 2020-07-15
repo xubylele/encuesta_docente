@@ -1,21 +1,20 @@
-<div class="row card-graphResumen">
-    <div class="column">
-        <div class="card bg-light mb-3" style="width: 40rem;">
+
+    <div class="column d-flex flex-row">
+        <div class="card bg-light mb-3" style="width: 25rem;">
             <h4 class="card-header">Resultados de la Encuesta</h4>
             <div class="card-body" id="data-insignias">
                 <div class="container">
-                    <div >
                         <ngx-spinner
                           bdOpacity = 0.9
                           bdColor = "#f4f4f9"
                           size = "medium"
                           color = "#172B4D"
                           [fullScreen] = "false"
-                        ></ngx-spinner>  
-                    </div>
-                    <canvas id="myChart" width="300" height="400"></canvas>
-                </div>       
+                        ></ngx-spinner>                 
+                    <canvas id="myChart" width="350" height="400"></canvas>
+                </div>
+                <button type="button" class="btn btn-success" [routerLink]="['detalle-encuesta',idC]">Ver Detalle</button>
             </div>
         </div>            
     </div>
-</div>
+
