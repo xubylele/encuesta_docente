@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfesorService } from './../../services/profesor.service';
 import * as Chart from 'chart.js';
+import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 
 interface AverageCourse{
 
@@ -13,7 +14,9 @@ interface AverageCourse{
 })
 export class ResumenActualComponent implements OnInit {
 
-  constructor(private profeSrv:ProfesorService) { }
+  constructor(private profeSrv:ProfesorService,
+              private spinSrv:NgxSpinnerService,
+    ) { }
 
   canvas: any;
   ctx: any;
@@ -22,10 +25,12 @@ export class ResumenActualComponent implements OnInit {
   resData:Array<any>;
 
   ngOnInit(): void {
+    this.spinSrv.show()
     this.profeSrv.getAveragesPoll().subscribe((coursesApi)  =>{
       console.log(coursesApi.promedio)
       this.resData = coursesApi.promedio
       this.initGraph()
+      this.spinSrv.hide()
     })  
   }
 

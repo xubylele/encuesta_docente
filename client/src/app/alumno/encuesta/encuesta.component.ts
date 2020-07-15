@@ -88,7 +88,7 @@ export class EncuestaComponent implements OnInit {
       if(this.checkAnswerComplete()){
         this.page = this.page + 1
         this.encuesta = this.encuestaCompleta.sectionList[this.page]
-        window.scroll(0,0);
+        window.scroll(0,0)
       }
       else{
         Swal.fire({
@@ -219,6 +219,7 @@ export class EncuestaComponent implements OnInit {
   }
 
   sendEncuesta(){
+    window.scroll(0,0)
     this.spinSrv.show()
     this.EncuestaSrv.postEncuesta(this.respuestas).subscribe(res =>{
       this.spinSrv.hide()

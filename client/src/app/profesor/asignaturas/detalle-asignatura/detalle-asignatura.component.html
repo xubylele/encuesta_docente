@@ -1,14 +1,21 @@
-<div class="card-columns">
-    <div class="card-body" id="data-insignias">
-        <div class="container">
-            <canvas id="myChart" width="300" height="400"></canvas>
-        </div>       
-    </div>
-    <div class="card-body" id="data-insignias">
-        <p id="title-badges">Insignias Populares</p>
-        <div class="card-body">
-            
-
-        </div>
+<div class="row card-graphResumen">
+    <div class="column">
+        <div class="card bg-light mb-3" style="width: 40rem;">
+            <h4 class="card-header">Resultados de la Encuesta</h4>
+            <div class="card-body" id="data-insignias">
+                <div class="container">
+                    <div >
+                        <ngx-spinner
+                          bdOpacity = 0.9
+                          bdColor = "#f4f4f9"
+                          size = "medium"
+                          color = "#172B4D"
+                          [fullScreen] = "false"
+                        ></ngx-spinner>  
+                    </div>
+                    <canvas id="myChart" width="300" height="400"></canvas>
+                </div>       
+            </div>
+        </div>            
     </div>
 </div>

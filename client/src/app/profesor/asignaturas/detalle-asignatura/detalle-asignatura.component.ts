@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProfesorService } from 'src/app/services/profesor.service';
 import * as Chart from 'chart.js';
+import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 
 @Component({
   selector: 'app-detalle-asignatura',
@@ -13,15 +14,17 @@ export class DetalleAsignaturaComponent implements OnInit {
   nameC:string
   siglaC:string
 
-  constructor(private ruta:ActivatedRoute,private profeSrv:ProfesorService) { }
+  constructor(private ruta:ActivatedRoute,private profeSrv:ProfesorService,private spinSrv:NgxSpinnerService,) { }
 
   ngOnInit(): void {
     this.nameC = this.ruta.snapshot.params.nameC
     this.siglaC = this.ruta.snapshot.params.siglaC
-    /*this.profeSrv.getDataCourse(this.ruta.snapshot.params.idC).subscribe((dataCourse)  =>{
+    this.spinSrv.show()
+    this.profeSrv.getDataCourse(this.ruta.snapshot.params.idC).subscribe((dataCourse)  =>{
+      this.spinSrv.hide()
       this.dataCourse = dataCourse
       console.log(this.dataCourse)
-    })*/
+    })
 
   var ctx = document.getElementById("myChart");
   var myChart = new Chart(ctx, {
