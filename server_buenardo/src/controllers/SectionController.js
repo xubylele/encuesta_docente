@@ -13,6 +13,33 @@ sectionCtrl.create = async(req ,res) =>{
     } 
 }
 
+sectionCtrl.detailPerSection = async(req , res) => {
+    const sections = await Section.find()
+    const participant = await ParticipantList.findOne({user: req.user._id, course: req.params.courseID})
+
+    let sectionResults= []
+    for (let i = 0; i < sections.length; i++) {
+        const section = sections[i]
+        const questions = await Question.find().where('_id').in(section.questions).exec()
+        let sectionsQuestions = []
+        for (let j = 0; j < questions.length; j++) {
+            const question = questions[j]
+            let sum = 0
+            const answers = await Answer.find().where('_id').in(question.answers).populate('poll').populate('alternative')
+            for (let k = 0; k < answers.length; k++) {
+                const answer = answers[k]
+                if(answer.teacher == ParticipantList._id)
+                    sum += answer.alternative.alternative
+            }
+            sectionsQuestions.push({'question': question.question, result: sum/answers.length})
+        }
+        sectionResults.push({'section': section.name, 'results': sectionsQuestions})
+        
+    }
+
+    return res.status(200).json({sectionResults})
+}
+
 sectionCtrl.createMuch = async(req , res) => {
     for (let i = 0; i < req.body.sections.length; i++) {
         const section = new Section()

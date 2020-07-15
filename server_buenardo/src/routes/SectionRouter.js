@@ -11,5 +11,6 @@ const isTeacher = require('../middlewares/isTeacher')
     */
     router.get('/list', SectionController.getSectionList)
     router.get('/averagePerSection', auth, isTeacher, SectionController.averagePerSection)
+    router.get('/detailPerSection/:courseID', auth, isTeacher, SectionController.detailPerSection)
 
 module.exports = router
