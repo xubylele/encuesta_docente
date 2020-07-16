@@ -31,7 +31,7 @@ sectionCtrl.detailPerSection = async(req , res) => {
                 if(answer.teacher == ParticipantList._id)
                     sum += answer.alternative.alternative
             }
-            sectionsQuestions.push({'question': question.question, result: sum/answers.length})
+            sectionsQuestions.push({'question': question.question, result: (sum/answers.length).toFixed(1)})
         }
         sectionResults.push({'section': section.name, 'results': sectionsQuestions})
         
@@ -73,10 +73,10 @@ sectionCtrl.averagePerSection = async(req , res) => {
         for (let i = 0; i < user.participants.length; i++) {
             let participant = user.participants[i].populate('polls')
             for (let j = 0; j < participant.polls.length; j++) {
-                let poll = await Poll.findById(participant.polls[j])
+                let poll = await Poll.findById(participant.polls[j]).populate('answers')
                 if(poll != null)
                 for (let l = 0; l < poll.answers.length; l++) {
-                        let answer = await Answer.findById(poll.answers[l])
+                        let answer = poll.answers[l]
                         if(answer.question != null){
                             let question = await Question.findById(answer.question)
     
@@ -90,7 +90,9 @@ sectionCtrl.averagePerSection = async(req , res) => {
                     }
             }
             if(i == user.participants.length - 1){
-                console.log(sum, cont, sum/cont)
+                let operation = sum/cont
+                let rounded = operation.toFixed(1)
+                console.log(section.name, sum, cont, rounded)
                 totalAverage.push({categoria: section.name, puntuacion: sum / cont})
             }
         }
@@ -114,9 +116,9 @@ sectionCtrl.averageOfCoursePerSection = async(req , res) => {
                 let poll = await Poll.findById(participant.polls[j])
                 if(poll != null)
                 for (let l = 0; l < poll.answers.length; l++) {
-                        let answer = await Answer.findById(poll.answers[l])
+                        let answer = await Answer.findById(poll.answers[l]).populate('question')
                         if(answer.question != null){
-                            let question = await Question.findById(answer.question)
+                            let question = answer.question
     
                             if(question.section.toString() === section._id.toString()){
                                 let alternative = await Alternative.findById(answer.alternative)
@@ -128,8 +130,10 @@ sectionCtrl.averageOfCoursePerSection = async(req , res) => {
                     }
             }
             if(i == participants.length - 1){
-                console.log(sum, cont, sum/cont)
-                totalAverage.push({categoria: section.name, puntuacion: sum / cont})
+                let operation = sum/cont
+                let rounded = operation.toFixed(1)
+                console.log(section.name, sum, cont, rounded)
+                totalAverage.push({categoria: section.name, puntuacion: rounded})
             }
         }
         
