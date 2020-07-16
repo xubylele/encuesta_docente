@@ -1,4 +1,4 @@
-const { Badge } = require('../models')
+const { Badge, ParticipantList } = require('../models')
 const badgeCtrl = {}
 
 badgeCtrl.createMuch = async (req, res) =>{
@@ -21,6 +21,48 @@ badgeCtrl.createMuch = async (req, res) =>{
         
     }
     return res.status(200).json({message:'Creadas con exito'})
+}
+
+badgeCtrl.top5 = async (req, res) =>{
+    const participant = await ParticipantList.findOne({user: req.user, course: req.params.courseID}).populate('teachersBadge')
+    if(participant == null)
+        return res.status(400).json({error: 'Ocurrio un error inesperado, vuelva a intentarlo'})
+    const badges = await Badge.find()
+    let top5 = []
+
+    for (let i = 0; i < badges.length; i++) {
+        const badge = badges[i]
+        let cont = 0
+        if(participant.teachersBadge != null){
+
+            for (let j = 0; j < participant.teachersBadge.length; j++) {
+                const teacherBadge = participant.teachersBadge[j]
+                if(teacherBadge.badge == badge.id) {
+                    cont++
+                }
+            }
+            if(cont > 0) {
+                top5.push({badge: badge.name, value: cont})
+    
+            }
+        }
+    }
+
+    top5.sort(function (a, b) {
+        if (a.value < b.value) {
+          return 1;
+        }
+        if (a.value > b.value) {
+          return -1;
+        }
+        // a must be equal to b
+        return 0;
+    });
+
+    top5 = top5.slice(0, 5)
+
+    return res.status(200).json({top5})
+
 }
 
 badgeCtrl.create = async (req, res) =>{
