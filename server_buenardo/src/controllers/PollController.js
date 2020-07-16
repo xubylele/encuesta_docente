@@ -53,6 +53,8 @@ pollCtrl.addAnswer = async (req, res) =>{
 pollCtrl.savePoll = async (req, res) => {
     if((await Poll.find({user: req.user})).length > 0) return res.status(400).json({error: 'Usuario ya contesto la encuesta!!'})
 
+    const user = await User.findById(req.user)
+
 
     let  answers = []
 
@@ -83,6 +85,12 @@ pollCtrl.savePoll = async (req, res) => {
                 function (err, callback) {
                     
                 }
+            )
+
+            User.update(
+                {"_id": user._id},
+                {"$push": { "polls": poll}},
+                function (err, callback) {}
             )
             for (let k = 0; k < teacherReq.data.length; k++) {
                 const answerReq = teacherReq.data[k]                                               // OBTENER RESPUESTA REQ

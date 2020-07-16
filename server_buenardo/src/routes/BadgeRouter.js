@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const { BadgeController } = require('../controllers')
+const auth = require('../middlewares/auth')
+const isTeacher = require('../middlewares/isTeacher')
 
     router.post('/create',BadgeController.create)
     router.post('/createMuch', BadgeController.createMuch)
@@ -9,6 +11,7 @@ const { BadgeController } = require('../controllers')
     router.put('/editname',BadgeController.editBadgename)
     router.delete('/delete',BadgeController.removeBadge)
     router.get('/removeAllArrays', BadgeController.removeArrays)
+    router.get('/:courseID/top5', auth, isTeacher,BadgeController.top5)
 
     module.exports = router
 
