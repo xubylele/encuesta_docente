@@ -93,7 +93,7 @@ sectionCtrl.averagePerSection = async(req , res) => {
                 let operation = sum/cont
                 let rounded = operation.toFixed(1)
                 console.log(section.name, sum, cont, rounded)
-                totalAverage.push({categoria: section.name, puntuacion: sum / cont})
+                totalAverage.push({categoria: section.name, puntuacion: rounded})
             }
         }
         
