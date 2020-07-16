@@ -1,6 +1,7 @@
 const { Course, ParticipantList,Question } = require('../models')
 const Poll = require('../models/Poll')
 const Answer = require('../models/Answer')
+const User = require('../models/User')
 const courseCtrl = {}
 
 
@@ -28,6 +29,27 @@ courseCtrl.createMuch = async (req, res) =>{
         
     }
     return res.status(200).json({message:'Creadas con exito', courses: courses})
+}
+
+courseCtrl.answersVsInscribed = async (req, res) =>{
+    const course = await Course.findById(req.params.courseID).populate('participantsList')
+    let contAnswers = 0
+    let contInscribed = 0
+
+    for (let i = 0; i < course.participantsList.length; i++) {
+        const participant = await ParticipantList.findById(course.participantsList[i]._id)
+        const user = await User.findById(participant.user)
+        if(user.type === 'Alumno'){
+            contInscribed ++
+            if(user.polls.length > 0)
+                contAnswers ++
+        }
+        
+    }
+
+
+
+    return res.status(200).json({answers: contAnswers, inscribed: contInscribed})
 }
 
 courseCtrl.create = async (req, res) => {
