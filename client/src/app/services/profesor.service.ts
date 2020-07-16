@@ -45,4 +45,14 @@ export class ProfesorService {
     return this.httpClient.get<any>(url,{headers})
   }
 
+  getAveragesCourse(courseID:string):Observable<any>{
+    let token = localStorage.getItem("ACCESS_TOKEN");
+    const headers = new HttpHeaders ({
+      'auth-token':token,
+    });
+    let url = (this.HOST_SECTIONS+'/courseAveragePerSection/').concat(courseID)
+    console.log(url)
+    return this.httpClient.get<any>(url,{headers})
+  }
+
 }
