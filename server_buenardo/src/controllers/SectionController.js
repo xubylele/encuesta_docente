@@ -100,4 +100,42 @@ sectionCtrl.averagePerSection = async(req , res) => {
     return res.status(200).json({promedio: totalAverage})
 }
 
+sectionCtrl.averageOfCoursePerSection = async(req , res) => {
+    const sections = await Section.find()
+    let totalAverage = []
+    for (let k = 0; k < sections.length; k++) {
+        let cont = 0
+        let section = sections[k]
+        let sum = 0
+        let participants = await ParticipantList.find({user: req.user._id, course:  req.params.courseID}).populate('polls')
+        for (let i = 0; i < participants.length; i++) {
+            let participant = participants[i]
+            for (let j = 0; j < participant.polls.length; j++) {
+                let poll = await Poll.findById(participant.polls[j])
+                if(poll != null)
+                for (let l = 0; l < poll.answers.length; l++) {
+                        let answer = await Answer.findById(poll.answers[l])
+                        if(answer.question != null){
+                            let question = await Question.findById(answer.question)
+    
+                            if(question.section.toString() === section._id.toString()){
+                                let alternative = await Alternative.findById(answer.alternative)
+                                sum = sum + alternative.alternative
+                                cont++
+                            }
+
+                        }
+                    }
+            }
+            if(i == participants.length - 1){
+                console.log(sum, cont, sum/cont)
+                totalAverage.push({categoria: section.name, puntuacion: sum / cont})
+            }
+        }
+        
+    }
+
+    return res.status(200).json({promedio: totalAverage})
+}
+
 module.exports = sectionCtrl
