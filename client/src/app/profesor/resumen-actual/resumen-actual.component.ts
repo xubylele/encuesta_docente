@@ -171,7 +171,8 @@ this.profeSrv.getAveragesCourse(this.comparationCourseID_1).subscribe((coursesAp
     }
     this.comparationCourseChartData_2 = data_2;
     this.comparationCourseChartLabels_2 = labels_2;
-    this.initComparationGraph();  
+    this.initComparationGraph();
+    this.spinSrv.hide("compare");  
   })
 }
 
