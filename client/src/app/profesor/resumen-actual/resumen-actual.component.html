@@ -25,24 +25,24 @@
                         <div class="input-group-prepend">
                           <label class="input-group-text" for="inputGroupSelect01">Curso 1</label>
                         </div>
-                        <select class="custom-select" id="curso_1">
+                        <select class="custom-select" id="curso_1" (change)="setComparationCourse_1($event)">
                           <option selected>Seleccione Curso</option>
-                          <option *ngFor="let course of courses" [value]="course.name">{{course.name}}</option>
+                          <option *ngFor="let course of courses" [value]="course._id" >{{course.name}}</option>
                         </select>
                       </div>
                       <div class="input-group mb-3 p-2">
                         <div class="input-group-prepend">
                           <label class="input-group-text" for="inputGroupSelect01">Curso 2</label>
                         </div>
-                        <select class="custom-select" id="curso_2">
+                        <select class="custom-select" id="curso_2" (change)="setComparationCourse_2($event)">
                           <option selected>Seleccione Curso</option>
-                          <option *ngFor="let course of courses" [value]="course.name">{{course.name}}</option>
+                          <option *ngFor="let course of courses" [value]="course._id" >{{course.name}}</option>
                         </select>
                       </div>
                 </div>
                 <div class="d-flex flex-column">
                     <div class="p-2">
-                        <button type="button" class="btn btn-primary btn-lg btn-block" (click)="initComparationGraph()">Comparar</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" (click)="getCoursesAverage()">Comparar</button>
                     </div>
                     <div class="p-2">
                         <canvas id="comparationChart" width="600" height="400"></canvas>

@@ -22,24 +22,26 @@ export class ResumenActualComponent implements OnInit {
   ctx: any;
   resumeChartLabels: any;
   resumeChartData: any;
+  comparationCourseID_1:any;
+  comparationCourseID_2:any;
+  comparationCoursesName:Array<any>;
   comparationCourseChartData_1:any;
   comparationCourseChartLabels_1:any;
   comparationCourseChartData_2:any;
   comparationCourseChartLabels_2:any;
+
   resData:Array<any>;
   courses:any;
 
   ngOnInit(): void {
     this.spinSrv.show()
     this.profeSrv.getAveragesPoll().subscribe((coursesApi)  =>{
-      console.log(coursesApi.promedio)
       this.resData = coursesApi.promedio
       this.initResumeGraph()
     })
     
     this.profeSrv.getCourses().subscribe((courseApi) =>{
       this.courses =courseApi;
-      console.log(this.courses);
     })
     
   }
@@ -78,17 +80,20 @@ export class ResumenActualComponent implements OnInit {
     });
   }
 
-  initComparationGraph(){
-    this.setComparationData();                                                 // SETEAMOS LA DATA
+  initComparationGraph(){                                             // SETEAMOS LA DATA
     this.canvas = document.getElementById('comparationChart');           // OBTENEMOS EL ELEMENTO POR ID
     this.ctx = this.canvas.getContext('2d');                        // LE DAMOS CONTEXTO DE 2 DIMENSIONES
+    console.log("init");
+
+
     let comparationChart = new Chart(this.ctx, {                         // CREAMOS EL CHART             
       type: 'bar',                                            // LE ASIGNAMOS EL TIPO
       data: {                                                       // SETEAMOS LA DATA DEL CHART
-          labels: this.resumeChartLabels,                                 // ASIGNAMOS LOS LABELS A LOS GLOBALES
+          labels: this.comparationCourseChartLabels_1,                                 // ASIGNAMOS LOS LABELS A LOS GLOBALES
           datasets: [{
                                          // DECLARAMOS EL DATA SET
-              data: this.resumeChartData,                                 // ASIGNAMOS LA DATA A LA GLOBAL
+              data: this.comparationCourseChartData_1,                                 // ASIGNAMOS LA DATA A LA GLOBAL
+              label:this.getCourseName(this.comparationCourseID_1),
               backgroundColor: ["rgba(255, 99, 132, 0.8)",          // COLOR LABEL 1
                                 "rgba(75, 192, 192, 0.8)",          // COLOR LABEL 2
                                 "rgba(255, 205, 86, 0.8)",          // COLOR LABEL 3
@@ -98,6 +103,7 @@ export class ResumenActualComponent implements OnInit {
           },
           {                                              // DECLARAMOS EL DATA SET
             data: this.comparationCourseChartData_2,                                 // ASIGNAMOS LA DATA A LA GLOBAL
+            label:this.getCourseName(this.comparationCourseID_2),
             backgroundColor: ["rgba(255, 99, 132, 0.8)",          // COLOR LABEL 1
                               "rgba(75, 192, 192, 0.8)",          // COLOR LABEL 2
                               "rgba(255, 205, 86, 0.8)",          // COLOR LABEL 3
@@ -119,35 +125,61 @@ export class ResumenActualComponent implements OnInit {
       labels.push(response.categoria);
       data.push(response.puntuacion);
     }
-    console.log(labels);
-    console.log(data);
 
     this.resumeChartLabels = labels;
     this.resumeChartData = data;
   }
 
-setComparationData():void{
 
-  let data = [];                                                        // VARIABLE TEMPORAL DATA
-  let labels = [];                                                      // VARIABLE TEMPORAL LABELS
-
-//  let resData;
+setComparationCourse_1(event){
+  this.comparationCourseID_1 = event.target.value;
+  //this.comparationCoursesName[0] = evet
 
 
-  /*for(let response of this.resData){
-    labels.push(response.categoria);
-    data.push(response.puntuacion);
+}
+setComparationCourse_2(event){
+  this.comparationCourseID_2 = event.target.value;
+
+} 
+
+getCoursesAverage():void {
+
+let resData:Array<any>;
+let resData_2:Array<any>;
+let labels = [];
+let data = [];
+let labels_2 =[];
+let data_2=[];
+this.profeSrv.getAveragesCourse(this.comparationCourseID_1).subscribe((coursesApi)  =>{
+    resData = coursesApi.promedio;
+    for(let response of resData){
+      labels.push(response.categoria);
+      data.push(response.puntuacion);
+    }
+    this.comparationCourseChartData_1 = data;
+    this.comparationCourseChartLabels_1 = labels;
+  })
+
+  this.profeSrv.getAveragesCourse(this.comparationCourseID_2).subscribe((coursesApi)  =>{
+    
+    resData_2 = coursesApi.promedio;
+    for(let response of resData_2){
+      labels_2.push(response.categoria);
+      data_2.push(response.puntuacion);
+    }
+    this.comparationCourseChartData_2 = data_2;
+    this.comparationCourseChartLabels_2 = labels_2;
+    this.initComparationGraph();  
+  })
+}
+
+getCourseName(courseID:string):string{
+  for(let course of this.courses){
+    if(course._id == courseID){
+      return course.name;
+    }
   }
-  console.log(labels);
-  console.log(data);
-*/
-  this.comparationCourseChartLabels_1 = this.resumeChartLabels;
-  this.comparationCourseChartData_1 = this.resumeChartData;
-
-  this.comparationCourseChartLabels_2 =this.resumeChartLabels;
-  this.comparationCourseChartData_2 =[1.25,3.4,3,2,1.5];
-
-}
 }
 
 
+}
