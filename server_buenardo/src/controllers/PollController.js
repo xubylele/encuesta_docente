@@ -60,7 +60,6 @@ pollCtrl.getComments = async (req, res) =>{
         
         for (let j = 0; j < answers.length; j++) {
             const answer = answers[j]
-            console.log(answer)
             if(answer.alternative == null) {
                 if(answer.commentary != null){
                     comments.push(answer.commentary)
