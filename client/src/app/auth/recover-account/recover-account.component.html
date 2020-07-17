@@ -21,16 +21,16 @@
         <div class="login-card">
             <form  [formGroup]="formRecover" id="form-login">
                 <div class="form-group" id="email">
-                  <h3>Recuperacion de Contrasena</h3>
+                  <h3>Recuperación de Contraseña</h3>
                   <label for="exampleInputEmail1">Ingrese su email:</label>
                   <input class="form-control" formControlName="email">
                   <div id="alert" *ngIf="formRecover.controls['email'].invalid && formRecover.controls['email'].dirty"> 
-                    <small class="text-danger">Ingrese Email Valido</small>
+                    <small class="text-danger">Ingrese Email Válido</small>
                   </div>
 
                 </div>
                 <div>
-                    <a [routerLink]="'/auth/login'">Iniciar Sesion</a>
+                    <a [routerLink]="'/auth/login'">Iniciar Sesión</a>
                 </div>
 
                 <br>

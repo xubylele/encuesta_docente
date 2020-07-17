@@ -1,4 +1,4 @@
-<div class="row d-flex flex-row">
+<div class="row d-flex flex-row card-vergas-vs">
     <div class="p-2">
         <div class="card bg-light mb-3" style="width: 45rem;">
             <h4 class="card-header">RESUMEN ENCUESTAS DEL SEMESTRE</h4>
@@ -45,6 +45,14 @@
                         <button type="button" class="btn btn-primary btn-lg btn-block" (click)="getCoursesAverage()">Comparar</button>
                     </div>
                     <div class="p-2">
+                        <ngx-spinner
+                        name = "compare"
+                        bdOpacity = 0.9
+                        bdColor = "#f4f4f9"
+                        size = "medium"
+                        color = "#172B4D"
+                        [fullScreen] = "false"
+                      ></ngx-spinner>  
                         <canvas id="comparationChart" width="600" height="400"></canvas>
                     </div>
                 </div>

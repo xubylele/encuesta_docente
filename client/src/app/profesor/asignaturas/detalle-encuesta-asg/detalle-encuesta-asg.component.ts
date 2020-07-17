@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetalleEncuestaAsgComponent implements OnInit {
   dataCourse:any
+  percent:string = "10%"
 
   constructor(private ruta:ActivatedRoute,private profeSrv:ProfesorService,private spinSrv:NgxSpinnerService) { }
 
