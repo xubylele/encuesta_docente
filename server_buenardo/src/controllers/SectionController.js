@@ -15,10 +15,10 @@ sectionCtrl.create = async(req ,res) =>{
 
 sectionCtrl.detailPerSection = async(req , res) => {
     const sections = await Section.find()
-    const participant = await ParticipantList.findOne({user: req.user._id, course: req.params.courseID})
-
+    const participant = await ParticipantList.findOne({user: req.user, course: req.params.courseID})
     let sectionResults= []
     for (let i = 0; i < sections.length; i++) {
+        let cont = 0
         const section = sections[i]
         const questions = await Question.find().where('_id').in(section.questions).exec()
         let sectionsQuestions = []
@@ -28,10 +28,12 @@ sectionCtrl.detailPerSection = async(req , res) => {
             const answers = await Answer.find().where('_id').in(question.answers).populate('poll').populate('alternative')
             for (let k = 0; k < answers.length; k++) {
                 const answer = answers[k]
-                if(answer.teacher == ParticipantList._id)
+                if(answer.poll.teacher == participant._id.toString()){
                     sum += answer.alternative.alternative
+                    cont++
+                }
             }
-            sectionsQuestions.push({'question': question.question, result: (sum/answers.length).toFixed(1)})
+            sectionsQuestions.push({'question': question.question, result: (sum/cont).toFixed(1)})
         }
         sectionResults.push({'section': section.name, 'results': sectionsQuestions})
         
