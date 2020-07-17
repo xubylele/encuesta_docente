@@ -18,6 +18,7 @@ export class DetalleAsignaturaComponent implements OnInit {
   siglaC:string
   idC:string
   dataAverages:any
+  comments:any
 
   constructor(private ruta:ActivatedRoute,private profeSrv:ProfesorService,private spinSrv:NgxSpinnerService) { }
 
@@ -45,7 +46,12 @@ export class DetalleAsignaturaComponent implements OnInit {
       this.topBadges = topbadges.top5
       console.log("insignias")
       console.log(topbadges.top5)
-    })    
+    })
+
+    this.profeSrv.getComments(this.ruta.snapshot.params.idC).subscribe((comments) => {
+      this.comments = comments.comments
+      console.log(this.comments)
+    })
   }
 
   initGraph(){

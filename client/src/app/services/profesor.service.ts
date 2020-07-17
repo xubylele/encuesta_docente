@@ -77,4 +77,13 @@ export class ProfesorService {
     return this.httpClient.get<any>(urlT,{headers})
   }
 
+  getComments(courseID:string):Observable<any>{
+    let token = localStorage.getItem("ACCESS_TOKEN");
+    const headers = new HttpHeaders ({
+      'auth-token':token, 
+    });
+    let url = 'http://localhost:3000/api/polls/getCommentaries/'.concat(courseID)
+    return this.httpClient.get<any>(url,{headers})
+  }
+
 }
