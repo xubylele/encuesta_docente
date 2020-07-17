@@ -1,14 +1,53 @@
-<div class="card-columns">
-    <div class="card-body" id="data-insignias">
-        <div class="container">
-            <canvas id="myChart" width="300" height="400"></canvas>
-        </div>       
-    </div>
-    <div class="card-body" id="data-insignias">
-        <p id="title-badges">Insignias Populares</p>
-        <div class="card-body">
-            
-
+    <div class="row d-flex flex-row">
+        <div class="p-2">
+            <div class="card bg-light mb-3" style="width: 25rem;">
+                <h4 class="card-header">Resultados de la Encuesta</h4>
+                <div class="card-body" id="data-insignias">
+                    <ngx-spinner
+                            bdOpacity = 0.9
+                            bdColor = "#f4f4f9"
+                            size = "medium"
+                            color = "#172B4D"
+                            [fullScreen] = "false"
+                            ></ngx-spinner>  
+                    <div class="container">
+                                        
+                        <canvas id="myChart" width="350" height="400"></canvas>
+                    </div>
+                    <button type="button" class="btn btn-success" [routerLink]="['detalle-encuesta',idC]">Ver Detalle</button>
+                </div>
+            </div>
         </div>
+
+        <div class="p-2">
+            <div class="card bg-light mb-3" style="width: 23rem;">
+                <h4 class="card-header">Respuestas v/s Matriculados</h4>
+                <div class="card-body" id="data-insignias">
+                    <div class="card" style="width: 18rem;">
+                        <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Encuestas Respondidas: <h5>{{respvsmat.answers}}</h5></li>
+                        <li class="list-group-item">Alumnos Inscritos: <h5>{{respvsmat.inscribed}}</h5></li>
+                        <li class="list-group-item"><h5>{{percentrvsm}}%</h5> De los alumnos matriculados en el curso han respondido la encuesta.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="p-2">
+            <div class="card bg-light mb-3" style="width: 23rem;">
+                <h4 class="card-header">Top 5 Insignias Asignadas</h4>
+                <div class="card-body" id="data-insignias"> 
+                    <div class="card" style="width: 18rem;">
+                        <ul class="list-group list-group-flush">
+                            <section *ngFor="let badge of topBadges">
+                                <li  class="list-group-item">Insignia 1: <h5>{{badge.badge}}, {{badge.value}}</h5></li>
+                            </section>
+                        
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>   
     </div>
-</div>
+

@@ -88,7 +88,7 @@ export class EncuestaComponent implements OnInit {
       if(this.checkAnswerComplete()){
         this.page = this.page + 1
         this.encuesta = this.encuestaCompleta.sectionList[this.page]
-        window.scroll(0,0);
+        window.scroll(0,0)
       }
       else{
         Swal.fire({
@@ -134,8 +134,6 @@ export class EncuestaComponent implements OnInit {
         }
     }
     let cant = (this.namesProfes.length) * 3 * (this.page+1)
-    console.log(cant)
-    console.log(count)
     if(count == cant){
       return true
     }
@@ -153,7 +151,6 @@ export class EncuestaComponent implements OnInit {
     if (!this.cambiarRespuesta(respuesta,idPregunta,idProfesor,idCurso)){
       this.respuestas.push(this.infoResp)
     }
-    console.log(this.respuestas)
   }
 
 
@@ -219,6 +216,7 @@ export class EncuestaComponent implements OnInit {
   }
 
   sendEncuesta(){
+    window.scroll(0,0)
     this.spinSrv.show()
     this.EncuestaSrv.postEncuesta(this.respuestas).subscribe(res =>{
       this.spinSrv.hide()
@@ -235,7 +233,6 @@ export class EncuestaComponent implements OnInit {
 
   getProfesOfData(){
     for(let data of this.profesAndC){
-      console.log(data)
       for(let teacher of data.teachers){
         if((!this.namesProfes.find(function (profe){
           if(profe.idP == teacher._id){
@@ -257,7 +254,6 @@ export class EncuestaComponent implements OnInit {
       }
     
     }
-    console.log(this.namesProfes)
   }
 
   logout(){
@@ -278,7 +274,6 @@ export class EncuestaComponent implements OnInit {
             for(let badge of profe.insignias){
               if(badge.id === idBadge){
                 let index = profe.insignias.indexOf(badge,0)
-                console.log(index)
                 profe.insignias.splice(index,1)
                 return
               }
@@ -286,7 +281,6 @@ export class EncuestaComponent implements OnInit {
             }
             data.id = idBadge
             profe.insignias.push(data)
-            console.log(this.respuestas)
             return
           }
         }
