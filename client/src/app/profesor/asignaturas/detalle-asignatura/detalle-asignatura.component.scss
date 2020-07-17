@@ -2,11 +2,16 @@
     column-count: 2 !important;
 }
 
-#data-insignias{
+/*#data-insignias{
     display:table-cell
-}
+}*/
 
 #title-badges{
     font-size: large;
     font-weight: bold;
+}
+
+.flex-row{
+    margin-left: 2vh !important;
+    position: fixed;
 }

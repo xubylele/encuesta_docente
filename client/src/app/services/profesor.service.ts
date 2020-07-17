@@ -48,11 +48,33 @@ export class ProfesorService {
   getAveragesCourse(courseID:string):Observable<any>{
     let token = localStorage.getItem("ACCESS_TOKEN");
     const headers = new HttpHeaders ({
-      'auth-token':token,
+      'auth-token':token, 
     });
     let url = (this.HOST_SECTIONS+'/courseAveragePerSection/').concat(courseID)
     console.log(url)
     return this.httpClient.get<any>(url,{headers})
+  }
+
+  getInscribedVsResp(courseID:string):Observable<any>{
+    let token = localStorage.getItem("ACCESS_TOKEN");
+    const headers = new HttpHeaders ({
+      'auth-token':token, 
+    });
+    let url = (this.HOST_COURSES).concat(courseID)
+    let urlT = url.concat('/answersVsInscribed')
+    console.log(urlT)
+    return this.httpClient.get<any>(urlT,{headers})
+  }
+
+  get5topBadges(courseID:string):Observable<any>{
+    let token = localStorage.getItem("ACCESS_TOKEN");
+    const headers = new HttpHeaders ({
+      'auth-token':token, 
+    });
+    let url = 'http://localhost:3000/api/badges/'.concat(courseID)
+    let urlT = url.concat('/top5')
+    console.log(urlT)
+    return this.httpClient.get<any>(urlT,{headers})
   }
 
 }

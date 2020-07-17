@@ -35,6 +35,7 @@ export class ResumenActualComponent implements OnInit {
       console.log(coursesApi.promedio)
       this.resData = coursesApi.promedio
       this.initResumeGraph()
+      this.spinSrv.hide()
     })
     
     this.profeSrv.getCourses().subscribe((courseApi) =>{

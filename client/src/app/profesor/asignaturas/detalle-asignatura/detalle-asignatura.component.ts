@@ -10,24 +10,45 @@ import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
   styleUrls: ['./detalle-asignatura.component.scss']
 })
 export class DetalleAsignaturaComponent implements OnInit {
+  topBadges:any
+  respvsmat:any
+  percentrvsm:any
   dataCourse:Array<any>
   nameC:string
   siglaC:string
   idC:string
+  dataAverages:any
 
   constructor(private ruta:ActivatedRoute,private profeSrv:ProfesorService,private spinSrv:NgxSpinnerService) { }
 
   ngOnInit(): void {
-    this.nameC = this.ruta.snapshot.params.nameC
+    this.spinSrv.show()
+    this.nameC = this.ruta.snapshot.params.nameC 
     this.siglaC = this.ruta.snapshot.params.siglaC
     this.idC = this.ruta.snapshot.params.idC
-    this.spinSrv.show()
-    this.profeSrv.getDataCourse(this.ruta.snapshot.params.idC).subscribe((dataCourse)  =>{
-      this.spinSrv.hide()
-      this.dataCourse = dataCourse
+    
+    this.profeSrv.getAveragesCourse(this.ruta.snapshot.params.idC).subscribe((averageCourse)  =>{
+      this.dataCourse = averageCourse.promedio
       console.log(this.dataCourse)
+      this.setResumeData()
+      this.initGraph()
+      this.spinSrv.hide()
+    })
+    
+    this.profeSrv.getInscribedVsResp(this.ruta.snapshot.params.idC).subscribe((respvsmat)  =>{
+      this.respvsmat = respvsmat
+      this.percentrvsm = (100 * respvsmat.answers) / respvsmat.inscribed
+      console.log(respvsmat)
     })
 
+    this.profeSrv.get5topBadges(this.ruta.snapshot.params.idC).subscribe((topbadges)  =>{
+      this.topBadges = topbadges.top5
+      console.log("insignias")
+      console.log(topbadges.top5)
+    })    
+  }
+
+  initGraph(){
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(ctx, {
     type: 'bar',
@@ -35,7 +56,7 @@ export class DetalleAsignaturaComponent implements OnInit {
       labels: ["Uso del Aula Virtual", "Contenido del Curso", "Actitud", "Responsabilidad", "Metodologia de Enseñanza"],
       datasets: [{
         label: this.nameC.concat('\n',this.siglaC),
-        data: [3.3, 3.7, 2.8, 2.6, 3.1],
+        data: this.dataAverages,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -84,9 +105,23 @@ export class DetalleAsignaturaComponent implements OnInit {
       }
     }
   });
+  }
 
 
 
+
+  setResumeData():void{
+
+    let data = [];                                                        // VARIABLE TEMPORAL DATA
+    let labels = [];                                                      // VARIABLE TEMPORAL LABELS
+
+    for(let response of this.dataCourse){
+      labels.push(response.categoria);
+      data.push(Number(response.puntuacion));
+    }
+
+    this.dataAverages = data;
+    //sthis.resumeChartData = data;
   }
 
 
