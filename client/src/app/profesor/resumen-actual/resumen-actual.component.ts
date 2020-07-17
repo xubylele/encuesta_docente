@@ -3,6 +3,7 @@ import { ProfesorService } from './../../services/profesor.service';
 import * as Chart from 'chart.js';
 import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 
+
 interface AverageCourse{
 
 }
@@ -144,7 +145,7 @@ setComparationCourse_2(event){
 } 
 
 getCoursesAverage():void {
-
+this.spinSrv.show("compare")
 let resData:Array<any>;
 let resData_2:Array<any>;
 let labels = [];
