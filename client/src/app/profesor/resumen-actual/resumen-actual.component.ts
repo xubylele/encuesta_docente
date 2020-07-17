@@ -97,23 +97,33 @@ export class ResumenActualComponent implements OnInit {
               data: this.comparationCourseChartData_1,                                 // ASIGNAMOS LA DATA A LA GLOBAL
               label:this.getCourseName(this.comparationCourseID_1),
               backgroundColor: ["rgba(255, 99, 132, 0.8)",          // COLOR LABEL 1
-                                "rgba(75, 192, 192, 0.8)",          // COLOR LABEL 2
-                                "rgba(255, 205, 86, 0.8)",          // COLOR LABEL 3
-                                "rgba(201, 203, 207, 0.8)",         // COLOR LABEL 3
-                                "rgba(54, 162, 235, 0.8)"],         // COLOR LABEL 5
+                                "rgba(255, 99, 132, 0.8)",          // COLOR LABEL 2
+                                "rgba(255, 99, 132, 0.8)",          // COLOR LABEL 3
+                                "rgba(255, 99, 132, 0.8)",         // COLOR LABEL 3
+                                "rgba(255, 99, 132, 0.8)"],         // COLOR LABEL 5
               borderWidth: 1                                        // LE ASIGNAMOS EL ANCHO DEL BORDE
           },
           {                                              // DECLARAMOS EL DATA SET
             data: this.comparationCourseChartData_2,                                 // ASIGNAMOS LA DATA A LA GLOBAL
             label:this.getCourseName(this.comparationCourseID_2),
-            backgroundColor: ["rgba(255, 99, 132, 0.8)",          // COLOR LABEL 1
-                              "rgba(75, 192, 192, 0.8)",          // COLOR LABEL 2
+            backgroundColor: ["rgba(255, 205, 86, 0.8)",          // COLOR LABEL 1
+                              "rgba(255, 205, 86, 0.8)",          // COLOR LABEL 2
                               "rgba(255, 205, 86, 0.8)",          // COLOR LABEL 3
-                              "rgba(201, 203, 207, 0.8)",         // COLOR LABEL 3
-                              "rgba(54, 162, 235, 0.8)"],         // COLOR LABEL 5
+                              "rgba(255, 205, 86, 0.8)",         // COLOR LABEL 3
+                              "rgba(255, 205, 86, 0.8)"],         // COLOR LABEL 5
             borderWidth: 1                                        // LE ASIGNAMOS EL ANCHO DEL BORDE
         }]
-      }
+      },
+      options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    suggestedMax: 4
+                }
+            }]
+        }
+    }
     });
   }
 

@@ -94,12 +94,14 @@ export class DetalleAsignaturaComponent implements OnInit {
         xAxes: [{
           ticks: {
             maxRotation: 90,
-            minRotation: 80
+            minRotation: 80,
+
           }
         }],
         yAxes: [{
           ticks: {
-            beginAtZero: true
+            beginAtZero: true,
+            suggestedMax: 4
           }
         }]
       }
