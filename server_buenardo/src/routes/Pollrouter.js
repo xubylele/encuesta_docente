@@ -9,4 +9,5 @@ const auth = require('../middlewares/auth')
     router.delete('/delete',PollController.deletepoll)
     router.put('/addanswer',PollController.addAnswer)
     router.post('/savePoll', auth, PollController.savePoll)
+    router.get('/getCommentaries/:courseID', auth, PollController.getComments)
     module.exports = router

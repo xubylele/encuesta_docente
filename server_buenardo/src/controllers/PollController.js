@@ -50,6 +50,29 @@ pollCtrl.addAnswer = async (req, res) =>{
     }
 }
 
+pollCtrl.getComments = async (req, res) =>{
+    const participant = await ParticipantList.findOne({user: req.user._id, course: req.params.courseID})
+    const polls = await Poll.find({teacher: participant._id}).populate('answers')
+    let comments = []
+
+    for (let i = 0; i < polls.length; i++) {
+        const answers = polls[i].answers
+        
+        for (let j = 0; j < answers.length; j++) {
+            const answer = answers[j]
+            console.log(answer)
+            if(answer.alternative == null) {
+                if(answer.commentary != null){
+                    comments.push(answer.commentary)
+                }
+            }
+            
+        }
+    }
+
+    return res.status(200).json({comments})
+}
+
 pollCtrl.savePoll = async (req, res) => {
     if((await Poll.find({user: req.user})).length > 0) return res.status(400).json({error: 'Usuario ya contesto la encuesta!!'})
 
